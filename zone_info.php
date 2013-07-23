@@ -116,11 +116,11 @@ foreach ($rects as $rect) {
                     <th>Value</th>
                 </tr>
                 <tr>
-                    <td>World</th>
+                    <td>World</td>
                     <td><?php echo $zone["zone_world"]; ?></td>
                 </tr>
                 <tr>
-                    <td>Coordinates</th>
+                    <td>Coordinates</td>
                     <td>
                     <?php foreach ($rects as $rect): ?>
                         <?php echo "(".($rect['rect_x1'] ? $rect['rect_x1'] : 'NULL').",".($rect['rect_y1'] ? $rect['rect_y1'] : 'NULL').") - (".($rect['rect_x2'] ? $rect['rect_x2'] : 'NULL').",".($rect['rect_y2'] ? $rect['rect_y2'] : 'NULL').")"; ?><br />
@@ -128,42 +128,42 @@ foreach ($rects as $rect) {
                     </td>
                 </tr>
                 <tr>
-                    <td>Main Owner</th>
-                    <td><?php echo $zone["zone_owner"] ? $zone["zone_owner"] : 'NULL'; ?></td>
+                    <td>Main Owner</td>
+                    <td><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"search.php?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
                 </tr>
                 <tr>
                     <td colspan=2>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>Enter Default</th>
+                    <td>Enter Default</td>
                     <td><?php echo $zone["zone_enterdefault"] ? "yes" : "no"; ?></td>
                 </tr>
                 <tr>
-                    <td>Place Blocks Default</th>
+                    <td>Place Blocks Default</td>
                     <td><?php echo $zone["zone_placedefault"] ? "yes" : "no"; ?></td>
                 </tr>
                 <tr>
-                    <td>Destroy Blocks Default</th>
+                    <td>Destroy Blocks Default</td>
                     <td><?php echo $zone["zone_destroydefault"] ? "yes" : "no"; ?></td>
                 </tr>
                 <tr>
-                    <td>PVP</th>
+                    <td>PVP</td>
                     <td><?php echo $zone["zone_pvp"] ? "yes" : "no"; ?></td>
                 </tr>
                 <tr>
-                    <td>Hostiles</th>
+                    <td>Hostiles</td>
                     <td><?php echo $zone["zone_hostiles"] ? "yes" : "no"; ?></td>
                 </tr>
                 <tr>
-                    <td>Enter Message</th>
+                    <td>Enter Message</td>
                     <td><?php echo $zone["zone_entermessage"]; ?></td>
                 </tr>
                 <tr>
-                    <td>Exit Message</th>
+                    <td>Exit Message</td>
                     <td><?php echo $zone["zone_exitmessage"]; ?></td>
                 </tr>
                 <tr>
-                    <td>Texture</th>
+                    <td>Texture</td>
                     <td><?php echo $zone["zone_texture"]; ?></td>
                 </tr>
 
@@ -185,12 +185,7 @@ foreach ($rects as $rect) {
                         <!-- <td><?php echo $user["player_id"]; ?></td> -->
                         <td>
                         <?php 
-                        $playerColor = $user["color"];
-                        if (!$playerColor) {
-                            $playerColor = "No Color / Tourist";
-                        }
-                        $playerColor = $colors[$playerColor];
-                        echo "<a class=\"$playerColor\" href=\"search.php?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
+                        echo "<a " . userCSSColor($user["player_id"]) . " href=\"search.php?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
                         ?>
                         <td><?php echo $user["user_perm"]; ?></td>
                         <td></td>
@@ -232,13 +227,8 @@ foreach ($rects as $rect) {
                 <tr>
                     <td> <?php echo $lot["lot_name"]; ?></td>
                     <td>
-                    <?php foreach($lot["users"] as $lVal): 
-                        $playerColor = $lVal["color"];
-                        if (!$playerColor) {
-                            $playerColor = "No Color / Tourist";
-                        }
-                        $playerColor = $colors[$playerColor]; ?>
-                        <a class="<?php echo $playerColor; ?>" 
+                    <?php foreach($lot["users"] as $lVal): ?>
+                        <a <?php echo userCSSColor($lVal["player_id"]); ?>" 
                            href="search.php?q=<?php echo $lVal["player_name"]; ?>">
                            <?php echo $lVal["player_name"]; ?></a><br>
                     <?php endforeach; ?>

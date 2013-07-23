@@ -1,6 +1,8 @@
 <?php
 require_once '_init.php';
 require_once '_check.php';
+require_once '_perm.php';
+
 
 $hits = array();
 $q = "";
@@ -66,7 +68,7 @@ if (array_key_exists("q", $_GET)) {
                             <?php echo $hit["player_id"]; ?>
                         </td>
                         <td>
-                            <?php echo $hit["player_name"]; ?>
+                            <div <?php echo userCSSColor($hit["player_name"]); ?>><?php echo $hit["player_name"]; ?></div>
                         </td>
                         <td>
                             <?php echo $hit["player_created"]; ?>
@@ -79,6 +81,7 @@ if (array_key_exists("q", $_GET)) {
                             &raquo; <a href="player_stats.php?id=<?php echo $hit["player_id"]; ?>">Stats</a><br />
                             <?php if (array_key_exists("senioradmin", $_SESSION)): ?>
                             &raquo; <a href="player_perm.php?id=<?php echo $hit["player_id"]; ?>">Permissions</a><br />
+                            &raquo; <a href="player_zones.php?id=<?php echo $hit["player_id"]; ?>">Zones and Lots</a><br />
                             <?php endif; ?>
                         </td>
                     </tr>

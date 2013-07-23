@@ -1,6 +1,11 @@
 <?php
 require_once '_init.php';
 
+if (array_key_exists("id", $_SESSION)) {
+    header('Location: start.php');
+    exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = $_POST["username"];
@@ -30,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_SESSION["online"] = true;
     $_SESSION["id"] = $user["player_id"];
+    $_SESSION["name"] = $user["player_name"];
 
     foreach ($properties as $property) {
         $_SESSION[$property["property_key"]] = $property["property_value"];

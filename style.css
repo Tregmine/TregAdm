@@ -248,3 +248,7 @@ form .button button {
 .white  {
     color: #000;
 }
+
+.banned {
+	text-decoration: line-through;
+}

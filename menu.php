@@ -5,6 +5,7 @@
     <li><a href="zones.php">Zones</a></li>
     <?php endif; ?>
     <li><a href="reports.php">Reports</a></li>
-    <li><a hreF="logout.php">Logout</a></li>
+    <li style="float: right"><a href="logout.php">Logout</a></li>
+    <li style="float: right">Logged in as: <a href="search.php?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>&nbsp;</li>
 </ul>
 
