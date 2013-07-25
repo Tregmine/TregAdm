@@ -8,23 +8,39 @@ if (!array_key_exists("senioradmin", $_SESSION)) {
     exit;
 }
 
-$player = array();
-$settings = array();
-if (array_key_exists("id", $_GET)) {
-    $stmt = $conn->prepare("SELECT * FROM player WHERE player_id = ?");
-    $stmt->execute(array($_GET["id"]));
+if (!array_key_exists("id", $_GET)) {
+    exit;
+}
 
-    $player = $stmt->fetch();
+$stmt = $conn->prepare("SELECT * FROM player WHERE player_id = ?");
+$stmt->execute(array($_GET["id"]));
 
-    $stmt->closeCursor();
+$player = $stmt->fetch();
 
-    $stmt = $conn->prepare("SELECT * FROM player_property WHERE player_id = ?");
-    $stmt->execute(array($_GET["id"]));
+$stmt->closeCursor();
 
-    $rawSettings = $stmt->fetchAll();
-    foreach ($rawSettings as $setting) {
-        $settings[$setting["property_key"]] = $setting["property_value"];
-    }
+$stmt = $conn->prepare("SELECT * FROM player_property WHERE player_id = ?");
+$stmt->execute(array($_GET["id"]));
+
+$rawSettings = $stmt->fetchAll();
+foreach ($rawSettings as $setting) {
+    $settings[$setting["property_key"]] = $setting["property_value"];
+}
+
+$sql  = "SELECT player_id, player_name, property_value FROM player_property ";
+$sql .= "INNER JOIN player USING (player_id) ";
+$sql .= "WHERE property_key = 'guardian' ";
+$sql .= "ORDER BY property_value ";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$guardians = array();
+$maxRank = 0;
+foreach ($result as $guardian) {
+    $guardians[$guardian["property_value"]] = $guardian;
+    $maxRank = max($maxRank, $guardian["property_value"]);
 }
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -77,7 +93,29 @@ if (array_key_exists("id", $_GET)) {
             <h3 class="infoHeader">Other</h3>
 
             <div class="field">
-                <label for="password">Password</label>
+                <label for="guardian">Guardian Rank</label>
+                <div class="element">
+                    <select name="guardian" id="guardian">
+                        <option value="">Not a guardian</option>
+                        <?php for ($i = 1; $i <= $maxRank+1; $i++): ?>
+                            <?php if (array_key_exists($i, $guardians)):
+                                $guardian = $guardians[$i]; ?>
+                                <?php if ($guardian["player_id"] == $player["player_id"]): ?>
+                                    <option selected="selected" value="<?php echo $i; ?>"><?php echo $i; ?> - <?php echo $guardian["player_name"]; ?></option>
+                                <?php else: ?>
+                                    <option disabled="disabled" value="<?php echo $i; ?>"><?php echo $i; ?> - <?php echo $guardian["player_name"]; ?></option>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </select>
+                </div>
+                <div class="end">&nbsp;</div>
+            </div>
+
+            <div class="field">
+                <label for="color">Color</label>
                 <div class="element">
                     <select name="color" id="color">
                         <?php foreach ($colors as $name => $color): ?>

@@ -46,6 +46,17 @@ foreach ($newPerms as $perm => $v) {
 // insert new color
 $stmt->execute(array($id, "color", $color));
 
+// change guardian rank
+$guardian = $_POST["guardian"];
+
+if ($guardian) {
+    $stmt = $conn->prepare("REPLACE INTO player_property VALUES (?, 'guardian', ?, null)");
+    $stmt->execute(array($id, $guardian));
+} else {
+    $stmt = $conn->prepare("DELETE FROM player_property WHERE property_key = 'guardian' AND player_id = ?");
+    $stmt->execute(array($id));
+}
+
 // change password
 $password = $_POST["password"];
 
