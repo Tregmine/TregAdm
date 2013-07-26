@@ -56,7 +56,7 @@ foreach ($result as $guardian) {
 
         <?php require 'menu.php'; ?>
 
-        <h2 class="info"><?php echo $player["player_name"]; ?> (<?php echo $player["player_id"]; ?>)</h2>
+        <h2 class="info"><span <?php echo userCSSColor($player["player_name"]); ?>><?php echo $player["player_name"]; ?></span> (<?php echo $player["player_id"]; ?>)</h2>
 
         <div class="col75">
 
