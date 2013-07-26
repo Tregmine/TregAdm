@@ -21,7 +21,7 @@ $stmt->execute(array("senioradmin","admin","builder","guardian"));
 $staffTmp = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
 
-foreach ($staffTmp as $key => $val) {	
+foreach ($staffTmp as $key => $val) {
     if ($staffTmp[$key]['property_key'] == "senioradmin") {
         $staff['Senior'][] = $staffTmp[$key]['player_name'];
         if ($temp = array_keys($staff['Admin'],$staffTmp[$key]['player_name'])) {
