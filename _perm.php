@@ -29,7 +29,8 @@ $colors = array(
         "pink" => "LIGHT_PURPLE", 
         "child" => "AQUA", 
         "mentor" => "DARK_AQUA", 
-        "police" => "BLUE"
+        "police" => "BLUE",
+		"white" => "WHITE"
     );
 
 // Colorize the username based on rank or the color stored in the db
@@ -69,7 +70,6 @@ function userCSSColor ($userID) {
 				$playerID = $playerIDTmp;
 			}
 		}
-
 		// We found a match and have a valid player_id
 		if ($playerID) {
 			// Get player's color attribute
@@ -117,7 +117,7 @@ function userCSSColor ($userID) {
 				$reported = " warned";
 			}
 
-			return " class=\"" . $colors[$playerColor] . "$reported\" ";
+			return " class=\"" . strtolower($colors[$playerColor]) . "$reported\" ";
 		}
 		else {
 			return " class=\"" . $colors['No Color / Tourist'] . "\" ";

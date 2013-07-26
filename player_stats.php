@@ -32,6 +32,7 @@ $stmt = $conn->prepare($sqlTransactions);
 $stmt->execute(array($_GET["id"], $_GET["id"]));
 
 $transactions = $stmt->fetchAll();
+$stmt->closeCursor();
 
 $sql  = "SELECT * FROM inventory_item ";
 $sql .= "INNER JOIN inventory USING (inventory_id) ";
@@ -41,10 +42,24 @@ $stmt = $conn->prepare($sql);
 $stmt->execute(array($player["player_id"]));
 
 $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+
 $slots = array();
 foreach ($inventory as $item) {
     $slots[$item["item_slot"]] = $item;
 }
+
+// Aliases
+
+$stmt = $conn->prepare("SELECT property_value FROM player_property WHERE property_key = 'ip' AND player_id = ?");
+$stmt->execute(array($_GET["id"]));
+$playerIP = $stmt->fetchColumn();
+$stmt->closeCursor();
+$stmt = $conn->prepare("SELECT player.player_name FROM player INNER JOIN player_property ON player_property.player_id = player.player_id WHERE player_property.property_key = 'ip' AND player_property.property_value = ?");
+$stmt->execute(array($playerIP));
+$aliases = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -168,7 +183,18 @@ foreach ($inventory as $item) {
             </table>
 
         </div>
-
+	<div class="col25">
+			<table class="info">
+                <tr>
+                    <th colspan="4" class="infoHeader">Aliases</th>
+                </tr>
+                <tr><td>
+            <?php foreach($aliases as $alias): ?>
+			<a <?php echo userCSSColor($alias['player_name']); ?> href="search.php?q=<?php echo $alias['player_name']; ?>"><?php echo $alias['player_name']; ?></a><br>
+			<?php endforeach; ?>
+			</td></tr>
+			</table>
+        </div>
         <div class="col25">
 
             <h3 class="actionsHeader">Actions</h3>
@@ -214,5 +240,7 @@ foreach ($inventory as $item) {
         </table>
 
     </div>
+	
+
 </body>
 </html>
