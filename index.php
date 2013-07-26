@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!array_key_exists("admin", $_SESSION) &&
-        !array_key_exists("mentor", $_SESSION)) {
+        !array_key_exists("guardian", $_SESSION)) {
 
         session_destroy();
     }
