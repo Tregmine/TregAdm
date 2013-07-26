@@ -38,6 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["name"] = $user["player_name"];
 
     foreach ($properties as $property) {
+        if ($property["property_value"] == "false" || $property["property_value"] == "0") {
+            continue;
+        }
         $_SESSION[$property["property_key"]] = $property["property_value"];
     }
 
