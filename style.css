@@ -250,5 +250,10 @@ form .button button {
 }
 
 .banned {
-	text-decoration: line-through;
+	/* text-decoration: line-through; */
+	background-color: #000;
+}
+
+.warned {
+	background-color: #AAA;
 }
