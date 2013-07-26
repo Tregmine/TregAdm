@@ -152,6 +152,9 @@ foreach ($result as $guardian) {
             <ul class="actions">
                 <li><a href="player_report.php?id=<?php echo $player["player_id"]; ?>">Reports</a></li>
                 <li><a href="player_stats.php?id=<?php echo $player["player_id"]; ?>">Stats</a></li>
+                <?php if (array_key_exists("admin", $_SESSION)): ?>
+                <li> <a href="player_zones.php?id=<?php echo $player["player_id"]; ?>">Zones and Lots</a></li>
+                <?php endif; ?>
             </ul>
 
         </div>

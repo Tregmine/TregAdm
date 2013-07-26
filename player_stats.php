@@ -177,6 +177,9 @@ foreach ($inventory as $item) {
                 <?php if (array_key_exists("senioradmin", $_SESSION)): ?>
                 <li><a href="player_perm.php?id=<?php echo $player["player_id"]; ?>">Permissions</a></li>
                 <?php endif; ?>
+                <?php if (array_key_exists("admin", $_SESSION)): ?>
+                <li> <a href="player_zones.php?id=<?php echo $player["player_id"]; ?>">Zones and Lots</a></li>
+                <?php endif; ?>
             </ul>
 
         </div>

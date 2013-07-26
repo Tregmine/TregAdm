@@ -93,6 +93,9 @@ if (array_key_exists("id", $_GET)) {
                 <li><a href="player_perm.php?id=<?php echo $player["player_id"]; ?>">Permissions</a></li>
                 <?php endif; ?>
                 <li><a href="player_stats.php?id=<?php echo $player["player_id"]; ?>">Stats</a></li>
+                <?php if (array_key_exists("admin", $_SESSION)): ?>
+                <li> <a href="player_zones.php?id=<?php echo $player["player_id"]; ?>">Zones and Lots</a></li>
+                <?php endif; ?>
             </ul>
         </div>
 
