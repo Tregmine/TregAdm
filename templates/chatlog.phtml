@@ -1,0 +1,51 @@
+<form method="get" action="/index.php/chatlog">
+    <h3 class="formHeader">Filter</h3>
+
+    <div class="field">
+        <label for="players">Players (comma separated)</label>
+        <div class="element">
+        <input type="text" name="players" id="players" value="<?php echo implode(",", $players); ?>"/>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="field">
+        <label for="start">Start Date</label>
+        <div class="element">
+        <input type="text" name="start" id="start" value="<?php echo $start; ?>"/>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="field">
+        <label for="text">Text</label>
+        <div class="element">
+            <input type="text" name="text" id="text" value="<?php echo $text; ?>" />
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="field">
+        <label for="channel">Channel</label>
+        <div class="element">
+            <input type="text" name="channel" id="channel" value="<?php echo $channel; ?>" />
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="button">
+        <button type="submit">Filter</button>
+    </div>
+</form>
+
+<h3 class="infoHeader">Logs</h3>
+<table class="info">
+    <?php foreach ($chatlogs as $log): ?>
+        <tr>
+            <td><?php echo $log["chatlog_channel"]; ?></td>
+            <td><?php echo $log["player_name"]; ?></td>
+            <td><?php echo date("Y-m-d H:i:s", $log["chatlog_timestamp"]); ?></td>
+            <td><?php echo $log["chatlog_message"]; ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

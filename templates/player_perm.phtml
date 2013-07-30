@@ -1,0 +1,94 @@
+<div class="col75">
+
+    <table class="info">
+        <tr>
+            <th colspan="9" class="infoHeader">Properties</th>
+        </tr>
+
+        <?php foreach ($settings as $key => $value):
+            if (array_key_exists($key, $permissionList) && $key != "color") continue;
+            ?>
+            <tr>
+                <td><?php echo $key; ?></td>
+                <td><?php echo $value; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <form method="post" action="/index.php/player/perm/save?id=<?php echo $player["player_id"]; ?>">
+
+    <table class="info">
+        <tr>
+            <th colspan="9" class="infoHeader">Permissions</th>
+        </tr>
+
+        <?php foreach ($permissionList as $key => $name): ?>
+            <tr>
+                <td><input type="checkbox" name="perm[<?php echo $key; ?>]" id="perm_<?php echo $key; ?>" value="1" <?php if (array_key_exists($key, $settings) && $settings[$key] == "true") echo ' checked="checked"'; ?> /></td>
+                <td><label for="perm_<?php echo $key; ?>"><?php echo $name; ?></label></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <h3 class="infoHeader">Other</h3>
+
+    <div class="field">
+        <label for="guardian">Guardian Rank</label>
+        <div class="element">
+            <select name="guardian" id="guardian">
+                <option value="">Not a guardian</option>
+                <?php for ($i = 1; $i <= $maxRank+1; $i++): ?>
+                    <?php if (array_key_exists($i, $guardians)):
+                        $guardian = $guardians[$i]; ?>
+                        <?php if ($guardian["player_id"] == $player["player_id"]): ?>
+                            <option selected="selected" value="<?php echo $i; ?>"><?php echo $i; ?> - <?php echo $guardian["player_name"]; ?></option>
+                        <?php else: ?>
+                            <option disabled="disabled" value="<?php echo $i; ?>"><?php echo $i; ?> - <?php echo $guardian["player_name"]; ?></option>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </select>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="field">
+        <label for="color">Color</label>
+        <div class="element">
+            <select name="color" id="color">
+                <?php foreach ($colors as $name => $color): ?>
+                    <option value="<?php echo $name; ?>" <?php if (array_key_exists("color", $settings) && $settings["color"] == $name) echo 'selected="selected"'; ?>><?php echo $name; ?> (<?php echo $color; ?>)</option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="field">
+        <label for="password">Password</label>
+        <div class="element">
+            <input type="text" name="password" id="password" />
+            <p>
+                The password will only be changed if you enter something in this box.
+            </p>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="button">
+        <button type="submit">Save changes</button>
+    </div>
+
+    </form>
+
+</div>
+
+<div class="col25">
+
+    <?php require_once 'player_menu.phtml'; ?>
+
+</div>
+
+<div class="col_clear">&nbsp;</div>

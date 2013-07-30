@@ -1,0 +1,50 @@
+<form method="get" action="/index.php/zone/search">
+    <div class="field">
+        <label for="zone_search">Zone</label>
+        <div class="element">
+            <input type="text" name="q" id="zone_search" value="<?php echo htmlspecialchars($q); ?>"/>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="button">
+        <button type="submit">Search</button>
+    </div>
+</form>
+
+<h3 class="infoHeader"><?php echo count($hits); ?> results for "<?php echo htmlspecialchars($q); ?>"</h3>
+
+<?php if ($hits): ?>
+    <table style="width: 100%;" class="info">
+        <cols>
+            <col style="width: 50px;" />
+            <col />
+            <col style="width: 200px;" />
+            <col style="width: 200px;" />
+        </cols>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>World</th>
+            <th>Actions</th>
+        </tr>
+        <?php foreach ($hits as $hit): ?>
+        <tr>
+            <td>
+                <?php echo $hit["zone_id"]; ?>
+            </td>
+            <td>
+                <?php echo $hit["zone_name"]; ?>
+            </td>
+            <td>
+                <?php echo $hit["zone_world"]; ?>
+            </td>
+            <td>
+                &raquo; <a href="/index.php/zone/info?id=<?php echo $hit["zone_id"]; ?>">Info</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+<?php else: ?>
+    <p>No Hits.</p>
+<?php endif; ?>

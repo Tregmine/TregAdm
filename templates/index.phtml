@@ -1,0 +1,31 @@
+<?php if (array_key_exists("error", $_GET)): ?>
+    <p>
+        <?php if ($_GET["error"] == "fail"): ?>
+            Invalid username or password.
+        <?php endif;?>
+    </p>
+<?php endif; ?>
+
+<form method="post" action="/index.php/login">
+    <h3 class="formHeader">Login</h3>
+
+    <div class="field">
+        <label for="username">Username</label>
+        <div class="element">
+            <input type="text" name="username" id="username" />
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="field">
+        <label for="password">Password</label>
+        <div class="element">
+            <input type="password" name="pass" id="pass" />
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="button">
+        <button type="submit">Login</button>
+    </div>
+</form>

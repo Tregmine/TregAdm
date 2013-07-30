@@ -1,0 +1,18 @@
+<?php foreach(array("Guardian","Admin","Builder","Senior") as $rank): ?>
+<div class="col25">
+    <table class="info">
+        <tr>
+            <th colspan="9" class="infoHeader"><?php echo $rank; ?></th>
+        </tr>
+        <?php foreach ($staff[$rank] as $key): ?>
+        <tr>
+            <td>
+                <a <?php echo userCSSColor($key); ?>" href="/index.php/player/search?q=<?php echo $key; ?>"> <?php echo $key; ?></a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+<?php endforeach; ?>
+
+<div class="col_clear">&nbsp;</div>

@@ -1,0 +1,64 @@
+<form method="get" action="/index.php/player/search">
+    <div class="field">
+        <label for="player_search">User</label>
+        <div class="element">
+            <input type="text" name="q" id="player_search" value="<?php echo htmlspecialchars($q); ?>"/>
+        </div>
+            <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="button">
+        <button type="submit">Search</button>
+    </div>
+</form>
+
+<?php if ($q): ?>
+    <h3 class="infoHeader">Results for "<?php echo htmlspecialchars($q); ?>"</h3>
+
+    <?php if ($hits): ?>
+        <table style="width: 100%;" class="info">
+            <cols>
+                <col style="width: 50px;" />
+                <col />
+                <col style="width: 200px;" />
+                <col style="width: 150px;" />
+                <col style="width: 200px;" />
+            </cols>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Member Since</th>
+                <th>Wallet</th>
+                <th>Actions</th>
+            </tr>
+            <?php foreach ($hits as $hit): ?>
+            <tr>
+                <td>
+                    <?php echo $hit["player_id"]; ?>
+                </td>
+                <td>
+                    <div <?php echo userCSSColor($hit["player_name"]); ?>><?php echo $hit["player_name"]; ?></div>
+                </td>
+                <td>
+                    <?php echo $hit["player_created"]; ?>
+                </td>
+                <td>
+                    <?php echo $hit["player_wallet"]; ?> tregs
+                </td>
+                <td>
+                    &raquo; <a href="/index.php/player/report?id=<?php echo $hit["player_id"]; ?>">Reports</a><br />
+                    &raquo; <a href="/index.php/player/stats?id=<?php echo $hit["player_id"]; ?>">Stats</a><br />
+                    <?php if (array_key_exists("senioradmin", $_SESSION)): ?>
+                    &raquo; <a href="/index.php/player/perm?id=<?php echo $hit["player_id"]; ?>">Permissions</a><br />
+                    <?php endif; ?>
+                    <?php if (array_key_exists("admin", $_SESSION)): ?>
+                    &raquo; <a href="/index.php/player/zones?id=<?php echo $hit["player_id"]; ?>">Zones and Lots</a><br />
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php else: ?>
+        <p>No Hits.</p>
+    <?php endif; ?>
+<?php endif; ?>
