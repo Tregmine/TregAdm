@@ -20,6 +20,21 @@ if (array_key_exists("q", $_GET)) {
     <style type="text/css">
     @import 'style.css';
     </style>
+    <link rel="stylesheet" href="jquery-ui.css" />
+    <script src="jquery-1.9.1.js"></script>
+    <script src="jquery-ui.js"></script>
+    <script type="text/javascript">
+    $(document).ready(
+        function() {
+            $("#player_search")
+                .autocomplete({
+                    "source": function(req, res) {
+                        $.getJSON('player_autocomplete.php?q=' +
+                                  encodeURIComponent(req.term), res);
+                    }
+                });
+        });
+    </script>
 </head>
 <body>
     <div id="layout_wrapper">
@@ -31,9 +46,9 @@ if (array_key_exists("q", $_GET)) {
 
         <form method="get" action="search.php">
             <div class="field">
-                <label for="q">User</label>
+                <label for="player_search">User</label>
                 <div class="element">
-                    <input type="text" name="q" id="q" value="<?php echo htmlspecialchars($q); ?>"/>
+                    <input type="text" name="q" id="player_search" value="<?php echo htmlspecialchars($q); ?>"/>
                 </div>
                     <div class="end">&nbsp;</div>
             </div>

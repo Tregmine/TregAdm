@@ -28,6 +28,21 @@ $hits = $stmt->fetchAll();
     <style type="text/css">
     @import 'style.css';
     </style>
+    <link rel="stylesheet" href="jquery-ui.css" />
+    <script src="jquery-1.9.1.js"></script>
+    <script src="jquery-ui.js"></script>
+    <script type="text/javascript">
+    $(document).ready(
+        function() {
+            $("#zone_search")
+                .autocomplete({
+                    "source": function(req, res) {
+                        $.getJSON('zone_autocomplete.php?q=' +
+                                  encodeURIComponent(req.term), res);
+                    }
+                });
+        });
+    </script>
 </head>
 <body>
     <div id="layout_wrapper">
@@ -39,9 +54,9 @@ $hits = $stmt->fetchAll();
 
         <form method="get" action="zones.php">
             <div class="field">
-                <label for="q">Zone</label>
+                <label for="zone_search">Zone</label>
                 <div class="element">
-                    <input type="text" name="q" id="q" value="<?php echo htmlspecialchars($q); ?>"/>
+                    <input type="text" name="q" id="zone_search" value="<?php echo htmlspecialchars($q); ?>"/>
                 </div>
                 <div class="end">&nbsp;</div>
             </div>

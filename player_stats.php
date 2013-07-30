@@ -113,7 +113,7 @@ $stmt->closeCursor();
                             $duration = "N/A";
                         }
                     }
-                    if ($i > 10) {
+                    if ($i < count($logins)-10) {
                         continue;
                     }
                     ?>
