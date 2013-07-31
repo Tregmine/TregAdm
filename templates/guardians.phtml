@@ -9,13 +9,13 @@
     <?php foreach ($guardians as $player): ?>
     <tr>
         <td>
-            <a <?php echo userCSSColor($player["player_id"]); ?>" href="search.php?q=<?php echo $player["player_name"]; ?>"> <?php echo $player["player_name"]; ?></a>
+            <a <?php echo userCSSColor($player["player_id"]); ?>" href="/index.php/player/search?q=<?php echo $player["player_name"]; ?>"> <?php echo $player["player_name"]; ?></a>
         </td>
         <td><?php echo $player["rank"]; ?></td>
         <td><?php echo $player["logins"]; ?></td>
         <td><?php echo $player["last_login"]; ?></td>
         <td>
-            &raquo; <a href="player_perm?id=<?php echo $player["player_id"]; ?>">Permissions</a><br />
+            &raquo; <a href="/index.php/player/perm?id=<?php echo $player["player_id"]; ?>">Permissions</a><br />
             <!--&raquo; <a href="player_perm?id=<?php echo $player["player_id"]; ?>">Move Up</a><br />
             &raquo; <a href="player_perm?id=<?php echo $player["player_id"]; ?>">Move Down</a>-->
         </td>

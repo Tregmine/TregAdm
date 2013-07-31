@@ -1,7 +1,7 @@
 <?php
 
 if (!array_key_exists("admin", $_SESSION)) {
-    header('Location: index.php');
+    header('Location: /index.php');
     exit;
 }
 

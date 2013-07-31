@@ -2,6 +2,7 @@
 
 require_once '../include/init.php';
 require_once '../include/perm.php';
+require_once '../include/check.php';
 
 function render($page, $title, $context = array(), $styles = array(), $scripts = array())
 {

@@ -18,8 +18,6 @@
     <div id="layout_wrapper">
         <h1 id="banner"><span>Tregmine</span></h1>
 
-        <h2 class="info"><?php echo $title; ?></h2>
-
         <?php if (array_key_exists("online", $_SESSION)): ?>
         <ul id="menu">
             <li><a href="/index.php/start">Start</a></li>
@@ -36,6 +34,8 @@
             <li style="float: right">Logged in as: <a href="/index.php/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>&nbsp;</li>
         </ul>
         <?php endif; ?>
+
+        <h2 class="info"><?php echo $title; ?></h2>
 
         <?php
         $template = '../templates/' . $page;

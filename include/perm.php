@@ -104,7 +104,7 @@ function userCSSColor ($userID) {
             }
 
             if (!$playerColor) {
-                $playerColor = "No Color / Tourist";
+                $playerColor = "white";
             }
 
             // Get warned/banned status
@@ -120,14 +120,14 @@ function userCSSColor ($userID) {
                 $reported = " warned";
             }
 
-            return " class=\"" . $colors[$playerColor] . "$reported\" ";
+            return " class=\"" . strtolower($colors[$playerColor]) . "$reported\" ";
         }
         else {
-            return " class=\"" . $colors['No Color / Tourist'] . "\" ";
+            return " class=\"" . strtolower($colors['white']) . "\" ";
         }
     }
     else {
-        return " class=\"" . $colors['No Color / Tourist'] . "\" ";
+        return " class=\"" . strtolower($colors['white']) . "\" ";
     }
 
 }

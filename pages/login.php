@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->closeCursor();
 
     if (!$user) {
-        header('Location: index.php?error=fail');
+        header('Location: /index.php?error=fail');
         exit;
     }
 
     if (crypt($password, $user["player_password"]) != $user["player_password"]) {
-        header('Location: index.php?error=fail');
+        header('Location: /index.php?error=fail');
         exit;
     }
 

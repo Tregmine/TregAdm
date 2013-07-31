@@ -1,4 +1,7 @@
 <?php
+
+checkIfOnline();
+
 if (!array_key_exists("senioradmin", $_SESSION)) {
     header('Location: /index.php');
     exit;

@@ -1,5 +1,7 @@
 <?php
 
+checkIfOnline();
+
 $do = array_key_exists("do", $_GET) ? $_GET["do"] : "report";
 
 if ($do == "report") {
