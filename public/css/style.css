@@ -41,6 +41,7 @@ ul#menu li {
     list-style-type: none;
     display: inline;
 }
+
 ul#menu li:before {
     content: ' - ';
 }
@@ -70,6 +71,7 @@ th {
     text-align: left;
     padding: 5px;
 }
+
 td {
     padding: 5px;
 }
@@ -78,6 +80,7 @@ ul.actions {
     padding: 0;
     margin: 0;
 }
+
 ul.actions li {
     list-style-type: none;
     border-top: 1px solid #CCCCCC;
@@ -93,17 +96,12 @@ ul.actions li {
 h3.actionsHeader,
 h3.formHeader,
 h3.infoHeader,
-table.info th.infoHeader {
+
+table.info thead {
+    background-color: #4444FF;
     text-align: center;
-    width: 100%;
-    background-color: #9db073;
+    padding: 5px;
     color: #FFFFFF;
-    padding: 5px 0;
-    margin: 0;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -ie-box-sizing: border-box;
 }
 
 table.info {
@@ -114,19 +112,26 @@ table.info {
     margin: 0 0 20px 0;
 }
 
+.ein_info {
+    background-color: #FFFFFF;
+    border: 0;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 0 20px 0;
+	font-size:14px;
+}
+
+.ein_info a:hover {
+	font-size:14px;
+	text-decoration:underline;
+}
+
 h2.info {
     width: 980px;
     background-color: #FFFFFF;
     text-align: center;
     padding: 10px;
     font-size: 2em;
-}
-
-.info th {
-    background-color: #4444FF;
-    text-align: center;
-    padding: 5px;
-    color: #FFFFFF;
 }
 
 .info td {

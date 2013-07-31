@@ -1,6 +1,25 @@
+<?php if (!$q) { ?>
+	
+	<div>
+    
+    <h3 class="actionsHeader"><?php echo count($players); ?> Online Players</h3>
+    <div class="ein_info"> |
+    <?php foreach ($players as $player): ?>
+        <a <?php echo userCSSColor($player["id"]); ?> href="/index.php/player/search?q=<?php echo $player["name"]; ?>"><?php echo $player["name"]; ?></a> |
+    <?php endforeach; ?>
+</div>
+</div>
+
+
+<?php
+
+}
+
+?>
+
 <form method="get" action="/index.php/player/search">
     <div class="field">
-        <label for="player_search">User</label>
+        <label for="player_search">Search for username</label>
         <div class="element">
             <input type="text" name="q" id="player_search" value="<?php echo htmlspecialchars($q); ?>"/>
         </div>
@@ -12,25 +31,20 @@
     </div>
 </form>
 
+
+
 <?php if ($q): ?>
     <h3 class="infoHeader">Results for "<?php echo htmlspecialchars($q); ?>"</h3>
 
     <?php if ($hits): ?>
-        <table style="width: 100%;" class="info">
-            <cols>
-                <col style="width: 50px;" />
-                <col />
-                <col style="width: 200px;" />
-                <col style="width: 150px;" />
-                <col style="width: 200px;" />
-            </cols>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Member Since</th>
-                <th>Wallet</th>
-                <th>Actions</th>
-            </tr>
+        <table class="info sortable">
+            	<thead>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Member Since</th>
+                        <th>Wallet</th>
+                        <th>Actions</th>
+                </thead>
             <?php foreach ($hits as $hit): ?>
             <tr>
                 <td>
