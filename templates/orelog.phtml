@@ -1,0 +1,42 @@
+<form method="get" action="/index.php/orelog">
+    <h3 class="formHeader">Filter</h3>
+
+    <div class="field">
+        <label for="start">Start Date</label>
+        <div class="element">
+        <input type="text" name="start" id="start" value="<?php echo $start; ?>"/>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="field">
+        <label for="end">End Date</label>
+        <div class="element">
+        <input type="text" name="end" id="end" value="<?php echo $end; ?>"/>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="button">
+        <button type="submit">Filter</button>
+    </div>
+</form>
+
+<table class="info">
+    <tr>
+        <th>Player</th>
+        <th>World</th>
+        <th>Ore</th>
+        <th>Count</th>
+    </tr>
+    <?php foreach ($log as $player): ?>
+    <tr>
+        <td>
+            <a <?php echo userCSSColor($player["player_id"]); ?>" href="/index.php/player/orelog?id=<?php echo $player["player_id"]; ?>"> <?php echo $player["player_name"]; ?></a>
+        </td>
+        <td><?php echo $player["orelog_world"]; ?></td>
+        <td><?php echo $player["item_name"]; ?></td>
+        <td><?php echo $player["c"]; ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>

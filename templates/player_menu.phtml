@@ -2,6 +2,7 @@
     <ul class="actions">
         <li><a href="/index.php/player/report?id=<?php echo $player["player_id"]; ?>">Reports</a></li>
         <li><a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>">Stats</a></li>
+        <li><a href="/index.php/player/orelog?id=<?php echo $player["player_id"]; ?>">Orelog</a></li>
         <?php if (array_key_exists("senioradmin", $_SESSION)): ?>
         <li><a href="/index.php/player/perm?id=<?php echo $player["player_id"]; ?>">Permissions</a></li>
         <?php endif; ?>
