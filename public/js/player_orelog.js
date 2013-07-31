@@ -53,8 +53,8 @@ function show_coords(id, timestamp) {
                     var row = $(document.createElement("TR"));
 
                     addCell(row, entry["timestamp"], "TD");
-                    addCell(row, entry["x"], "TD");
-                    addCell(row, entry["y"], "TD");
+                    addCell(row, entry["x"] + " ", "TD");
+                    addCell(row, entry["y"] + " ", "TD");
                     addCell(row, entry["z"], "TD");
                     addCell(row, entry["name"], "TD");
 
