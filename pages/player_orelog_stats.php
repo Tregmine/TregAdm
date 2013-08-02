@@ -1,5 +1,7 @@
 <?php
 
+checkIfOnline();
+
 $sql  = "SELECT date(from_unixtime(orelog_timestamp)) timestamp, "
       . "count(if(orelog_material = 14, 1, null)) gold, "
       . "count(if(orelog_material = 56, 1, null)) diamond, "

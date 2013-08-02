@@ -1,9 +1,7 @@
 <?php
 
-if (!array_key_exists("senioradmin", $_SESSION)) {
-    header('Location: /index.php');
-    exit;
-}
+checkIfOnline();
+checkRank("senior_admin");
 
 if (!array_key_exists("id", $_GET)) {
     exit;
@@ -47,8 +45,8 @@ $context["player"] = $player;
 $context["settings"] = $settings;
 $context["guardians"] = $guardians;
 $context["permissionList"] = $permissionList;
-$context["colors"] = $colors;
+$context["maxRank"] = $maxRank;
 
 $styles = array();
-$scripts = array();
+$scripts = array("/js/player_perm.js");
 render('player_perm.phtml', $title, $context, $styles, $scripts);

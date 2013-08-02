@@ -6,3 +6,11 @@ function checkIfOnline() {
         exit;
     }
 }
+
+function checkRank() {
+    $ranks = func_get_args();
+    if (!in_array($_SESSION["rank"], $ranks)) {
+        header('Location: /index.php');
+        exit;
+    }
+}

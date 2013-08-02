@@ -1,5 +1,7 @@
 <?php
 
+checkIfOnline();
+
 $sql  = "SELECT date(from_unixtime(login_timestamp)) d, count(login_id) c, "
       . "count(distinct player_id) uc FROM player_login ";
 $sql .= "WHERE login_timestamp > unix_timestamp() - 30*86400 ";
