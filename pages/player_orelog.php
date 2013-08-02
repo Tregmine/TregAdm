@@ -19,7 +19,7 @@ $sql  = "SELECT date(from_unixtime(orelog_timestamp)) date, "
       . "(minute(from_unixtime(orelog_timestamp)) % 15) min, "
       . "count(if(orelog_material = 14, 1, null)) gold, "
       . "count(if(orelog_material = 56, 1, null)) diamond, "
-      . "count(if(orelog_material = 56, 1, null)) lapis, "
+      . "count(if(orelog_material = 21, 1, null)) lapis, "
       . "count(if(orelog_material = 129, 1, null)) emerald "
       . "FROM player_orelog ";
 $sql .= "WHERE player_id = ? ";

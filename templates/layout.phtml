@@ -27,9 +27,9 @@
             <?php endif; ?>
             <?php if (array_key_exists("admin", $_SESSION)): ?>
             <li><a href="/index.php/chatlog">Chat Logs</a></li>
-            <li><a href="/index.php/orelog">Ore Logs</a></li>
             <li><a href="/index.php/zone/search">Zones</a></li>
             <?php endif; ?>
+            <li><a href="/index.php/orelog">Ore Logs</a></li>
             <li><a href="/index.php/reports">Reports</a></li>
             <li style="float: right"><a href="/index.php/logout">Logout</a></li>
             <li style="float: right">Logged in as: <a href="/index.php/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>&nbsp;</li>

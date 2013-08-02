@@ -13,6 +13,19 @@ google.setOnLoadCallback(
                 var chart = new google.visualization.LineChart(document.getElementById('logins_chart'));
                 chart.draw(data, options);
             });
+
+        $.getJSON("/index.php/player/orelog/stats",
+            function(raw_data) {
+                var data = google.visualization.arrayToDataTable(raw_data);
+
+                var options =
+                    {
+                        title: 'Ores mined'
+                    };
+
+                var chart = new google.visualization.LineChart(document.getElementById('orelog_chart'));
+                chart.draw(data, options);
+            });
     });
 
 $(document).ready(

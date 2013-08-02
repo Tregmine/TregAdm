@@ -1,5 +1,7 @@
 <?php
 
+checkIfOnline();
+
 $hits = array();
 $q = "";
 if (array_key_exists("q", $_GET)) {
