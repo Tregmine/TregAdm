@@ -1,9 +1,6 @@
 <?php
 
-if (!array_key_exists("id", $_SESSION)) {
-    header('Location: /index.php');
-    exit;
-}
+checkIfOnline();
 
 $players_data = file_get_contents("http://mc.tregmine.info:9192/playerlist");
 $players = array();

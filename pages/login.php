@@ -37,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["online"] = true;
     $_SESSION["id"] = $user["player_id"];
     $_SESSION["name"] = $user["player_name"];
+    $_SESSION["rank"] = $user["player_rank"];
+    $_SESSION["flags"] = $user["player_flags"];
 
     foreach ($properties as $property) {
         if ($property["property_value"] == "false" || $property["property_value"] == "0") {
@@ -45,9 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION[$property["property_key"]] = $property["property_value"];
     }
 
-    if (!array_key_exists("admin", $_SESSION) &&
-        !array_key_exists("guardian", $_SESSION) &&
-        !array_key_exists("builder", $_SESSION)) {
+    $validRanks = array("senior_admin", "junior_admin", "builder", "guardian");
+    if (!in_array($_SESSION["rank"], $validRanks)) {
 
         session_destroy();
     }

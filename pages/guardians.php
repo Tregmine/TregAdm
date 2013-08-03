@@ -2,10 +2,7 @@
 
 checkIfOnline();
 
-if (!array_key_exists("senioradmin", $_SESSION)) {
-    header('Location: /index.php');
-    exit;
-}
+checkRank("senior_admin");
 
 $sql  = "SELECT player_id, player_name, CAST(property_value AS UNSIGNED) rank, count(login_id) logins, "
       . "IF(NOT login_timestamp IS NULL, from_unixtime(max(login_timestamp)), 'N/A') last_login "

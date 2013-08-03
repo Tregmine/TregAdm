@@ -5,9 +5,7 @@
             <th colspan="9" class="infoHeader">Properties</th>
         </tr>
 
-        <?php foreach ($settings as $key => $value):
-            if (array_key_exists($key, $permissionList) && $key != "color") continue;
-            ?>
+        <?php foreach ($settings as $key => $value): ?>
             <tr>
                 <td><?php echo $key; ?></td>
                 <td><?php echo $value; ?></td>
@@ -17,26 +15,33 @@
 
     <form method="post" action="/index.php/player/perm/save?id=<?php echo $player["player_id"]; ?>">
 
-    <table class="info">
-        <tr>
-            <th colspan="9" class="infoHeader">Permissions</th>
-        </tr>
-
-        <?php foreach ($permissionList as $key => $name): ?>
-            <tr>
-                <td><input type="checkbox" name="perm[<?php echo $key; ?>]" id="perm_<?php echo $key; ?>" value="1" <?php if (array_key_exists($key, $settings) && $settings[$key] == "true") echo ' checked="checked"'; ?> /></td>
-                <td><label for="perm_<?php echo $key; ?>"><?php echo $name; ?></label></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <h3 class="infoHeader">Other</h3>
+    <h3 class="infoHeader">Info</h3>
 
     <div class="field">
+        <label for="rank">Rank</label>
+        <div class="element">
+            <select name="rank" id="rank">
+                <?php foreach ($permissionList as $key => $rank): ?>
+                    <?php if ($player["player_rank"] == $key): ?>
+                        <option class="<?php echo $rank["color"]; ?>" selected="selected" value="<?php echo $key; ?>"><?php echo $rank["name"]; ?></option>
+                    <?php else: ?>
+                        <option class="<?php echo $rank["color"]; ?>" value="<?php echo $key; ?>"><?php echo $rank["name"]; ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <?php if ($player["player_rank"] == "guardian"): ?>
+    <div class="field" id="guardian_field">
+    <?php else: ?>
+    <div class="field" id="guardian_field" style="display: none;">
+    <?php endif; ?>
         <label for="guardian">Guardian Rank</label>
         <div class="element">
             <select name="guardian" id="guardian">
-                <option value="">Not a guardian</option>
+                <option value="">Auto Assign</option>
                 <?php for ($i = 1; $i <= $maxRank+1; $i++): ?>
                     <?php if (array_key_exists($i, $guardians)):
                         $guardian = $guardians[$i]; ?>
@@ -55,13 +60,17 @@
     </div>
 
     <div class="field">
-        <label for="color">Color</label>
+        <label for="quitmsg">Quit Message</label>
         <div class="element">
-            <select name="color" id="color">
-                <?php foreach ($colors as $name => $color): ?>
-                    <option value="<?php echo $name; ?>" <?php if (array_key_exists("color", $settings) && $settings["color"] == $name) echo 'selected="selected"'; ?>><?php echo $name; ?> (<?php echo $color; ?>)</option>
-                <?php endforeach; ?>
-            </select>
+        <input type="text" name="quitmsg" id="quitmsg" value="<?php echo array_key_exists("quitmessage", $settings) ? $settings["quitmessage"] : ""; ?>" />
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="field">
+        <label for="email">E-mail</label>
+        <div class="element">
+        <input type="text" name="email" id="email" value="<?php echo $player["player_email"] ? $player["player_email"] : ""; ?>" />
         </div>
         <div class="end">&nbsp;</div>
     </div>

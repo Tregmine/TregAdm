@@ -1,5 +1,8 @@
 <?php
 
+checkIfOnline();
+checkRank("junior_admin", "senior_admin");
+
 $sql  = "SELECT player_report.*, a.player_name issuer, "
       . "b.player_name subject FROM player_report ";
 $sql .= "INNER JOIN player a ON a.player_id = issuer_id ";

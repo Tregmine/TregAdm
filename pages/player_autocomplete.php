@@ -1,5 +1,7 @@
 <?php
 
+checkIfOnline();
+
 if (!array_key_exists("q", $_GET)) {
     exit;
 }

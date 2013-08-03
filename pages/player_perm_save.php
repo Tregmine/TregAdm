@@ -1,9 +1,7 @@
 <?php
 
-if (!array_key_exists("senioradmin", $_SESSION)) {
-    header('Location: /index.php');
-    exit;
-}
+checkIfOnline();
+checkRank("senior_admin");
 
 if (!array_key_exists("id", $_GET)) {
     header('Location: /start.php');
@@ -11,10 +9,7 @@ if (!array_key_exists("id", $_GET)) {
 }
 
 $id = $_GET["id"];
-
-$color = $_POST["color"];
-
-$newPerms = $_POST["perm"];
+$rank = array_key_exists("rank", $_POST) ? $_POST["rank"] : "unverified";
 
 // lookup player
 $stmt = $conn->prepare("SELECT * FROM player WHERE player_id = ?");
@@ -24,26 +19,8 @@ $player = $stmt->fetch();
 
 $stmt->closeCursor();
 
-// generate a string of all permissions and remove them for this user
-$cleanStr = implode(",", array_map(function($a) { return "'".$a."'"; }, array_keys($permissionList)));
-$cleanStr .= ",'color'";
-
-$stmt = $conn->prepare("DELETE FROM player_property WHERE property_key IN (" . $cleanStr . ") AND player_id = ?");
-$stmt->execute(array($id));
-
-// insert new permissions
-$stmt = $conn->prepare("INSERT INTO player_property VALUES (?, ?, ?, null)");
-
-foreach ($newPerms as $perm => $v) {
-    $stmt->execute(array($id, $perm, "true" ));
-}
-
-// insert new color
-$stmt->execute(array($id, "color", $color));
-
 // change guardian rank
-$guardian = $_POST["guardian"];
-
+$guardian = array_key_exists("guardian", $_POST) ? $_POST["guardian"] : "";
 if ($guardian) {
     $stmt = $conn->prepare("REPLACE INTO player_property VALUES (?, 'guardian', ?, null)");
     $stmt->execute(array($id, $guardian));
@@ -52,15 +29,39 @@ if ($guardian) {
     $stmt->execute(array($id));
 }
 
-// change password
-$password = $_POST["password"];
-
-if ($password) {
-    $encrypted = crypt($password, "$5$" . gensalt() . "$");
-
-    $stmt = $conn->prepare("UPDATE player SET player_password = ? WHERE player_id = ?");
-    $stmt->execute(array($encrypted, $id));
+// change quitmessage
+$quitMessage = array_key_exists("quitmsg", $_POST) ? $_POST["quitmsg"] : "";
+if ($quitMessage) {
+    $stmt = $conn->prepare("REPLACE INTO player_property VALUES (?, 'quitmessage', ?, null)");
+    $stmt->execute(array($id, $quitMessage));
+} else {
+    $stmt = $conn->prepare("DELETE FROM player_property WHERE property_key = 'quitmessage' AND player_id = ?");
+    $stmt->execute(array($id));
 }
+
+// change player settings
+$params = array();
+
+$sql  = "UPDATE player SET player_rank = ? ";
+$params[] = $rank;
+
+$password = array_key_exists("password", $_POST) ? $_POST["password"] : "";
+if ($password) {
+    $sql .= ", player_password = ? ";
+    $params[] = crypt($password, "$5$" . gensalt() . "$");
+}
+
+$email = array_key_exists("email", $_POST) ? $_POST["email"] : "";
+if ($email) {
+    $sql .= ", player_email = ? ";
+    $params[] = $email;
+}
+
+$sql .= "WHERE player_id = ?";
+$params[] = $id;
+
+$stmt = $conn->prepare($sql);
+$stmt->execute($params);
 
 //$conn->commit();
 

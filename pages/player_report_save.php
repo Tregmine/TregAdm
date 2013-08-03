@@ -18,7 +18,7 @@ if ($do == "report") {
 
     $duration = $duration ? strtotime($duration) : null;
 
-    if (!array_key_exists("admin", $_SESSION)) {
+    if ($_SESSION["rank"] != "senior_admin" && $_SESSION["rank"] != "junior_admin") {
         $action = "comment";
     }
 
@@ -34,10 +34,7 @@ if ($do == "report") {
     $stmt->execute(array($id, $_SESSION["id"], $action, $text, time(), $duration));
 }
 else if ($do == "cancel") {
-    if (!array_key_exists("admin", $_SESSION)) {
-        header('Location: /index.php');
-        exit;
-    }
+    checkRank("junior_admin", "senior_admin");
 
     if (!array_key_exists("reportid", $_GET)) {
         header('Location: /index.php');

@@ -1,11 +1,7 @@
 <?php
 
 checkIfOnline();
-
-if (!array_key_exists("admin", $_SESSION)) {
-    header('Location: /index.php');
-    exit;
-}
+checkRank("junior_admin", "senior_admin");
 
 $players = array_key_exists("players", $_GET) ? $_GET["players"] : "";
 $start = array_key_exists("start", $_GET) ? $_GET["start"] : "";
