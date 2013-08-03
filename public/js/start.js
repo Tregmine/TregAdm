@@ -45,3 +45,13 @@ $(document).ready(
                 }
             });
     });
+
+function kickPlayer(subject) {
+    var message = prompt("Kick message", "");
+    if (message) {
+        $.getJSON('/index.php/player/kick?subject=' + subject + '&message=' + encodeURIComponent(message),
+            function(res) {
+                alert("Player kicked!");
+            });
+    }
+}

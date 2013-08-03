@@ -40,7 +40,13 @@
     <h3 class="actionsHeader"><?php echo count($players); ?> Online Players</h3>
     <ul class="actions">
     <?php foreach ($players as $player): ?>
-        <li><a <?php echo userCSSColor($player["id"]); ?> href="/index.php/player/search?q=<?php echo $player["name"]; ?>"><?php echo $player["name"]; ?></a></li>
+        <li>
+            <a <?php echo userCSSColor($player["id"]); ?> 
+               href="/index.php/player/search?q=<?php echo $player["name"]; ?>">
+               <?php echo $player["name"]; ?>
+               [<a href="#" onclick="kickPlayer(<?php echo $player["id"]; ?>)">Kick</a>]
+            </a>
+        </li>
     <?php endforeach; ?>
     </ul>
 </div>
