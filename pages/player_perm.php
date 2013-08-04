@@ -46,6 +46,7 @@ $context["settings"] = $settings;
 $context["guardians"] = $guardians;
 $context["permissionList"] = $permissionList;
 $context["maxRank"] = $maxRank;
+$context["flags"] = $flags;
 
 $styles = array();
 $scripts = array("/js/player_perm.js");

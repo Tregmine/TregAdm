@@ -49,13 +49,11 @@ foreach ($inventory as $item) {
 
 // Aliases
 
-$stmt = $conn->prepare("SELECT property_value FROM player_property WHERE property_key = 'ip' AND player_id = ?");
-$stmt->execute(array($_GET["id"]));
-$playerIP = $stmt->fetchColumn();
-$stmt->closeCursor();
-
-$stmt = $conn->prepare("SELECT player.player_name FROM player INNER JOIN player_property ON player_property.player_id = player.player_id WHERE player_property.property_key = 'ip' AND player_property.property_value = ?");
-$stmt->execute(array($playerIP));
+$sql  = "SELECT DISTINCT player.player_name FROM player ";
+$sql .= "INNER JOIN player_login USING (player_id) ";
+$sql .= "WHERE login_ip IN (SELECT DISTINCT login_ip FROM player_login WHERE player_id = ?)";
+$stmt = $conn->prepare($sql);
+$stmt->execute(array($player["player_id"]));
 $aliases = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
 

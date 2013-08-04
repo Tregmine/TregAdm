@@ -1,17 +1,13 @@
 <div class="col75">
 
+    <h3 class="infoHeader">Logins</h3>
     <table class="info">
-        <cols>
-            <col />
-            <col style="width: 50px;" />
-            <col style="width: 50px;" />
-        </cols>
-        <tr>
-            <th colspan="3" class="infoHeader">Logins</th>
-        </tr>
         <tr>
             <th>Timestamp</th>
             <th>Action</th>
+            <th>IP</th>
+            <th>Country</th>
+            <th>City</th>
             <th>Duration</th>
         </tr>
         <?php 
@@ -42,10 +38,16 @@
             <tr>
                 <td><?php echo date("Y-m-d H:i:s", $row["login_timestamp"]); ?></td>
                 <td><?php echo ucfirst($row["login_action"]); ?></td>
+                <td><?php echo $row["login_ip"]; ?></td>
+                <td><?php echo $row["login_country"]; ?></td>
+                <td><?php echo $row["login_city"]; ?></td>
                 <td><?php echo $duration; ?></td>
             </tr>
         <?php endforeach; ?>
         <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>

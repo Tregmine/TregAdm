@@ -13,12 +13,12 @@ $permissionList = array(
         "unverified" => array("name" => "Unverified", "color" => "white")
     );
 
-$flags = array("CHILD" => "Child",
-               "TPSHIELD" => "Telport Shield",
-               "SOFTWARNED" => "Soft Warned",
-               "HARDWARNED" =>" Hard Warned",
-               "INVISIBLE" => "Invisible",
-               "HIDDEN_LOCATION" => "Hidden Location");
+$flags = array(array("name" => "Child", "choice" => false),
+               array("name" => "Telport Shield", "choice" => true),
+               array("name" => "Soft Warned", "choice" => false),
+               array("name" => "Hard Warned", "choice" => false),
+               array("name" => "Invisible", "choice" => true),
+               array("name" => "Hidden Location", "choice" => true));
 
 // Colorize the username based on rank or the color stored in the db
 // Also, grey background warned players and strikethrough banned players
