@@ -1,0 +1,35 @@
+<form>
+    <input type="hidden" id="sender" value="<?php echo $_SESSION["name"]; ?>" />
+
+    <h3 class="formHeader">Message</h3>
+
+    <div class="field">
+        <label for="message">Text</label>
+        <div class="element">
+            <input type="text" name="message" id="message" />
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
+
+    <div class="button">
+        <button type="button">Send</button>
+    </div>
+</form>
+
+<h3 class="infoHeader">Log</h3>
+<table class="info">
+    <cols>
+        <col style="width: 200px;" />
+        <col style="width: 200px;" />
+        <col />
+    </cols>
+    <thead>
+        <tr>
+            <th>Channel</th>
+            <th>Sender</th>
+            <th>Text</th>
+        </tr>
+    </thead>
+    <tbody id="log">
+    </tbody>
+</table>
