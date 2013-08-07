@@ -14,7 +14,7 @@ $permissionList = array(
     );
 
 $flags = array(array("name" => "Child", "choice" => false),
-               array("name" => "Telport Shield", "choice" => true),
+               array("name" => "Teleport Shield", "choice" => true),
                array("name" => "Soft Warned", "choice" => false),
                array("name" => "Hard Warned", "choice" => false),
                array("name" => "Invisible", "choice" => true),

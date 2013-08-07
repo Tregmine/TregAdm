@@ -4,7 +4,7 @@ checkIfOnline();
 
 $sql  = "SELECT date(from_unixtime(login_timestamp)) d, count(login_id) c, "
       . "count(distinct player_id) uc FROM player_login ";
-$sql .= "WHERE login_timestamp > unix_timestamp() - 30*86400 ";
+$sql .= "WHERE login_timestamp > unix_timestamp() - 30*86400 AND login_action = 'login' ";
 $sql .= "GROUP BY d ORDER BY d";
 
 $stmt = $conn->prepare($sql);

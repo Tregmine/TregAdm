@@ -28,6 +28,8 @@
             <?php if ($_SESSION["rank"] == "senior_admin" || $_SESSION["rank"] == "junior_admin"): ?>
             <li><a href="/index.php/chatlog">Chat Logs</a></li>
             <li><a href="/index.php/zone/search">Zones</a></li>
+            <?php endif; ?>
+            <?php if ($_SESSION["rank"] == "senior_admin" || $_SESSION["rank"] == "junior_admin" || $_SESSION["rank"] == "coder"): ?>
             <li><a href="/index.php/chat">Chat</a></li>
             <?php endif; ?>
             <li><a href="/index.php/orelog">Ore Logs</a></li>

@@ -1,4 +1,4 @@
-google.load("visualization", "1", {packages:["corechart"]});
+google.load("visualization", "1", {packages:["corechart", "geochart"]});
 google.setOnLoadCallback(
     function() {
         $.getJSON("/index.php/player/loginstats",
@@ -7,10 +7,23 @@ google.setOnLoadCallback(
 
                 var options =
                     {
-                        title: 'Total and unique logins'
+                        title: 'Total and unique logins by Date'
                     };
 
                 var chart = new google.visualization.LineChart(document.getElementById('logins_chart'));
+                chart.draw(data, options);
+            });
+
+        $.getJSON("/index.php/player/geostats",
+            function(raw_data) {
+                var data = google.visualization.arrayToDataTable(raw_data);
+
+                var options =
+                    {
+                        title: 'Total and unique logins by Country'
+                    };
+
+                var chart = new google.visualization.GeoChart(document.getElementById('geo_chart'));
                 chart.draw(data, options);
             });
 

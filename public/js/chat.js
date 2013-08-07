@@ -22,7 +22,8 @@ $(document).ready(
 
         log.addMessage("INFO", "Server", "Loaded");
 
-        var connection = new WebSocket('ws://localhost:9193/', ['soap', 'xmpp']);
+        var connection = new WebSocket('ws://mc.tregmine.info:9193/', ['soap', 'xmpp']);
+        //var connection = new WebSocket('ws://localhost:9193/', ['soap', 'xmpp']);
         connection.onopen =
             function() {
                 log.addMessage("INFO", "Server", "Connected");
