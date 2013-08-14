@@ -150,7 +150,7 @@ form .field {
     border-top: 1px solid #CCCCCC;
 }
 
-form .field label {
+form .field > label {
     width: 190px;
     float: left;
     padding-left: 10px;
