@@ -1,9 +1,8 @@
-<div class="col50">
+<div class="col75">
+
+    <h3 class="infoHeader">Info</h3>
 
     <table class="info">
-        <tr>
-            <th colspan=2 class="infoHeader">Info</th>
-        </tr>
         <tr>
             <th width=50%>Attribute</th>
             <th>Value</th>
@@ -121,7 +120,7 @@
             <td> <?php echo $lot["lot_name"]; ?></td>
             <td>
             <?php foreach($lot["users"] as $lVal): ?>
-                <a <?php echo userCSSColor($lVal["player_id"]); ?>" 
+                <a <?php echo userCSSColor($lVal["player_id"]); ?>
                    href="/index.php/player/search?q=<?php echo $lVal["player_name"]; ?>">
                    <?php echo $lVal["player_name"]; ?></a><br>
             <?php endforeach; ?>
@@ -130,4 +129,13 @@
         <?php endforeach; ?>
     </table>
 </div>
+
+<div class="col25">
+    <h3 class="actionsHeader">Actions</h3>
+
+    <ul class="actions">
+        <li><a href="/index.php/zone/edit?id=<?php echo $zone["zone_id"]; ?>">Edit</a></li>
+    </ul>
+</div>
+
 <div class="col_clear">&nbsp;</div>
