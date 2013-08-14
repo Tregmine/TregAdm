@@ -14,6 +14,19 @@ google.setOnLoadCallback(
                 chart.draw(data, options);
             });
 
+        $.getJSON("/index.php/player/hourstats",
+            function(raw_data) {
+                var data = google.visualization.arrayToDataTable(raw_data);
+
+                var options =
+                    {
+                        title: 'Total logins by Hour (CET, Server Time)'
+                    };
+
+                var chart = new google.visualization.LineChart(document.getElementById('hour_chart'));
+                chart.draw(data, options);
+            });
+
         $.getJSON("/index.php/player/geostats",
             function(raw_data) {
                 var data = google.visualization.arrayToDataTable(raw_data);
