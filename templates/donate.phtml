@@ -1,0 +1,49 @@
+<div class="col col75">
+    <p>
+        Tregmine is run entirely on a volonteer basis. Nobody makes any money of Tregmine, and server
+        costs are funded out of our own pockets. If you want to help us to keep the server running,
+        you are welcome to make a donation.
+    </p>
+
+    <p>
+        If you have any specific wishes regarding who should receive the gifts of your donation,
+        type them in the message field.
+    </p>
+
+    <form method="get" action="/index.php/donate/do">
+        <h3 class="formHeader">Donate using Paypal</h3>
+
+        <div class="field">
+            <label for="amount">Amount (euros)</label>
+            <div class="element">
+                <input type="text" id="amount" name="amount" value="10" />
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
+        <div class="field">
+            <label for="message">Message</label>
+            <div class="element">
+                <input type="text" id="message" name="message" value="" />
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
+        <div class="button">
+            <button type="submit">Donate!</button>
+        </div>
+    </form>
+</div>
+
+<div class="col25">
+    <h3 class="actionsHeader">Donation Step</h3>
+    <ol class="actions">
+        <li class="active">Select donation amount</li>
+        <li>Login at paypal</li>
+        <li>Enter payment information</li>
+        <li>Confirm donation</li>
+        <li>Finished!</li>
+    </ol>
+</div>
+
+<div class="col_clear">&nbsp;</div>

@@ -6,6 +6,10 @@ ini_set("display_errors", "1");
 session_start();
 header('Content-type: text/html; charset=utf8');
 
+$paypalEndpoint = "api.sandbox.paypal.com";
+$paypalClientId = "";
+$paypalSecret = "";
+
 $dsn = 'mysql:dbname=tregmine;host=localhost;port=3306';
 $user = 'root';
 $password = '';
