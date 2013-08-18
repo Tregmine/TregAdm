@@ -1,7 +1,5 @@
 <?php
 
-checkIfOnline();
-
 $sql  = "SELECT login_country, count(*) c, count(distinct player_id) uc "
       . "FROM player_login ";
 $sql .= "WHERE NOT login_country IS NULL and login_action = 'login' ";

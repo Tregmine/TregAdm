@@ -1,31 +1,48 @@
-<?php if (array_key_exists("error", $_GET)): ?>
-    <p>
-        <?php if ($_GET["error"] == "fail"): ?>
-            Invalid username or password.
-        <?php endif;?>
-    </p>
-<?php endif; ?>
+<?php require_once 'index_news.phtml'; ?>
 
-<form method="post" action="/index.php/login">
-    <h3 class="formHeader">Login</h3>
+<div class="col25">
+    <form method="post" action="/index.php/login" class="thin">
+        <?php if (array_key_exists("error", $_GET)): ?>
+            <p>
+                <?php if ($_GET["error"] == "fail"): ?>
+                    Invalid username or password.
+                <?php endif;?>
+            </p>
+        <?php endif; ?> <h3 class="formHeader">Login</h3>
 
-    <div class="field">
-        <label for="username">Username</label>
-        <div class="element">
-            <input type="text" name="username" id="username" />
+        <div class="field">
+            <label for="username">Username</label>
+            <div class="element">
+                <input type="text" name="username" id="username" />
+            </div>
+            <div class="end">&nbsp;</div>
         </div>
-        <div class="end">&nbsp;</div>
-    </div>
 
-    <div class="field">
-        <label for="password">Password</label>
-        <div class="element">
-            <input type="password" name="pass" id="pass" />
+        <div class="field">
+            <label for="password">Password</label>
+            <div class="element">
+                <input type="password" name="pass" id="pass" />
+            </div>
+            <div class="end">&nbsp;</div>
         </div>
-        <div class="end">&nbsp;</div>
-    </div>
 
-    <div class="button">
-        <button type="submit">Login</button>
-    </div>
-</form>
+        <div class="button">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+    <?php if (count($players) > 0): ?>
+    <h3 class="actionsHeader"><?php echo count($players); ?> Players Online</h3>
+    <ul class="actions">
+    <?php foreach ($players as $player): ?>
+        <li>
+            <a <?php echo userCSSColor($player["id"]); ?> href="#">
+               <?php echo $player["name"]; ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+</div>
+
+<div class="col_clear">&nbsp;</div>

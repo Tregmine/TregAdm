@@ -1,6 +1,7 @@
 <?php
 
 checkIfOnline();
+checkRank("guardian", "coder", "builder", "junior_admin", "senior_admin");
 
 $do = array_key_exists("do", $_GET) ? $_GET["do"] : "report";
 

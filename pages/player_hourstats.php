@@ -1,7 +1,5 @@
 <?php
 
-checkIfOnline();
-
 $sql  = "SELECT count(login_id) c FROM player_login ";
 $sql .= "WHERE login_action = 'login' ";
 

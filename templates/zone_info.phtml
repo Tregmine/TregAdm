@@ -127,7 +127,9 @@
     <h3 class="actionsHeader">Actions</h3>
 
     <ul class="actions">
+        <?php if (hasRank("junior_admin", "senior_admin")): ?>
         <li><a href="/index.php/zone/edit?id=<?php echo $zone["zone_id"]; ?>">Edit</a></li>
+        <?php endif; ?>
     </ul>
 </div>
 

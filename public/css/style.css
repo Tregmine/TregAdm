@@ -50,6 +50,16 @@ ul#menu li:before {
 .col h3 {
     padding-left: 10px;
 }
+.col .emp {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+.col.white {
+    background-color: #fff;
+}
+
 .col25 {
     width: 24%;
     margin-right: 1%;
@@ -155,12 +165,13 @@ h2.info {
     border-top: 1px solid #CCCCCC;
 }
 
-form {
+/* wide form */
+form.wide {
     padding: 0;
     margin: 0 0 20px 0;
 }
 
-form .field {
+form.wide .field {
     clear: both;
     padding: 10px 0;
     width: 100%;
@@ -168,37 +179,80 @@ form .field {
     border-top: 1px solid #CCCCCC;
 }
 
-form .field > label {
+form.wide .field > label {
     width: 190px;
     float: left;
     padding-left: 10px;
     font-weight: bold;
 }
 
-form .field .element {
+form.wide .field .element {
     float: left;
 }
-form .field .element input,
-form .field .element textarea {
+form.wide .field .element input,
+form.wide .field .element textarea {
     width: 400px;
 }
 
-form .field .end {
+form.wide .field .end {
     font-size: 1px;
     line-height: 1px;
     clear: both;
 }
 
-form .button {
+form.wide .button {
     clear: both;
     width: 100%;
     background-color: #fff;
     border-top: 1px solid #CCCCCC;
     padding: 5px 0;
 }
-form .button button {
+form.wide .button button {
     margin-left: 200px;
 }
+
+/* thin form */
+form.thin {
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+form.thin .field {
+    padding-top: 10px;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #CCCCCC;
+}
+
+form.thin .field > label {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+form.thin .field .element {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+form.thin .field .element input,
+form.thin .field .element textarea {
+    width: 90%;
+}
+
+form.thin .field .end {
+}
+
+form.thin .button {
+    clear: both;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #CCCCCC;
+    padding: 5px 0;
+}
+form.thin .button button {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
 
 /* colors */
 

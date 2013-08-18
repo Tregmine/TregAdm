@@ -14,3 +14,8 @@ function checkRank() {
         exit;
     }
 }
+
+function hasRank() {
+    $ranks = func_get_args();
+    return in_array($_SESSION["rank"], $ranks);
+}

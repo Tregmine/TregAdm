@@ -1,7 +1,7 @@
 <?php
 
 checkIfOnline();
-checkRank("junior_admin", "senior_admin", "coder");
+checkRank("junior_admin", "senior_admin", "coder", "guardian", "builder");
 
 $context = array();
 
