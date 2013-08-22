@@ -22,8 +22,8 @@ $(document).ready(
 
         log.addMessage("INFO", "Server", "Loaded");
 
-        var connection = new WebSocket('ws://mc.tregmine.info:9193/', ['soap', 'xmpp']);
-        //var connection = new WebSocket('ws://localhost:9193/', ['soap', 'xmpp']);
+        //var connection = new WebSocket('ws://mc.tregmine.info:9192/chat/', ['soap', 'xmpp']);
+        var connection = new WebSocket('ws://localhost:9192/chat/', ['soap', 'xmpp']);
         connection.onopen =
             function() {
                 log.addMessage("INFO", "Server", "Connected");
@@ -43,14 +43,15 @@ $(document).ready(
 
         var sendMessage =
             function(text) {
-                var sender = $("#sender").val();
+                var authToken = $("#token").val();
 
                 var message = {};
-                message.sender = sender;
+                message.authToken = authToken;
                 message.channel = "GLOBAL";
                 message.text = text;
 
-                connection.send(JSON.stringify(message));
+                var data = JSON.stringify(message);
+                connection.send(data);
             };
 
         $("#message").keypress(
