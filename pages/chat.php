@@ -3,7 +3,7 @@
 require_once '../include/tregmine_api.php';
 
 checkIfOnline();
-checkRank("junior_admin", "senior_admin", "coder", "guardian", "builder");
+checkRank("donator", "junior_admin", "senior_admin", "coder", "guardian", "builder");
 
 $token = tregmine_auth($tregmineApiKey, $_SESSION["id"]);
 if (!$token["found"]) {

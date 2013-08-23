@@ -32,13 +32,14 @@
             <li><a href="/index.php/chatlog">Chat Logs</a></li>
             <li><a href="/index.php/zone/search">Zones</a></li>
             <?php endif; ?>
-            <?php if (hasRank("coder", "guardian", "builder", "junior_admin", "senior_admin")): ?>
+            <?php if (hasRank("donator", "coder", "guardian", "builder", "junior_admin", "senior_admin")): ?>
             <li><a href="/index.php/chat">Chat</a></li>
             <?php endif; ?>
             <?php if (hasRank("guardian", "coder", "builder", "junior_admin", "senior_admin")): ?>
             <li><a href="/index.php/orelog">Ore Logs</a></li>
             <li><a href="/index.php/reports">Reports</a></li>
             <?php endif; ?>
+
             <li style="float: right"><a href="/index.php/logout">Logout</a></li>
             <li style="float: right">Logged in as: <a href="/index.php/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>&nbsp;</li>
         </ul>
@@ -55,14 +56,16 @@
 
         <h2 class="info"><?php echo $title; ?></h2>
 
-        <?php
-        $template = '../templates/' . $page;
-        if (file_exists($template)) {
-            include '../templates/' . $template;
-        } else {
-            echo $page . " not found.";
-        }
-        ?>
+        <div class="content">
+            <?php
+            $template = '../templates/' . $page;
+            if (file_exists($template)) {
+                include '../templates/' . $template;
+            } else {
+                echo $page . " not found.";
+            }
+            ?>
+        </div>
     </div>
 </body>
 </html>

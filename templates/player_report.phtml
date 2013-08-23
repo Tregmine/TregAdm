@@ -8,7 +8,7 @@
             <div class="element">
                 <select name="action" id="action">
                     <option value="comment">Comment</option>
-                    <?php if (array_key_exists("admin", $_SESSION)): ?>
+                    <?php if (hasRank("junior_admin", "senior_admin")): ?>
                     <option value="softwarn">Softwarn</option>
                     <option value="hardwarn">Hardwarn</option>
                     <option value="ban">Ban</option>
@@ -18,7 +18,7 @@
             <div class="end">&nbsp;</div>
         </div>
 
-        <?php if (array_key_exists("admin", $_SESSION)): ?>
+        <?php if (hasRank("junior_admin", "senior_admin")): ?>
         <div class="field">
             <label for="duration">Duration</label>
             <div class="element">
@@ -85,9 +85,8 @@
                 $type = $report["report_action"] == "ban" ||
                         $report["report_action"] == "softwarn" ||
                         $report["report_action"] == "hardwarn";
-                $admin = array_key_exists("admin", $_SESSION);
                 $valid = $report["report_validuntil"] > time();
-                if ($type && $admin && $valid): ?>
+                if ($type && hasRank("junior_admin", "senior_admin") && $valid): ?>
                     <a href="/index.php/player/report/save?do=cancel&reportid=<?php echo $report["report_id"]; ?>" onclick="return confirm('Are you sure?');">Cancel</a>
                 <?php endif; ?>
             </td>

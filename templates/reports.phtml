@@ -32,7 +32,16 @@
             </td>
         </tr>
         <tr>
-            <td style="padding: 10px; border-bottom: 1px dotted #fff;" colspan="5"><?php echo $report["report_message"]; ?></td>
+            <td style="padding: 10px; border-bottom: 1px dotted #fff;" colspan="5">
+                <?php
+                $msg = $report["report_message"];
+                $len = 500;
+                if (strlen($msg) > $len) {
+                    $msg = substr($msg, 0, $len) . "...";
+                }
+                echo nl2br($msg);
+                ?>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>

@@ -38,7 +38,14 @@
     <?php if (count($players) > 0): ?>
     <h3 class="actionsHeader"><?php echo count($players); ?> Players Online</h3>
     <ul class="actions">
-    <?php foreach ($players as $player): ?>
+    <?php
+    $hiddenCount = 0;
+    foreach ($players as $player):
+        if ($player["hidden"] && !hasRank("junior_admin", "senior_admin")) {
+            $hiddenCount++;
+            continue;
+        }
+        ?>
         <li>
             <a <?php echo userCSSColor($player["id"]); ?> 
                href="/index.php/player/search?q=<?php echo $player["name"]; ?>">
@@ -49,6 +56,9 @@
             </a>
         </li>
     <?php endforeach; ?>
+    <?php if ($hiddenCount > 0): ?>
+    <li style="font-style: italic;"><?php printf("%d hidden players", $hiddenCount); ?></li>
+    <?php endif; ?>
     </ul>
     <?php endif; ?>
 </div>
