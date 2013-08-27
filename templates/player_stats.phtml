@@ -5,9 +5,11 @@
         <tr>
             <th>Timestamp</th>
             <th>Action</th>
+            <?php if (hasRank("senior_admin")): ?>
             <th>IP</th>
             <th>Country</th>
             <th>City</th>
+            <?php endif; ?>
             <th>Duration</th>
         </tr>
         <?php 
@@ -38,18 +40,22 @@
             <tr>
                 <td><?php echo date("Y-m-d H:i:s", $row["login_timestamp"]); ?></td>
                 <td><?php echo ucfirst($row["login_action"]); ?></td>
+                <?php if (hasRank("senior_admin")): ?>
                 <td><?php echo $row["login_ip"]; ?></td>
                 <td><?php echo $row["login_country"]; ?></td>
                 <td><?php echo $row["login_city"]; ?></td>
+                <?php endif; ?>
                 <td><?php echo $duration; ?></td>
             </tr>
         <?php endforeach; ?>
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
+            <?php if (hasRank("senior_admin")): ?>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
+            <?php endif; ?>
             <td>
                 <div>
                     <span style="font-weight: bold;">Total time:</span>
@@ -112,6 +118,7 @@
 
     <br />
 
+    <?php if (hasRank("junior_admin", "senior_admin")): ?>
     <h3 class="infoHeader">Aliases</h3>
     <table class="info">
         <tr>
@@ -122,6 +129,7 @@
             </td>
         </tr>
     </table>
+    <?php endif; ?>
 
 </div>
 

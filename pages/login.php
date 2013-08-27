@@ -9,6 +9,8 @@ if (array_key_exists("id", $_SESSION)) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    session_regenerate_id(true);
+
     $username = $_POST["username"];
     $password = $_POST["pass"];
 
@@ -47,9 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION[$property["property_key"]] = $property["property_value"];
     }
 
-    $validRanks = array("senior_admin", "junior_admin", "builder", "coder", "guardian");
+    $validRanks = array("senior_admin", "junior_admin", "builder", "coder", "guardian", "donator", "resident", "settler");
     if (!in_array($_SESSION["rank"], $validRanks)) {
-
         session_destroy();
     }
 

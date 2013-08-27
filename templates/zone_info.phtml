@@ -1,9 +1,8 @@
-<div class="col50">
+<div class="col75">
+
+    <h3 class="infoHeader">Info</h3>
 
     <table class="info">
-        <tr>
-            <th colspan=2 class="infoHeader">Info</th>
-        </tr>
         <tr>
             <th width=50%>Attribute</th>
             <th>Value</th>
@@ -62,58 +61,51 @@
 
     </table>
 
-    <table class="info">
-        <tr>
-            <th colspan=3 class="infoHeader">Members</th>
-        </tr>
-        <tr>
-            <!-- <th>ID</th> -->
-            <th width=100%>Name</th>
-            <th>Rank</th>
-            <th>Action</th>
-        </tr>
-        <?php 
-        foreach ($users as $user): ?>
-            <tr>
-                <!-- <td><?php echo $user["player_id"]; ?></td> -->
-                <td>
-                <?php 
-                echo "<a " . userCSSColor($user["player_id"]) . " href=\"/index.php/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
-                ?>
-                <td><?php echo $user["user_perm"]; ?></td>
-                <td></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-</div>
+    <h3 class="infoHeader">Warps</h3>
 
-<div class="col50">
     <table class="info">
         <cols>
             <col />
-            <col style="width: 50px;" />
+            <col style="width: 250px;" />
         </cols>
-        <tr>
-            <th colspan="2" class="infoHeader">Warps</th>
-        </tr>
         <tr>
             <th>Name</th>
             <th>(x,y,z)</th>
         </tr>
         <?php foreach($warps as $warp): ?>
             <tr>
-                <td><?php echo $warp['name']; ?></td>
-                <td>(<?php printf("%d, %d, %d", $warp['x'], $warp['y'], $warp['z']); ?>)</td>
+                <td><?php echo $warp['warp_name']; ?></td>
+                <td>(<?php printf("%d, %d, %d", $warp['warp_x'], $warp['warp_y'], $warp['warp_z']); ?>)</td>
             </tr>
         <?php endforeach; ?>
     </table>
 
+    <h3 class="infoHeader">Members</h3>
+
     <table class="info">
         <tr>
-            <th colspan=2 class="infoHeader">Lots</th>
+            <th>Name</th>
+            <th>Rank</th>
+            <!--<th>Action</th>-->
         </tr>
+        <?php 
+        foreach ($users as $user): ?>
+            <tr>
+                <td>
+                <?php 
+                echo "<a " . userCSSColor($user["player_id"]) . " href=\"/index.php/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
+                ?>
+                <td><?php echo $user["user_perm"]; ?></td>
+                <!--<td></td>-->
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <h3 class="infoHeader">Lots</h3>
+
+    <table class="info">
         <tr>
-            <th width=100%>Name</th>
+            <th>Name</th>
             <th>Owners</th>
         </tr>
         <?php foreach ($lots as $lot): ?>
@@ -121,7 +113,7 @@
             <td> <?php echo $lot["lot_name"]; ?></td>
             <td>
             <?php foreach($lot["users"] as $lVal): ?>
-                <a <?php echo userCSSColor($lVal["player_id"]); ?>" 
+                <a <?php echo userCSSColor($lVal["player_id"]); ?>
                    href="/index.php/player/search?q=<?php echo $lVal["player_name"]; ?>">
                    <?php echo $lVal["player_name"]; ?></a><br>
             <?php endforeach; ?>
@@ -130,4 +122,15 @@
         <?php endforeach; ?>
     </table>
 </div>
+
+<div class="col25">
+    <h3 class="actionsHeader">Actions</h3>
+
+    <ul class="actions">
+        <?php if (hasRank("junior_admin", "senior_admin")): ?>
+        <li><a href="/index.php/zone/edit?id=<?php echo $zone["zone_id"]; ?>">Edit</a></li>
+        <?php endif; ?>
+    </ul>
+</div>
+
 <div class="col_clear">&nbsp;</div>

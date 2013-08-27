@@ -1,7 +1,9 @@
-<div class="col75">
+<?php require_once 'index_news.phtml'; ?>
+
+<div class="col25">
     <h3 class="infoHeader">User quicksearch</h3>
 
-    <form method="get" action="/index.php/player/search">
+    <form method="get" action="/index.php/player/search" class="thin">
         <div class="field">
             <label for="player_search">User</label>
             <div class="element">
@@ -15,9 +17,10 @@
         </div>
     </form>
 
+    <?php if (hasRank("junior_admin", "senior_admin")): ?>
     <h3 class="infoHeader">Zone quicksearch</h3>
 
-    <form method="get" action="/index.php/zone/search">
+    <form method="get" action="/index.php/zone/search" class="thin">
         <div class="field">
             <label for="zone_search">Zone</label>
             <div class="element">
@@ -30,25 +33,34 @@
             <button type="submit">Search</button>
         </div>
     </form>
+    <?php endif; ?>
 
-    <h3 class="infoHeader">Stats</h3>
-    <div id="logins_chart" style="width: 100%; height: 400px;"></div>
-    <div id="orelog_chart" style="width: 100%; height: 400px;"></div>
-</div>
-
-<div class="col25">
-    <h3 class="actionsHeader"><?php echo count($players); ?> Online Players</h3>
+    <?php if (count($players) > 0): ?>
+    <h3 class="actionsHeader"><?php echo count($players); ?> Players Online</h3>
     <ul class="actions">
-    <?php foreach ($players as $player): ?>
+    <?php
+    $hiddenCount = 0;
+    foreach ($players as $player):
+        if ($player["hidden"] && !hasRank("junior_admin", "senior_admin")) {
+            $hiddenCount++;
+            continue;
+        }
+        ?>
         <li>
             <a <?php echo userCSSColor($player["id"]); ?> 
                href="/index.php/player/search?q=<?php echo $player["name"]; ?>">
                <?php echo $player["name"]; ?>
+               <?php if (hasRank("guardian", "builder", "coder", "junior_admin", "senior_admin")): ?>
                [<a href="#" onclick="kickPlayer(<?php echo $player["id"]; ?>)">Kick</a>]
+               <?php endif; ?>
             </a>
         </li>
     <?php endforeach; ?>
+    <?php if ($hiddenCount > 0): ?>
+    <li style="font-style: italic;"><?php printf("%d hidden players", $hiddenCount); ?></li>
+    <?php endif; ?>
     </ul>
+    <?php endif; ?>
 </div>
 
 <div class="col_clear">&nbsp;</div>

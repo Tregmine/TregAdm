@@ -6,6 +6,10 @@ if (!array_key_exists("id", $_GET)) {
     exit;
 }
 
+if ($_GET["id"] != $_SESSION["id"]) {
+    checkRank("guardian", "coder", "builder", "junior_admin", "senior_admin");
+}
+
 $stmt = $conn->prepare("SELECT * FROM player WHERE player_id = ?");
 $stmt->execute(array($_GET["id"]));
 

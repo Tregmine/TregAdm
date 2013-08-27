@@ -1,11 +1,14 @@
 <?php
 
 checkIfOnline();
-checkRank("junior_admin", "senior_admin");
 
 if (!array_key_exists("id", $_GET)) {
     header('Location: /index.php');
     exit;
+}
+
+if ($_SESSION["id"] != $_GET["id"]) {
+    checkRank("junior_admin", "senior_admin");
 }
 
 $stmt = $conn->prepare("SELECT * FROM player WHERE player_id = ?");

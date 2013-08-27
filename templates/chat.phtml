@@ -1,7 +1,15 @@
-<form>
-    <input type="hidden" id="sender" value="<?php echo $_SESSION["name"]; ?>" />
+<form class="wide">
+    <input type="hidden" id="token" value="<?php echo $token; ?>" />
 
     <h3 class="formHeader">Message</h3>
+
+    <div class="field">
+        <label for="channel">Channel</label>
+        <div class="element">
+            <input type="text" name="channel" id="channel" value="GLOBAL" />
+        </div>
+        <div class="end">&nbsp;</div>
+    </div>
 
     <div class="field">
         <label for="message">Text</label>
@@ -12,7 +20,7 @@
     </div>
 
     <div class="button">
-        <button type="button">Send</button>
+        <button id="send" type="button">Send</button>
     </div>
 </form>
 

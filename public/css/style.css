@@ -1,6 +1,7 @@
 body, table {
     font-family: Verdana, Arial, Helvetica;
     font-size: 12px;
+    background-color: #eee;
 }
 body {
     margin: 0;
@@ -15,36 +16,67 @@ a {
 #layout_wrapper {
     width: 1000px;
     margin: 20px auto;
-    padding: 20px;
+    padding-bottom: 20px;
     min-height: 100%;
     background-color: #c4c7bf;
     border-radius: 10px;
     box-shadow: 5px 5px 5px #ddd;
+    background-image: url('../img/banner.jpg');
+    background-repeat: no-repeat;
 }
 
 h1#banner {
     width: 1000px;
     height: 284px;
-    background-image: url('../img/banner.jpg');
-    margin: 0 0 20px 0;
+    margin: 0;
 }
 h1#banner span {
     display: none;
 }
 
 ul#menu {
-    padding: 10px;
-    background-color: #eee;
+    padding: 0;
+    margin: 0;
+    background-color: #aaa;
+    font-size: 0;
 }
 
 ul#menu li {
+    padding: 8px;
     list-style-type: none;
-    display: inline;
+    display: inline-block;
+    font-size: 12px;
+    background-color: #999;
+    border-left: 1px solid #777;
+    border-right: 1px solid #aaa;
 }
-ul#menu li:before {
-    content: ' - ';
+ul#menu li:hover {
+    background-color: #888;
 }
 
+ul#menu li a {
+    color: #111;
+}
+
+.content {
+    padding: 0 1%;
+}
+
+.col p,
+.col h2,
+.col h3 {
+    width: 95%;
+    padding-left: 10px;
+}
+.col .emp {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+.col.white {
+    background-color: #fff;
+}
 .col25 {
     width: 24%;
     margin-right: 1%;
@@ -74,12 +106,13 @@ td {
     padding: 5px;
 }
 
+ol.actions,
 ul.actions {
     padding: 0;
     margin: 0;
 }
+ol.actions li,
 ul.actions li {
-    list-style-type: none;
     border-top: 1px solid #CCCCCC;
     background-color: #fff;
     padding: 5px;
@@ -88,6 +121,18 @@ ul.actions li {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -ie-box-sizing: border-box;
+}
+ul.actions li {
+    list-style-type: none;
+}
+ol.actions li {
+    list-style-position: inside;
+}
+ol.actions li.done {
+    text-decoration: line-through;
+}
+ol.actions li.active {
+    font-weight: bold;
 }
 
 h3.actionsHeader,
@@ -137,12 +182,13 @@ h2.info {
     border-top: 1px solid #CCCCCC;
 }
 
-form {
+/* wide form */
+form.wide {
     padding: 0;
     margin: 0 0 20px 0;
 }
 
-form .field {
+form.wide .field {
     clear: both;
     padding: 10px 0;
     width: 100%;
@@ -150,37 +196,80 @@ form .field {
     border-top: 1px solid #CCCCCC;
 }
 
-form .field label {
+form.wide .field > label {
     width: 190px;
     float: left;
     padding-left: 10px;
     font-weight: bold;
 }
 
-form .field .element {
+form.wide .field .element {
     float: left;
 }
-form .field .element input,
-form .field .element textarea {
+form.wide .field .element input,
+form.wide .field .element textarea {
     width: 400px;
 }
 
-form .field .end {
+form.wide .field .end {
     font-size: 1px;
     line-height: 1px;
     clear: both;
 }
 
-form .button {
+form.wide .button {
     clear: both;
     width: 100%;
     background-color: #fff;
     border-top: 1px solid #CCCCCC;
     padding: 5px 0;
 }
-form .button button {
+form.wide .button button {
     margin-left: 200px;
 }
+
+/* thin form */
+form.thin {
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+form.thin .field {
+    padding-top: 10px;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #CCCCCC;
+}
+
+form.thin .field > label {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+form.thin .field .element {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+form.thin .field .element input,
+form.thin .field .element textarea {
+    width: 90%;
+}
+
+form.thin .field .end {
+}
+
+form.thin .button {
+    clear: both;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #CCCCCC;
+    padding: 5px 0;
+}
+form.thin .button button {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
 
 /* colors */
 
