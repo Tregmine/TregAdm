@@ -1,6 +1,5 @@
-<?php require_once 'index_news.phtml'; ?>
-
 <div class="col25">
+    <?php if (!array_key_exists("online", $_SESSION)): ?>
     <form method="post" action="/index.php/login" class="thin">
         <?php if (array_key_exists("error", $_GET)): ?>
             <p>
@@ -30,29 +29,161 @@
             <button type="submit">Login</button>
         </div>
     </form>
+    <?php else: ?>
+    <h3 class="actionsHeader">Player Info</h3>
+    <table style="width: 100%; margin-bottom: 20px;">
+        <tr>
+            <td style="vertical-align: top;">
+                <div <?php echo userCSSColor($_SESSION["id"]); ?> style="font-size: 14px; font-weight: bold;"><?php echo $_SESSION["name"]; ?></div>
+            </td>
+            <td style="width: 64px;">
+                <img src="/index.php/player/skin?player=<?php echo $_SESSION["name"]; ?>&factor=4" />
+            </td>
+        </tr>
+    </table>
+
+    <h3 class="infoHeader">User quicksearch</h3>
+
+    <form method="get" action="/index.php/player/search" class="thin">
+        <div class="field">
+            <label for="player_search">User</label>
+            <div class="element">
+                <input type="text" name="q" id="player_search" />
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
+        <div class="button">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+
+    <?php if (hasRank("junior_admin", "senior_admin")): ?>
+    <h3 class="infoHeader">Zone quicksearch</h3>
+
+    <form method="get" action="/index.php/zone/search" class="thin">
+        <div class="field">
+            <label for="zone_search">Zone</label>
+            <div class="element">
+                <input type="text" name="q" id="zone_search" />
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
+        <div class="button">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+    <?php endif; ?>
+    <?php endif; ?>
 
     <?php if (count($players) > 0): ?>
     <h3 class="actionsHeader"><?php echo count($players); ?> Players Online</h3>
-    <ul class="actions">
+    <table style="border-spacing: 0; width: 100%; background-color: #fff;">
     <?php
     $hiddenCount = 0;
     foreach ($players as $player):
-        if ($player["hidden"]) {
+        if ($player["hidden"] && !hasRank("senior_admin", "junior_admin")) {
             $hiddenCount++;
             continue;
         }
         ?>
-        <li>
-            <a <?php echo userCSSColor($player["id"]); ?> href="#">
+        <tr>
+        <td rowspan="2" style="width: 20px; border-bottom: 1px solid #ccc;">
+            <img src="/index.php/player/skin?player=<?php echo $player["name"]; ?>&factor=1" />
+        </td>
+        <td>
+            <a <?php echo userCSSColor($player["id"]); ?> 
+               href="/index.php/player/search?q=<?php echo $player["name"]; ?>">
                <?php echo $player["name"]; ?>
             </a>
-        </li>
+            <?php if (hasRank("guardian", "builder", "coder", "junior_admin", "senior_admin")): ?>
+            [<a href="#" onclick="kickPlayer(<?php echo $player["id"]; ?>)">Kick</a>]
+            <?php endif; ?>
+        </td>
+        </tr>
+        <tr>
+        <td style="border-bottom: 1px solid #ccc;">
+            <?php
+            $time = $player["playtime"];
+            $min = $time/60;
+            $sec = $time % 60;
+            printf("Time online: %d:%02d", $min, $sec);
+            ?>
+        </td>
+        </tr>
     <?php endforeach; ?>
     <?php if ($hiddenCount > 0): ?>
-    <li style="font-style: italic;"><?php printf("%d hidden players", $hiddenCount); ?></li>
+    <td colspan="2" style="font-style: italic;"><?php printf("%d hidden players", $hiddenCount); ?></td>
     <?php endif; ?>
-    </ul>
+    </table>
     <?php endif; ?>
+</div>
+
+<?php require_once 'index_news.phtml'; ?>
+
+<div class="col75">
+
+    <br />
+
+    <div class="col50">
+        <h3 class="infoHeader">Recent logins</h3>
+
+        <table class="info">
+            <cols>
+                <col />
+            </cols>
+            <tr>
+                <th colspan="2">Player</th>
+            </tr>
+            <?php foreach ($logins as $login): ?>
+                <tr>
+                    <td rowspan="2" style="width: 20px;">
+                        <img src="/index.php/player/skin?player=<?php echo $login["player_name"]; ?>&factor=1" />
+                    </td>
+                    <td>
+                        <a <?php echo userCSSColor($login["player_id"]); ?> href="/index.php/player/search?q=<?php echo $login["player_name"]; ?>">
+                           <?php echo $login["player_name"]; ?>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top: none;"><?php echo niceTime($login["login_timestamp"]); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+
+    <div class="col50">
+        <h3 class="infoHeader">Recent members</h3>
+
+        <table class="info">
+            <cols>
+                <col />
+            </cols>
+            <tr>
+                <th colspan="2">Player</th>
+            </tr>
+            <?php foreach ($settlers as $settler): ?>
+                <tr>
+                    <td rowspan="2" style="width: 20px;">
+                        <img src="/index.php/player/skin?player=<?php echo $settler["player_name"]; ?>&factor=1" />
+                    </td>
+                    <td>
+                        <a <?php echo userCSSColor($settler["player_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["player_name"]; ?>">
+                           <?php echo $settler["player_name"]; ?>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top: none;"><?php echo niceTime(strtotime($settler["player_created"])); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+
+    <div class="col_clear">&nbsp;</div>
+
 </div>
 
 <div class="col_clear">&nbsp;</div>
