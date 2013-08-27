@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(0);
+ini_set("display_errors", "0");
+
 class Area {
     function __construct($x, $y, $w, $h) {
         $this->x = $x;
@@ -37,19 +40,26 @@ if (array_key_exists("factor", $_GET)) {
 $filename = sprintf("%s.%d.png", $player, $factor);
 $cachePath = "../public/img/players/";
 if (file_exists($cachePath . $filename)) {
-    header('Location: /img/players/' . $filename);
+    //header('Location: /img/players/' . $filename);
+    header('Content-type: image/png');
+    $fh = fopen($cachePath . $filename, "r");
+    fpassthru($fh);
     exit;
 }
 
 $url = sprintf("http://s3.amazonaws.com/MinecraftSkins/%s.png", $player);
-
 $data = file_get_contents($url);
+if (!$data) {
+    $url = "http://s3.amazonaws.com/MinecraftSkins/char.png";
+    $data = file_get_contents($url);
+}
+
 $src = imagecreatefromstring($data);
 
 $dst = imagecreatetruecolor($width, $height);
 imagealphablending($dst, false);
 imagesavealpha($dst, true);
-$alpha = imagecolorallocatealpha($dst, 0, 0, 0, 0x74);
+$alpha = imagecolorallocatealpha($dst, 0, 0, 0, 0x7F);
 imagefill($dst, 0, 0, $alpha);
 copy_area($src, $dst, $areas["head_front"], 4, 0);
 copy_area($src, $dst, $areas["body_front"], 4, 8);
