@@ -61,8 +61,8 @@
                     <?php if (hasRank("senior_admin", "junior_admin", "guardian") || $hit["player_id"] == $_SESSION["id"]): ?>
                     &raquo; <a href="/index.php/player/stats?id=<?php echo $hit["player_id"]; ?>">Stats</a><br />
                     <?php endif; ?>
-                    <?php if (hasRank("senior_admin", "junior_admin", "guardian")): ?>
-                    &raquo; <a href="/index.php/orelog/stats?id=<?php echo $hit["player_id"]; ?>">Orelog</a><br />
+                    <?php if (hasRank("senior_admin", "junior_admin", "guardian", "coder")): ?>
+                    &raquo; <a href="/index.php/player/orelog?id=<?php echo $hit["player_id"]; ?>">Orelog</a><br />
                     &raquo; <a href="/index.php/player/report?id=<?php echo $hit["player_id"]; ?>">Reports</a><br />
                     <?php endif; ?>
                     <?php if (hasRank("senior_admin")): ?>
