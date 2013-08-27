@@ -1,0 +1,30 @@
+<p>
+    After creating a zone or warp for the player, please write a
+    report with the name of the zone and warp, and the donation id.
+</p>
+<table class="info">
+    <tr>
+        <th style="width: 50px;">Donation ID</th>
+        <th>Player</th>
+        <th>Amount</th>
+        <th>Timestamp</th>
+        <th>Message</th>
+        <th>Actions</th>
+    </tr>
+    <?php foreach ($donations as $player): ?>
+    <tr>
+        <td style="text-align: center;">
+            <?php echo $player["donation_id"]; ?>
+        </td>
+        <td>
+            <a <?php echo userCSSColor($player["player_id"]); ?>" href="/index.php/player/search?q=<?php echo $player["player_name"]; ?>"> <?php echo $player["player_name"]; ?></a>
+        </td>
+        <td><?php echo $player["donation_amount"]; ?></td>
+        <td><?php echo niceTime($player["donation_timestamp"]); ?></td>
+        <td><?php echo $player["donation_message"]; ?></td>
+        <td>
+            &raquo; <a href="/index.php/player/report?id=<?php echo $player["player_id"]; ?>">Report</a><br />
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
