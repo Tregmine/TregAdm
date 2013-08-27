@@ -80,7 +80,7 @@ $(document).ready(
                 var message = {};
                 message.authToken = authToken;
                 message.channel = channel;
-                message.text = text;
+                message.text = text.replace(/§[0-9a-z]/g,"");
 
                 var data = JSON.stringify(message);
                 connection.send(data);
@@ -106,7 +106,12 @@ $(document).ready(
 
         $("#send").click(
             function() {
-                sendMessage($("#message").val());
+                var msg = $("#message").val();
+                if (msg.trim() == "") {
+                    return;
+                }
+
+                sendMessage(msg);
                 $("#message").val("");
             });
 
