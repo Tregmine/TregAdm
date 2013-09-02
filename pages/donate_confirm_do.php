@@ -46,7 +46,7 @@ $stmt = $conn->prepare($sql);
 $donatorStatus = false;
 foreach ($transactions as $transaction) {
     $amount = $transaction["amount"];
-    if ($amount >= 10) {
+    if ($amount >= 5) {
         $donatorStatus = true;
     }
     $stmt->execute(array($_SESSION["id"], $amount["total"], $id, $payerId, $info["email"],

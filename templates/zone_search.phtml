@@ -40,8 +40,11 @@
                 <?php echo $hit["zone_world"]; ?>
             </td>
             <td>
+                &raquo; <a href="/index.php/zone/profile?id=<?php echo $hit["zone_id"]; ?>">Profile</a><br />
+                <?php if (hasRank("junior_admin", "senior_admin")): ?>
                 &raquo; <a href="/index.php/zone/info?id=<?php echo $hit["zone_id"]; ?>">Info</a><br />
                 &raquo; <a href="/index.php/zone/edit?id=<?php echo $hit["zone_id"]; ?>">Edit</a>
+                <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; ?>

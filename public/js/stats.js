@@ -3,15 +3,18 @@ google.setOnLoadCallback(
     function() {
         $.getJSON("/index.php/player/loginstats",
             function(raw_data) {
-                var data = google.visualization.arrayToDataTable(raw_data);
+                var data1 = google.visualization.arrayToDataTable(raw_data.logins);
+                var data2 = google.visualization.arrayToDataTable(raw_data.unique);
+                var data3 = google.visualization.arrayToDataTable(raw_data.online);
 
-                var options =
-                    {
-                        title: 'Total and unique logins by Date'
-                    };
+                var chart1 = new google.visualization.LineChart(document.getElementById('logins_chart'));
+                chart1.draw(data1, { title: 'Total logins by Date' });
 
-                var chart = new google.visualization.LineChart(document.getElementById('logins_chart'));
-                chart.draw(data, options);
+                var chart2 = new google.visualization.LineChart(document.getElementById('unique_chart'));
+                chart2.draw(data2, { title: 'Unique players by Date' });
+
+                var chart3 = new google.visualization.LineChart(document.getElementById('online_chart'));
+                chart3.draw(data3, { title: 'Max online players by Date' });
             });
 
         $.getJSON("/index.php/player/hourstats",

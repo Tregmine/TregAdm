@@ -54,6 +54,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_destroy();
     }
 
+    if (array_key_exists("remember", $_POST) && $_POST["remember"]) {
+        $salt = gensalt(64);
+
+        $sql  = "INSERT INTO player_webcookie (player_id, webcookie_nonce) ";
+        $sql .= "VALUES (?, ?)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array($user["player_id"], $salt));
+
+        setcookie("tregadm_login_nonce", $salt, time()+30*86400);
+    }
+
     header('Location: /index.php/start');
     exit;
 }

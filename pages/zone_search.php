@@ -1,15 +1,18 @@
 <?php
 
 checkIfOnline();
-checkRank("junior_admin", "senior_admin");
 
 $q = array_key_exists("q", $_GET) ? $_GET["q"] : "";
 
 $params = array();
 $sql  = "SELECT * FROM zone ";
+$sql .= "WHERE 1 ";
 if ($q) {
-    $sql  .= "WHERE zone_name LIKE ? ";
+    $sql  .= "AND zone_name LIKE ? ";
     $params[] = $q;
+}
+if (!hasRank("junior_admin", "senior_admin")) {
+    $sql .= "AND zone_publicprofile = '1' ";
 }
 $sql .= "ORDER BY zone_name";
 

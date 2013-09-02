@@ -25,6 +25,15 @@
             <div class="end">&nbsp;</div>
         </div>
 
+        <div class="field">
+            <label for="remember">Remember me</label>
+            <div class="element">
+                <input type="checkbox" name="remember" id="remember" value="1" />
+                <label for="remember">Yes</label>
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
         <div class="button">
             <button type="submit">Login</button>
         </div>
@@ -58,7 +67,6 @@
         </div>
     </form>
 
-    <?php if (hasRank("junior_admin", "senior_admin")): ?>
     <h3 class="infoHeader">Zone quicksearch</h3>
 
     <form method="get" action="/index.php/zone/search" class="thin">
@@ -74,7 +82,6 @@
             <button type="submit">Search</button>
         </div>
     </form>
-    <?php endif; ?>
     <?php endif; ?>
 
     <?php if (count($players) > 0): ?>

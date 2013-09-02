@@ -1,0 +1,27 @@
+<div>
+
+    <form method="post" action="/index.php/zone/editprofile/save?id=<?php echo $zone["zone_id"]; ?>" class="wide">
+        <h3 class="infoHeader">Info</h3>
+
+        <div class="field">
+            <label for="text">Text</label>
+            <div class="element">
+                <textarea id="text" name="text" style="height: 300px; width: 700px;"><?php if ($profile) echo $profile["profile_text"]; ?></textarea>
+                <p>
+                    Zone profiles use Markdown for formatting. Full <a href="http://daringfireball.net/projects/markdown/basics">documentation</a> is available.
+                </p>
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
+        <div class="button">
+            <button type="submit">Save changes</button>
+        </div>
+    </form>
+
+</div>
+
+<div class="col25">
+</div>
+
+<div class="col_clear">&nbsp;</div>

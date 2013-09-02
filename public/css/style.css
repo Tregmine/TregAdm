@@ -255,7 +255,8 @@ form.thin .field .element {
     margin-left: 10px;
     margin-top: 5px;
 }
-form.thin .field .element input,
+form.thin .field .element input[type='text'],
+form.thin .field .element input[type='password'],
 form.thin .field .element textarea {
     width: 90%;
 }
