@@ -1,10 +1,6 @@
 <?php 
 require_once '../include/tregmine_api.php';
-
-//if (array_key_exists("id", $_SESSION)) {
-//    header('Location: index.php/start');
-//    exit;
-//}
+require_once '../include/functions.php';
 
 $sql  = "SELECT * FROM player_login "; 
 $sql .= "INNER JOIN player USING (player_id) ";

@@ -194,21 +194,30 @@
                 <col />
             </cols>
             <tr>
-                <th colspan="2">Player</th>
+                <th colspan="2">New Member</th>
+                <th colspan="2">Mentor</th>
             </tr>
             <?php foreach ($settlers as $settler): ?>
                 <tr>
                     <td rowspan="2" style="width: 20px;">
-                        <img src="/index.php/player/skin?player=<?php echo $settler["player_name"]; ?>&factor=1" />
+                        <img src="/index.php/player/skin?player=<?php echo $settler["student_name"]; ?>&factor=1" />
                     </td>
                     <td>
-                        <a <?php echo userCSSColor($settler["player_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["player_name"]; ?>">
-                           <?php echo $settler["player_name"]; ?>
+                        <a <?php echo userCSSColor($settler["student_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["student_name"]; ?>">
+                           <?php echo $settler["student_name"]; ?>
                         </a>
+                    </td>
+                    <td>
+                        <a <?php echo userCSSColor($settler["mentor_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["mentor_name"]; ?>">
+                           <?php echo $settler["mentor_name"]; ?>
+                        </a>
+                    </td>
+                    <td rowspan="2" style="width: 20px;">
+                        <img src="/index.php/player/skin?player=<?php echo $settler["mentor_name"]; ?>&factor=1" />
                     </td>
                 </tr>
                 <tr>
-                    <td style="border-top: none;"><?php echo niceTime(strtotime($settler["player_created"])); ?></td>
+                    <td style="border-top: none;"><?php echo niceTime($settler["mentorlog_completedtime"]); ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
