@@ -64,7 +64,7 @@
         <?php if ($zone["zone_owner"]): ?>
         <tr>
             <td>Main Owner</td>
-            <td><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/index.php/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
+            <td style="text-align: center;"><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/index.php/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
         </tr>
         <?php endif; ?>
         <tr>
