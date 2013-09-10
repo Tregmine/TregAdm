@@ -84,6 +84,31 @@
     </form>
     <?php endif; ?>
 
+    <h3 class="infoHeader">Todays stats</h3>
+    <table class="info">
+        <tr>
+            <td style="font-weight: bold;">Logins</td>
+            <td class="<?php echo $loginsCount > $loginsTrend ? "dark_green" : "red"; ?>">
+                <span title="Trend: <?php echo $loginsTrend; ?>"><?php echo $loginsCount; ?></span>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Unique Players</td>
+            <td class="<?php echo $uniqueCount > $uniqueTrend ? "dark_green" : "red"; ?>">
+                <span title="Trend: <?php echo $uniqueTrend; ?>"><?php echo $uniqueCount; ?></span>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Max Online</td>
+            <td><?php echo $maxPlayers; ?></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: right;">
+                <a href="/index.php/stats">Last 30 days</a>
+            </td>
+        </tr>
+    </table>
+
     <?php if (count($players) > 0): ?>
     <h3 class="actionsHeader"><?php echo count($players); ?> Players Online</h3>
     <table style="border-spacing: 0; width: 100%; background-color: #fff;">
