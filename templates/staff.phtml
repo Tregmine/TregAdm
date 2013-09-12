@@ -1,11 +1,9 @@
 <?php foreach(array("Guardian","Admin","Builder","Senior") as $rank): ?>
 <div class="col25">
-    <table class="info sortable">
-    <thead>
+    <table class="info">
         <tr>
-            <th colspan="9"><?php echo $rank; ?></th>
+            <th colspan="9" class="infoHeader"><?php echo $rank; ?></th>
         </tr>
-     </thead>
         <?php foreach ($staff[$rank] as $key): ?>
         <tr>
             <td>

@@ -12,18 +12,9 @@ if (array_key_exists("q", $_GET)) {
     $hits = $stmt->fetchAll();
 }
 
-$players_data = file_get_contents("http://mc.tregmine.info:9192/playerlist");
-$players = array();
-if ($players_data) {
-    $players = json_decode($players_data, true);
-}
-
-
 $context = array();
 $context["q"] = $q;
 $context["hits"] = $hits;
-$context["players"] = $players;
-
 
 $styles = array();
 $scripts = array("/js/player_autocomplete.js");

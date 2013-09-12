@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="speedup.cache.php"">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Tregmine</title>
     <link rel="stylesheet" href="/css/style.css" />
@@ -9,8 +9,6 @@
     <?php endforeach; ?>
     <script src="/js/jquery-1.9.1.js"></script>
     <script src="/js/jquery-ui.js"></script>
-    <script src="/js/jquery-ui.js"></script>
-    <script src="/js/sorttable.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <?php foreach ($scripts as $script): ?>
     <script type="text/javascript" src="<?php echo $script; ?>"></script>
@@ -23,7 +21,6 @@
         <?php if (array_key_exists("online", $_SESSION)): ?>
         <ul id="menu">
             <li><a href="/index.php/start">Start</a></li>
-            <li><a href="/index.php/player/search">Players</a></li>
             <li><a href="/index.php/staff">Staff</a></li>
             <?php if ($_SESSION["rank"] == "senior_admin"): ?>
             <li><a href="/index.php/guardians">Guardians</a></li>

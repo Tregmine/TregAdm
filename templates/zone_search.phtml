@@ -15,21 +15,19 @@
 <h3 class="infoHeader"><?php echo count($hits); ?> results for "<?php echo htmlspecialchars($q); ?>"</h3>
 
 <?php if ($hits): ?>
-    <table style="width: 100%;" class="info sortable">
+    <table style="width: 100%;" class="info">
         <cols>
             <col style="width: 50px;" />
             <col />
             <col style="width: 200px;" />
             <col style="width: 200px;" />
         </cols>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>World</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>World</th>
+            <th>Actions</th>
+        </tr>
         <?php foreach ($hits as $hit): ?>
         <tr>
             <td>

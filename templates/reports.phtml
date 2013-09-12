@@ -1,4 +1,4 @@
-<table class="info sortable">
+<table class="info">
     <cols>
         <col style="width: 150px;" />
         <col style="width: 150px;" />
@@ -6,7 +6,6 @@
         <col style="width: 125px;" />
         <col style="width: 125px;" />
     </cols>
-	<thead>
     <tr>
         <th>Issuer</th>
         <th>Subject</th>
@@ -14,7 +13,6 @@
         <th>Timestamp</th>
         <th>Valid Until</th>
     </tr>
-	</thead>
     <?php foreach ($reports as $report): ?>
         <tr>
             <td style="font-style: italic;"><?php echo $report["issuer"]; ?></td>

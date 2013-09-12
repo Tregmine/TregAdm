@@ -1,4 +1,3 @@
 *.swp
 /include/init.php
 /public/dev
-.htaccess
