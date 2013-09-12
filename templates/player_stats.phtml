@@ -13,28 +13,18 @@
             <th>Duration</th>
         </tr>
         <?php 
-        $last = null;
-        $total = 0;
-        $loginCount = 0;
         foreach ($logins as $i => $row):
             $duration = "";
-            if ($row["login_action"] == "login") {
-                $last = $row;
-                $loginCount++;
-            }
-            else if ($row["login_action"] == "logout") {
-                if ($last != null) {
+            if ($row["login_action"] == "logout") {
+                $last = $logins[$i+1];
+                if ($last != null && $last["login_action"] == "login") {
                     $dur = $row["login_timestamp"] - $last["login_timestamp"];
-                    $total += $dur;
                     $min = $dur / 60;
                     $sec = $dur % 60;
                     $duration = sprintf("%02d:%02d", $min, $sec);
                 } else {
                     $duration = "N/A";
                 }
-            }
-            if ($i < count($logins)-10) {
-                continue;
             }
             ?>
             <tr>
@@ -60,6 +50,7 @@
                 <div>
                     <span style="font-weight: bold;">Total time:</span>
                     <?php
+                    $total = $properties["playtime"];
                     $hours = $total / 3600;
                     $min = ($total % 3600) / 60;
                     $sec = $total % 60;
@@ -71,7 +62,21 @@
                     <?php printf("%d", $loginCount); ?>
                 </div>
             </td>
-        </tr>
+            <?php if (!array_key_exists("all_logins", $_GET)): ?>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <?php if (hasRank("senior_admin")): ?>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <?php endif; ?>
+                <td>
+                    <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_logins=1">Show all logins</a>
+                </td>
+            </tr>
+            <?php endif; ?>
+            </tr>
     </table>
 
 
@@ -110,6 +115,13 @@
                 <td><?php echo $row["transaction_amount"]; ?></td>
             </tr>
         <?php endforeach; ?>
+        <?php if (!array_key_exists("all_transactions", $_GET)): ?>
+        <tr>
+            <td colspan="4" style="text-align: right;">
+                <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_transactions=1">Show all transactions</a>
+            </td>
+        </tr>
+        <?php endif; ?>
     </table>
 
 </div>
