@@ -1,10 +1,11 @@
 <?php
 
-checkIfOnline();
+require_once '../include/functions.php';
 
 $sql  = "SELECT date(from_unixtime(login_timestamp)) d, count(login_id) c, "
-      . "count(distinct player_id) uc FROM player_login ";
-$sql .= "WHERE login_timestamp > unix_timestamp() - 30*86400 ";
+      . "count(distinct player_id) uc, max(login_onlineplayers) op FROM player_login ";
+$sql .= "WHERE login_timestamp BETWEEN (unix_timestamp() - 30*86400) AND unix_timestamp(date(now()))-1 "
+      . "AND login_action = 'login' ";
 $sql .= "GROUP BY d ORDER BY d";
 
 $stmt = $conn->prepare($sql);
@@ -13,9 +14,23 @@ $stmt->execute(array());
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $data = array();
-$data[] = array("Date", "Logins", "Unique Logins");
+$data["logins"] = array();
+
+$data["logins"][] = array("Date", "Logins", "Trend");
+$trendLine = trend($result, "c");
+foreach ($result as $i => $row) {
+    $data["logins"][] = array($row["d"], intval($row["c"]), $trendLine[$i]);
+}
+
+$data["unique"][] = array("Date", "Unique Players", "Trend");
+$trendLine = trend($result, "uc");
+foreach ($result as $i => $row) {
+    $data["unique"][] = array($row["d"], intval($row["uc"]), $trendLine[$i]);
+}
+
+$data["online"][] = array("Date", "Max Online Players");
 foreach ($result as $row) {
-    $data[] = array($row["d"], intval($row["c"]), intval($row["uc"]));
+    $data["online"][] = array($row["d"], intval($row["op"])+1); // the online stats is always off by one
 }
 
 echo json_encode($data);

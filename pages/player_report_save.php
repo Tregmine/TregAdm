@@ -1,6 +1,7 @@
 <?php
 
 checkIfOnline();
+checkRank("guardian", "coder", "builder", "junior_admin", "senior_admin");
 
 $do = array_key_exists("do", $_GET) ? $_GET["do"] : "report";
 
@@ -16,9 +17,9 @@ if ($do == "report") {
     $duration = array_key_exists("duration", $_POST) ? $_POST["duration"] : "";
     $text = $_POST["text"];
 
-    $duration = $duration ? strtotime($duration) : null;
+    $duration = $duration ? strtotime($duration) : strtotime("+3 days");
 
-    if ($_SESSION["rank"] != "senior_admin" && $_SESSION["rank"] != "junior_admin") {
+    if (!hasRank("junior_admin", "senior_admin")) {
         $action = "comment";
     }
 

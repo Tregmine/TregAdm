@@ -1,3 +1,5 @@
 *.swp
 /include/init.php
 /public/dev
+/public/maps
+/public/img/players

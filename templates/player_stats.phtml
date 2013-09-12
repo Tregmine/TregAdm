@@ -1,33 +1,24 @@
 <div class="col75">
 
+    <h3 class="infoHeader">Logins</h3>
     <table class="info">
-        <cols>
-            <col />
-            <col style="width: 50px;" />
-            <col style="width: 50px;" />
-        </cols>
-        <tr>
-            <th colspan="3" class="infoHeader">Logins</th>
-        </tr>
         <tr>
             <th>Timestamp</th>
             <th>Action</th>
+            <?php if (hasRank("senior_admin")): ?>
+            <th>IP</th>
+            <th>Country</th>
+            <th>City</th>
+            <?php endif; ?>
             <th>Duration</th>
         </tr>
         <?php 
-        $last = null;
-        $total = 0;
-        $loginCount = 0;
         foreach ($logins as $i => $row):
             $duration = "";
-            if ($row["login_action"] == "login") {
-                $last = $row;
-                $loginCount++;
-            }
-            else if ($row["login_action"] == "logout") {
-                if ($last != null) {
+            if ($row["login_action"] == "logout") {
+                $last = $logins[$i+1];
+                if ($last != null && $last["login_action"] == "login") {
                     $dur = $row["login_timestamp"] - $last["login_timestamp"];
-                    $total += $dur;
                     $min = $dur / 60;
                     $sec = $dur % 60;
                     $duration = sprintf("%02d:%02d", $min, $sec);
@@ -35,23 +26,31 @@
                     $duration = "N/A";
                 }
             }
-            if ($i < count($logins)-10) {
-                continue;
-            }
             ?>
             <tr>
                 <td><?php echo date("Y-m-d H:i:s", $row["login_timestamp"]); ?></td>
                 <td><?php echo ucfirst($row["login_action"]); ?></td>
+                <?php if (hasRank("senior_admin")): ?>
+                <td><?php echo $row["login_ip"]; ?></td>
+                <td><?php echo $row["login_country"]; ?></td>
+                <td><?php echo $row["login_city"]; ?></td>
+                <?php endif; ?>
                 <td><?php echo $duration; ?></td>
             </tr>
         <?php endforeach; ?>
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
+            <?php if (hasRank("senior_admin")): ?>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <?php endif; ?>
             <td>
                 <div>
                     <span style="font-weight: bold;">Total time:</span>
                     <?php
+                    $total = $properties["playtime"];
                     $hours = $total / 3600;
                     $min = ($total % 3600) / 60;
                     $sec = $total % 60;
@@ -63,7 +62,21 @@
                     <?php printf("%d", $loginCount); ?>
                 </div>
             </td>
-        </tr>
+            <?php if (!array_key_exists("all_logins", $_GET)): ?>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <?php if (hasRank("senior_admin")): ?>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <?php endif; ?>
+                <td>
+                    <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_logins=1">Show all logins</a>
+                </td>
+            </tr>
+            <?php endif; ?>
+            </tr>
     </table>
 
 
@@ -102,6 +115,13 @@
                 <td><?php echo $row["transaction_amount"]; ?></td>
             </tr>
         <?php endforeach; ?>
+        <?php if (!array_key_exists("all_transactions", $_GET)): ?>
+        <tr>
+            <td colspan="4" style="text-align: right;">
+                <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_transactions=1">Show all transactions</a>
+            </td>
+        </tr>
+        <?php endif; ?>
     </table>
 
 </div>
@@ -110,6 +130,7 @@
 
     <br />
 
+    <?php if (hasRank("junior_admin", "senior_admin")): ?>
     <h3 class="infoHeader">Aliases</h3>
     <table class="info">
         <tr>
@@ -120,6 +141,7 @@
             </td>
         </tr>
     </table>
+    <?php endif; ?>
 
 </div>
 

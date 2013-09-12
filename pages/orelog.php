@@ -1,7 +1,7 @@
 <?php
 
 checkIfOnline();
-checkRank("junior_admin", "senior_admin", "guardian");
+checkRank("junior_admin", "senior_admin", "guardian", "coder", "builder");
 
 $start = array_key_exists("start", $_GET) ? strtotime($_GET["start"]) : strtotime("-1 day");
 $end = array_key_exists("end", $_GET) ? strtotime($_GET["end"]) : null;

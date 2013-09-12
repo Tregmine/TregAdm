@@ -48,7 +48,11 @@ $stmt->execute(array($zone["zone_id"]));
 $rects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
 
-$stmt = $conn->prepare("SELECT name, x, y, z FROM warps WHERE warps.x >= ? AND warps.x <= ? AND warps.z >= ? AND warps.z <= ? AND warps.world = ?");
+$sql  = "SELECT warp_name, warp_x, warp_y, warp_z FROM warp ";
+$sql .= "WHERE (warp_x BETWEEN ? AND ?) "
+      . "AND (warp_z BETWEEN ? AND ?) "
+      . "AND warp_world = ?";
+$stmt = $conn->prepare($sql);
 $warps = array();
 foreach ($rects as $rect) {
     // Get warps within zone

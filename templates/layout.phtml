@@ -21,31 +21,63 @@
         <?php if (array_key_exists("online", $_SESSION)): ?>
         <ul id="menu">
             <li><a href="/index.php/start">Start</a></li>
+            <li><a href="/index.php/stats">Stats</a></li>
             <li><a href="/index.php/staff">Staff</a></li>
-            <?php if ($_SESSION["rank"] == "senior_admin"): ?>
+            <li><a href="http://discourse.tregmine.info/" target="_blanK">Forum</a></li>
+            <li><a href="/index.php/donate">Donate</a></li>
+            <?php if (hasRank("senior_admin")): ?>
             <li><a href="/index.php/guardians">Guardians</a></li>
             <?php endif; ?>
-            <?php if ($_SESSION["rank"] == "senior_admin" || $_SESSION["rank"] == "junior_admin"): ?>
+            <?php if (hasRank("senior_admin", "junior_admin")): ?>
             <li><a href="/index.php/chatlog">Chat Logs</a></li>
             <li><a href="/index.php/zone/search">Zones</a></li>
+            <li><a href="/index.php/donations">Donations</a></li>
             <?php endif; ?>
+            <?php if (hasRank("donator", "coder", "guardian", "builder", "junior_admin", "senior_admin")): ?>
+            <li><a href="/index.php/chat">Chat</a></li>
+            <?php endif; ?>
+            <?php if (hasRank("guardian", "coder", "builder", "junior_admin", "senior_admin")): ?>
             <li><a href="/index.php/orelog">Ore Logs</a></li>
             <li><a href="/index.php/reports">Reports</a></li>
+            <?php endif; ?>
+
             <li style="float: right"><a href="/index.php/logout">Logout</a></li>
             <li style="float: right">Logged in as: <a href="/index.php/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>&nbsp;</li>
+        </ul>
+        <?php else: ?>
+        <ul id="menu">
+            <li><a href="/index.php">Start</a></li>
+            <li><a href="/index.php/stats">Stats</a></li>
+            <!--<li><a href="/index.php/about">About</a></li>
+            <li><a href="/index.php/policy">Policy</a></li>
+            <li><a href="/index.php/plugins">Plugins</a></li>-->
+            <li><a href="http://discourse.tregmine.info/">Forum</a></li>
         </ul>
         <?php endif; ?>
 
         <h2 class="info"><?php echo $title; ?></h2>
 
-        <?php
-        $template = '../templates/' . $page;
-        if (file_exists($template)) {
-            include '../templates/' . $template;
-        } else {
-            echo $page . " not found.";
-        }
-        ?>
+        <div class="content">
+            <?php
+            $template = '../templates/' . $page;
+            if (file_exists($template)) {
+                include '../templates/' . $template;
+            } else {
+                echo $page . " not found.";
+            }
+            ?>
+        </div>
     </div>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43769503-1', 'tregmine.info');
+ga('send', 'pageview');
+
+</script>
 </body>
 </html>

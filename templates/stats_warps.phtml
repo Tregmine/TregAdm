@@ -1,0 +1,40 @@
+<div class="col75">
+    <h3 class="infoHeader">Traffic</h3>
+    <table class="info">
+        <cols>
+            <col />
+            <col style="width: 75px;" />
+            <col style="width: 75px;" />
+        </cols>
+        <tr>
+            <th>Warp Name</th>
+            <th>Visitors</th>
+            <th>Unique Visitors</th>
+        </tr>
+        <?php foreach ($warps as $warp): ?>
+            <tr>
+                <td><?php echo $warp["warp_name"]; ?></td>
+                <td><?php echo $warp["c"]; ?></td>
+                <td><?php echo $warp["uc"]; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <p>
+        Traffic to 50 most popular warps for the past week.
+    </p>
+
+</div>
+
+<div class="col25">
+    <h3 class="actionsHeader">Stats</h3>
+
+    <ul class="actions">
+        <li><a href="/index.php/stats">Overview</a></li>
+        <li><a href="/index.php/stats/playtime">Playtime</a></li>
+        <li><a href="/index.php/stats/warps">Warps</a></li>
+    </ul>
+</div>
+
+<div class="col_clear">&nbsp;</div>
+

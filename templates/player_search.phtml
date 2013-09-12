@@ -1,4 +1,4 @@
-<form method="get" action="/index.php/player/search">
+<form method="get" action="/index.php/player/search" class="wide">
     <div class="field">
         <label for="player_search">User</label>
         <div class="element">
@@ -18,41 +18,57 @@
     <?php if ($hits): ?>
         <table style="width: 100%;" class="info">
             <cols>
+                <?php if (hasRank("senior_admin", "junior_admin")): ?>
                 <col style="width: 50px;" />
+                <?php endif; ?>
                 <col />
                 <col style="width: 200px;" />
+                <?php if (hasRank("senior_admin", "junior_admin")): ?>
                 <col style="width: 150px;" />
+                <?php endif; ?>
                 <col style="width: 200px;" />
             </cols>
             <tr>
+                <?php if (hasRank("senior_admin", "junior_admin")): ?>
                 <th>ID</th>
+                <?php endif; ?>
                 <th>Name</th>
                 <th>Member Since</th>
+                <?php if (hasRank("senior_admin", "junior_admin")): ?>
                 <th>Wallet</th>
+                <?php endif; ?>
                 <th>Actions</th>
             </tr>
             <?php foreach ($hits as $hit): ?>
             <tr>
+                <?php if (hasRank("senior_admin", "junior_admin")): ?>
                 <td>
                     <?php echo $hit["player_id"]; ?>
                 </td>
+                <?php endif; ?>
                 <td>
                     <div <?php echo userCSSColor($hit["player_name"]); ?>><?php echo $hit["player_name"]; ?></div>
                 </td>
                 <td>
                     <?php echo $hit["player_created"]; ?>
                 </td>
+                <?php if (hasRank("senior_admin", "junior_admin")): ?>
                 <td>
                     <?php echo $hit["player_wallet"]; ?> tregs
                 </td>
+                <?php endif; ?>
                 <td>
-                    &raquo; <a href="/index.php/player/report?id=<?php echo $hit["player_id"]; ?>">Reports</a><br />
+                    <?php if (hasRank("senior_admin", "junior_admin", "guardian") || $hit["player_id"] == $_SESSION["id"]): ?>
                     &raquo; <a href="/index.php/player/stats?id=<?php echo $hit["player_id"]; ?>">Stats</a><br />
-                    &raquo; <a href="/index.php/orelog/stats?id=<?php echo $hit["player_id"]; ?>">Orelog</a><br />
-                    <?php if ($_SESSION["rank"] == "senior_admin"): ?>
+                    <?php endif; ?>
+                    <?php if (hasRank("senior_admin", "junior_admin", "guardian", "coder")): ?>
+                    &raquo; <a href="/index.php/player/orelog?id=<?php echo $hit["player_id"]; ?>">Orelog</a><br />
+                    &raquo; <a href="/index.php/player/report?id=<?php echo $hit["player_id"]; ?>">Reports</a><br />
+                    <?php endif; ?>
+                    <?php if (hasRank("senior_admin")): ?>
                     &raquo; <a href="/index.php/player/perm?id=<?php echo $hit["player_id"]; ?>">Permissions</a><br />
                     <?php endif; ?>
-                    <?php if ($_SESSION["rank"] == "senior_admin" || $_SESSION["rank"] == "junior_admin"): ?>
+                    <?php if (hasRank("senior_admin", "junior_admin") || $hit["player_id"] == $_SESSION["id"]): ?>
                     &raquo; <a href="/index.php/player/zones?id=<?php echo $hit["player_id"]; ?>">Zones and Lots</a><br />
                     <?php endif; ?>
                 </td>

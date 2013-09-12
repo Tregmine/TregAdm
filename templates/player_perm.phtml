@@ -13,7 +13,22 @@
         <?php endforeach; ?>
     </table>
 
-    <form method="post" action="/index.php/player/perm/save?id=<?php echo $player["player_id"]; ?>">
+    <form method="post" action="/index.php/player/perm/save?id=<?php echo $player["player_id"]; ?>" class="wide">
+
+    <table class="info">
+        <tr>
+            <th colspan="9" class="infoHeader">Flags</th>
+        </tr>
+
+        <?php foreach ($flags as $key => $flag): 
+            if (!$flag["choice"]) continue; 
+            $selected = ($player["player_flags"] & (1 << $key)) != 0; ?>
+            <tr>
+                <td><input type="checkbox" name="flags[<?php echo $key; ?>]" id="flags_<?php echo $key; ?>" value="1" <?php if ($selected) echo 'checked="checked"'; ?> /></td>
+                <td><label for="flags_<?php echo $key; ?>"><?php echo $flag["name"]; ?></label></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 
     <h3 class="infoHeader">Info</h3>
 

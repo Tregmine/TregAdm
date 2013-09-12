@@ -1,5 +1,7 @@
 <?php
 
+require_once '../include/password.php';
+
 checkIfOnline();
 checkRank("senior_admin");
 
@@ -40,10 +42,17 @@ if ($quitMessage) {
 }
 
 // change player settings
+$flagsArr = array_key_exists("flags", $_POST) ? $_POST["flags"] : array();
+$flags = 0;
+foreach ($flagsArr as $key => $flag) {
+    $flags |= (1 << $key);
+}
+
 $params = array();
 
-$sql  = "UPDATE player SET player_rank = ? ";
+$sql  = "UPDATE player SET player_rank = ?, player_flags = ? ";
 $params[] = $rank;
+$params[] = $flags;
 
 $password = array_key_exists("password", $_POST) ? $_POST["password"] : "";
 if ($password) {

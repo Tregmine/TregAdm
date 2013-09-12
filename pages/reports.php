@@ -1,7 +1,7 @@
 <?php
 
 checkIfOnline();
-checkRank("junior_admin", "senior_admin");
+checkRank("guardian", "coder", "builder", "junior_admin", "senior_admin");
 
 $sql  = "SELECT player_report.*, a.player_name issuer, "
       . "b.player_name subject FROM player_report ";

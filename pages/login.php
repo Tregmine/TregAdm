@@ -9,6 +9,8 @@ if (array_key_exists("id", $_SESSION)) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    session_regenerate_id(true);
+
     $username = $_POST["username"];
     $password = $_POST["pass"];
 
@@ -47,10 +49,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION[$property["property_key"]] = $property["property_value"];
     }
 
-    $validRanks = array("senior_admin", "junior_admin", "builder", "guardian");
+    $validRanks = array("senior_admin", "junior_admin", "builder", "coder", "guardian", "donator", "resident", "settler");
     if (!in_array($_SESSION["rank"], $validRanks)) {
-
         session_destroy();
+    }
+
+    if (array_key_exists("remember", $_POST) && $_POST["remember"]) {
+        $salt = gensalt(64);
+
+        $sql  = "INSERT INTO player_webcookie (player_id, webcookie_nonce) ";
+        $sql .= "VALUES (?, ?)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array($user["player_id"], $salt));
+
+        setcookie("tregadm_login_nonce", $salt, time()+30*86400);
     }
 
     header('Location: /index.php/start');

@@ -1,6 +1,7 @@
 <?php
 
 checkIfOnline();
+checkRank("guardian", "coder", "builder", "junior_admin", "senior_admin");
 
 $sql  = "SELECT date(from_unixtime(orelog_timestamp)) timestamp, "
       . "count(if(orelog_material = 14, 1, null)) gold, "
