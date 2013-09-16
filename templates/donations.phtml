@@ -1,7 +1,4 @@
-<p>
-    After creating a zone or warp for the player, please write a
-    report with the name of the zone and warp, and the donation id.
-</p>
+<div class="col75">
 <table class="info">
     <tr>
         <th style="width: 50px;">Donation ID</th>
@@ -9,7 +6,7 @@
         <th>Amount</th>
         <th>Timestamp</th>
         <th>Message</th>
-        <th>Actions</th>
+        <th style="width: 75px;">Actions</th>
     </tr>
     <?php foreach ($donations as $player): ?>
     <tr>
@@ -28,3 +25,17 @@
     </tr>
     <?php endforeach; ?>
 </table>
+
+<p>
+    After creating a zone or warp for the player, please write a
+    report with the name of the zone and warp, and the donation id.
+</p>
+
+</div>
+
+<div class="col25">
+    <?php require_once 'logs_menu.phtml'; ?>
+</div>
+
+<div class="col_clear">&nbsp;</div>
+

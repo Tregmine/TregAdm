@@ -11,6 +11,13 @@
             </td>
         </tr>
         <?php endforeach; ?>
+        <?php if (hasRank("senior_admin") && $rank == "Guardian"): ?>
+        <tr>
+            <td>
+                &raquo; <a href="/index.php/guardians">Manage Guardians</a>
+            </td>
+        </tr>
+        <?php endif; ?>
     </table>
 </div>
 <?php endforeach; ?>
