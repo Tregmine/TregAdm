@@ -1,0 +1,29 @@
+<div class="col75">
+    <h3 class="infoHeader">Most students mentored</h3>
+    <table class="info">
+        <cols>
+            <col />
+            <col style="width: 150px;" />
+        </cols>
+        <tr>
+            <th>Mentor</th>
+            <th>Students</th>
+        </tr>
+        <?php foreach ($mentors as $mentor): ?>
+            <tr>
+                <td>
+                    <a <?php echo userCSSColor($mentor["mentor_id"]); ?>" href="/index.php/player/orelog?id=<?php echo $player["player_id"]; ?>"> <?php echo $mentor["player_name"]; ?></a>
+                </td>
+                <td style="text-align: center;"><?php echo $mentor["c"]; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+</div>
+
+<div class="col25">
+    <?php require_once 'stats_menu.phtml'; ?>
+</div>
+
+<div class="col_clear">&nbsp;</div>
+
