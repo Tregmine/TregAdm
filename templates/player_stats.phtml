@@ -160,8 +160,8 @@
                 if (array_key_exists($x*9+$y, $slots)) {
                     $slot = $slots[$x*9+$y];
                     $item = $slot["item_material"];
-                    if ($item < 133) {
-                        echo '<div><img src="/img/blocks/' . $item . '.png" width="50" height="50" /></div>';
+                    if (file_exists("../public/img/blocks_large/" . $item . ".png")) {
+                        echo '<div><img src="/img/blocks_large/' . $item . '.png" width="50" height="50" /></div>';
                     } else {
                         echo '<div style="height: 50px;">' . 
                             implode(" ", array_map("ucfirst", array_map("strtolower", explode("_", $items[$item])))) . '</div>';
