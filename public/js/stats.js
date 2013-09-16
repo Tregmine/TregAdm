@@ -8,27 +8,31 @@ google.setOnLoadCallback(
                 var data3 = google.visualization.arrayToDataTable(raw_data.online);
 
                 var chart1 = new google.visualization.LineChart(document.getElementById('logins_chart'));
-                chart1.draw(data1, { title: 'Total logins by Date' });
+                chart1.draw(data1, { 
+                        title: 'Total logins by Date'
+                    });
 
                 var chart2 = new google.visualization.LineChart(document.getElementById('unique_chart'));
-                chart2.draw(data2, { title: 'Unique players by Date' });
+                chart2.draw(data2, {
+                        title: 'Unique players by Date'
+                    });
 
                 var chart3 = new google.visualization.LineChart(document.getElementById('online_chart'));
-                chart3.draw(data3, { title: 'Max online players by Date' });
+                chart3.draw(data3, { 
+                        title: 'Max online players by Date',
+                        curveType: "function"
+                    });
             });
 
-        $.getJSON("/index.php/player/hourstats",
+        /*$.getJSON("/index.php/player/hourstats",
             function(raw_data) {
                 var data = google.visualization.arrayToDataTable(raw_data);
 
-                var options =
-                    {
-                        title: 'Total logins by Hour (CET, Server Time)'
-                    };
-
                 var chart = new google.visualization.LineChart(document.getElementById('hour_chart'));
-                chart.draw(data, options);
-            });
+                chart.draw(data, {
+                        title: 'Number of players online (CET, Server Time)'
+                    });
+            });*/
 
         $.getJSON("/index.php/player/geostats",
             function(raw_data) {
