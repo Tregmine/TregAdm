@@ -35,8 +35,8 @@ function createPayment($endpoint, $accessToken, $amount) {
     $request = array();
     $request["intent"] = "sale";
     $request["redirect_urls"] = array(
-        "return_url" => "http://mc.tregmine.info/index.php/donate/confirm",
-        "cancel_url" => "http://mc.tregmine.info/index.php/donate");
+        "return_url" => "http://tregmine.info/index.php/donate/confirm",
+        "cancel_url" => "http://tregmine.info/index.php/donate");
     $request["payer"] = array("payment_method" => "paypal");
     $request["transactions"] = array();
     $request["transactions"][] =
