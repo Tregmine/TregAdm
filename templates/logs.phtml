@@ -1,7 +1,35 @@
 <div class="col75">
-    <p>
-        Use the menu to the right to find the logs you want.
-    </p>
+    <form method="get" action="/index.php/inventory" class="wide">
+        <h3 class="formHeader">Chest Log</h3>
+
+        <div class="field">
+            <label for="x">X</label>
+            <div class="element">
+                <input type="text" name="x" id="x" value="" />
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
+        <div class="field">
+            <label for="y">Y</label>
+            <div class="element">
+                <input type="text" name="y" id="y" value="" />
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
+        <div class="field">
+            <label for="z">Z</label>
+            <div class="element">
+                <input type="text" name="z" id="z" value="" />
+            </div>
+            <div class="end">&nbsp;</div>
+        </div>
+
+        <div class="button">
+            <button type="submit">Filter</button>
+        </div>
+    </form>
 </div>
 
 <div class="col25">
