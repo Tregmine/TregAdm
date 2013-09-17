@@ -16,7 +16,7 @@
         foreach ($logins as $i => $row):
             $duration = "";
             if ($row["login_action"] == "logout") {
-                $last = $logins[$i+1];
+                $last = array_key_exists($i+1, $logins) ? $logins[$i+1] : null;
                 if ($last != null && $last["login_action"] == "login") {
                     $dur = $row["login_timestamp"] - $last["login_timestamp"];
                     $min = $dur / 60;

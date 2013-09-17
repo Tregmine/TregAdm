@@ -2,14 +2,17 @@
 
 require_once '../include/functions.php';
 
+$start = strtotime(date("Y-m-d", time() - 30*86400));
+$end = strtotime(date("Y-m-d"));
+
 $sql  = "SELECT date(from_unixtime(login_timestamp)) d, count(login_id) c, "
       . "count(distinct player_id) uc, max(login_onlineplayers) op FROM player_login ";
-$sql .= "WHERE login_timestamp BETWEEN (unix_timestamp() - 30*86400) AND unix_timestamp(date(now()))-1 "
+$sql .= "WHERE login_timestamp BETWEEN ? AND ? "
       . "AND login_action = 'login' ";
 $sql .= "GROUP BY d ORDER BY d";
 
 $stmt = $conn->prepare($sql);
-$stmt->execute(array());
+$stmt->execute(array($start, $end));
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
