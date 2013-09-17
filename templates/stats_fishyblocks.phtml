@@ -1,0 +1,35 @@
+<div class="col75">
+    <h3 class="infoHeader">Fishyblocks</h3>
+    <table class="info">
+        <cols>
+            <col />
+            <col />
+            <col />
+            <col />
+        </cols>
+        <tr>
+            <th>Player</th>
+            <th>Blocks</th>
+            <th>Items Sold</th>
+            <th>Total Cost</th>
+        </tr>
+        <?php foreach ($fishyblocks as $block): ?>
+            <tr>
+                <td>
+                    <a <?php echo userCSSColor($block["player_id"]); ?>" href="/index.php/player/search?q=<?php echo $block["player_name"]; ?>"> <?php echo $block["player_name"]; ?></a>
+                </td>
+                <td style="text-align: center;"><?php echo $block["blocks"]; ?></td>
+                <td style="text-align: center;"><?php echo $block["sold"]; ?></td>
+                <td style="text-align: center;"><?php echo $block["cost"]; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+</div>
+
+<div class="col25">
+    <?php require_once 'stats_menu.phtml'; ?>
+</div>
+
+<div class="col_clear">&nbsp;</div>
+
