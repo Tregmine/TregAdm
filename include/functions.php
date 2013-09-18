@@ -1,5 +1,29 @@
 <?php
 
+function niceTime($timestamp)
+{
+    $now = time();
+    $diff = $now - $timestamp;
+    $full = date("Y-m-d H:i:s", $timestamp);
+    if ($diff < 60) {
+        $short = "Just now";
+    } else if ($diff < 600) {
+        $short = "A couple of minutes ago";
+    } else if ($diff < 3600) {
+        $short = intval($diff/60) . " minutes ago";
+    } else if (date("d", $timestamp) == date("d")) {
+        $short = date("H:i", $timestamp) . " today";
+    } else if (date("Y-m", $timestamp) == date("Y-m")) {
+        $short = date("H:i, F j", $timestamp);
+    } else if (date("Y", $timestamp) == date("Y")) {
+        $short = date("H:i, F j", $timestamp);
+    } else {
+        $short = date("H:i, F j, Y", $timestamp);
+    }
+
+    return sprintf("<span title=\"%s\">%s</span>", $full, $short);
+}
+
 // Simple least square regressions and linear interpolation
 function trend($points, $idx) {
     $A = 0; $B = 0; $C = 0; $D = 0;
