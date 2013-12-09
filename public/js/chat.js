@@ -18,6 +18,10 @@ $(document).ready(
             function(channel, sender, rank, text) {
                 var tr = $(document.createElement("TR"));
 
+                    var timestampCell = $(document.createElement("TD"));
+                    timestampCell.append(document.createTextNode(new Date().toLocaleTimeString()));
+                    tr.append(timestampCell);
+
                     var channelCell = $(document.createElement("TD"));
                     channelCell.append(document.createTextNode(channel.toUpperCase()));
                     tr.append(channelCell);
@@ -46,30 +50,45 @@ $(document).ready(
                 this.prepend(tr);
             };
 
-        log.addMessage("INFO", "Server", null, "Loaded");
+        log.addMessage("INFO", "Client", null, "Loaded");
 
-        var connection = new WebSocket('ws://mc.tregmine.info:9192/chat/', ['soap', 'xmpp']);
-        //var connection = new WebSocket('ws://localhost:9192/chat/', ['soap', 'xmpp']);
+        //var connection = new WebSocket('ws://mc.tregmine.info:9192/chat/', ['soap', 'xmpp']);
+        var connection = new WebSocket('ws://localhost:9192/chat/');
         connection.onopen =
             function() {
-                log.addMessage("INFO", "Server", null, "Connected");
+                log.addMessage("INFO", "Client", null, "Connected");
+
+                var authToken = $("#token").val();
+
+                var message = {};
+                message.action = "auth";
+                message.authToken = authToken;
+
+                var data = JSON.stringify(message);
+                connection.send(data);
             };
 
         connection.onclose =
             function (error) {
-                log.addMessage("INFO", "Server", null, "Disconnected");
+                log.addMessage("INFO", "Client", null, "Disconnected");
             };
 
         connection.onmessage =
             function (e) {
                 var message = JSON.parse(e.data);
-                var channel = $("#channel").val();
-                if (channel.toLowerCase() != message.channel.toLowerCase()) {
-                    return;
-                }
+                var action = message.action;
+                if (action == "msg") {
+                    var channel = $("#channel").val();
+                    if (channel.toLowerCase() != message.channel.toLowerCase()) {
+                        return;
+                    }
 
-                log.addMessage(
-                    message.channel, message.sender, message.rank, message.text);
+                    log.addMessage(
+                        message.channel, message.sender, message.rank, message.text);
+                }
+                else if (action == "sysmsg") {
+                    log.addMessage("INFO", "Server", null, message.text);
+                }
             };
 
         var sendMessage =
@@ -78,7 +97,7 @@ $(document).ready(
                 var channel = $("#channel").val();
 
                 var message = {};
-                message.authToken = authToken;
+                message.action = "msg";
                 message.channel = channel;
                 message.text = text.replace(/§[0-9a-z]/g,"");
 
