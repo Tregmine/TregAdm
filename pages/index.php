@@ -56,3 +56,5 @@ $context["uniqueTrend"] = $uniqueTrend[count($uniqueTrend)-1];
 $styles = array();
 $scripts = array("/js/start.js");
 render('index.phtml', 'Welcome to Tregmine!', $context, $styles, $scripts);
+
+// JAMES WUZ ERE 2K14 @11:37PM GMT ON LYK FRIDAY 14TH FEBZ
