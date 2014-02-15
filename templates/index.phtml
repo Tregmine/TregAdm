@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <table class="table table-striped table-responsive table-hover">
                         <tr>
-                            <th colspan="2">Player</th>
+                            <th colspan="2">Recent logins</th>
                         </tr>
                         <?php foreach ($logins as $login): ?>
                             <tr>
@@ -28,31 +28,39 @@
 
             <div class="col-xs-6 table-responsive">
                 <div class="panel panel-default">
-                    <table class="table table-striped table-responsive table-hover">
+                    <table class="table table-responsive">
                         <tr>
-                            <th colspan="2">New Member</th>
-                            <th colspan="2">Mentor</th>
+                            <th colspan="2">New Members</th>
+                            <!--<th colspan="2">Mentor</th>-->
                         </tr>
                         <?php foreach ($settlers as $settler): ?>
                             <tr>
                                 <td rowspan="1" style="width: 20px;">
                                     <img src="/index.php/player/head?player=<?php echo $settler["student_name"]; ?>&factor=4" class="img-rounded table-margin-5" />
                                 </td>
-                                <td>
+                                <td style="vertical-align: middle;">
                                     <a <?php echo userCSSColor($settler["student_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["student_name"]; ?>">
                                         <?php echo $settler["student_name"]; ?>
                                     </a>
                                 </td>
-                                <td>
-                                    <a <?php echo userCSSColor($settler["mentor_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["mentor_name"]; ?>">
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td style="vertical-align: middle;">
+                                    mentored by <a <?php echo userCSSColor($settler["mentor_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["mentor_name"]; ?>">
                                         <?php echo $settler["mentor_name"]; ?>
                                     </a>
                                 </td>
-                                <td colspan="2"><?php echo niceTime($settler["mentorlog_completedtime"]); ?></td>
                                 <td rowspan="1" style="width: 20px;">
                                     <img src="/index.php/player/head?player=<?php echo $settler["mentor_name"]; ?>&factor=4" class="img-rounded table-margin-5" />
                                 </td>
                             </tr>
+                            <!--<tr>
+                                <td>&nbsp;</td>
+                                <td><?php echo niceTime($settler["mentorlog_completedtime"]); ?></td>
+                                <td>&nbsp;</td>
+                            </tr>-->
                         <?php endforeach; ?>
                     </table>
                 </div>
@@ -173,7 +181,7 @@
                         }
                 ?>
                 <tr>
-                    <td><img src="/index.php/player/head?player=<?php echo $login["player_name"]; ?>&factor=4" class="img-rounded image-right table-margin-5" /></td>
+                    <td><img src="/index.php/player/head?player=<?php echo $player["name"]; ?>&factor=4" class="img-rounded image-right table-margin-5" /></td>
                     <td>
                         <a <?php echo userCSSColor($player["id"]); ?> href="/index.php/player/search?q=<?php echo $player["name"]; ?>">
                             <?php echo $player["name"]; ?>
