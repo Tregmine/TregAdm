@@ -94,11 +94,11 @@
         foreach ($transactions as $row): ?>
             <tr>
                 <td>
-                    <?php 
+                    <?php
                     if ($row["sender_id"] == $player["player_id"]) {
                         echo $player["player_name"]; 
                     } else {
-                        echo $row["player_name"]; 
+                        echo '<a ' . userCSSColor($row["player_name"]) . ' href="/index.php/player/search?q=' . $row["player_name"] . '">' . $row["player_name"] . '</a>';
                     }
                     ?>
                 </td>
@@ -107,7 +107,7 @@
                     if ($row["recipient_id"] == $player["player_id"]) {
                         echo $player["player_name"]; 
                     } else {
-                        echo $row["player_name"]; 
+                        echo '<a ' . userCSSColor($row["player_name"]) . ' href="/index.php/player/search?q=' . $row["player_name"] . '">' . $row["player_name"] . '</a>';
                     }
                     ?>
                 </td>

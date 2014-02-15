@@ -2,7 +2,7 @@
 
 require_once '../include/functions.php';
 
-$start = strtotime(date("Y-m-d", time() - 30*86400));
+$start = 0; //strtotime(date("Y-m-d", time() - 30*86400));
 $end = strtotime(date("Y-m-d"));
 
 $sql  = "SELECT date(from_unixtime(login_timestamp)) d, count(login_id) c, "

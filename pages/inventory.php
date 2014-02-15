@@ -1,5 +1,7 @@
 <?php
 
+require_once '../include/functions.php';
+
 checkIfOnline();
 
 checkRank("guardian", "coder", "builder", "junior_admin", "senior_admin");
@@ -20,6 +22,7 @@ $stmt->execute(array($x, $y, $z, $world));
 
 $inventory = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$inventory) {
+    echo "no such inventory\n";
     exit;
 }
 

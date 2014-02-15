@@ -1,5 +1,7 @@
 <?php
 
+require_once '../include/functions.php';
+
 checkIfOnline();
 checkRank("guardian", "coder", "builder", "junior_admin", "senior_admin");
 

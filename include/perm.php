@@ -18,7 +18,11 @@ $flags = array(array("name" => "Child", "choice" => false),
                array("name" => "Soft Warned", "choice" => false),
                array("name" => "Hard Warned", "choice" => false),
                array("name" => "Invisible", "choice" => true),
-               array("name" => "Hidden Location", "choice" => true));
+               array("name" => "Hidden Location", "choice" => true),
+               array("name" => "Fly Enabled", "choice" => true),
+               array("name" => "Force shield", "choice" => true),
+               array("name" => "Chest log", "choice" => true),
+               array("name" => "Hidden Announcement", "choice" => true));
 
 // Colorize the username based on rank or the color stored in the db
 // Also, grey background warned players and strikethrough banned players
