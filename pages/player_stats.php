@@ -74,9 +74,9 @@ $stmt->execute(array($_GET["id"], $_GET["id"]));
 $transactions = $stmt->fetchAll();
 $stmt->closeCursor();
 
-$sql  = "SELECT * FROM inventory_item ";
-$sql .= "INNER JOIN inventory USING (inventory_id) ";
-$sql .= "WHERE inventory_type = 'player' AND player_id = ?";
+$sql  = "SELECT * FROM playerinventory_item ";
+$sql .= "INNER JOIN playerinventory USING (playerinventory_id) ";
+$sql .= "WHERE playerinventory_type = 'main' AND playerinventory_name = 'survival' AND player_id = ?";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute(array($player["player_id"]));
