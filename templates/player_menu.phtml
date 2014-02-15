@@ -1,12 +1,18 @@
-    <h3 class="actionsHeader">Actions</h3>
-    <ul class="actions">
-        <li><a href="/index.php/player/report?id=<?php echo $player["player_id"]; ?>">Reports</a></li>
-        <li><a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>">Stats</a></li>
-        <li><a href="/index.php/player/orelog?id=<?php echo $player["player_id"]; ?>">Orelog</a></li>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Actions</h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><a href="/index.php/player/report?id=<?php echo $player["player_id"]; ?>">Reports</a></li>
+        <li class="list-group-item"><a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>">Stats</a></li>
+        <li class="list-group-item"><a href="/index.php/player/orelog?id=<?php echo $player["player_id"]; ?>">Orelog</a></li>
+
         <?php if ($_SESSION["rank"] == "senior_admin"): ?>
-        <li><a href="/index.php/player/perm?id=<?php echo $player["player_id"]; ?>">Permissions</a></li>
+            <li class="list-group-item"><a href="/index.php/player/perm?id=<?php echo $player["player_id"]; ?>">Permissions</a></li>
         <?php endif; ?>
+
         <?php if ($_SESSION["rank"] == "senior_admin" || $_SESSION["rank"] == "junior_admin"): ?>
-        <li><a href="/index.php/player/zones?id=<?php echo $player["player_id"]; ?>">Zones and Lots</a></li>
+            <li class="list-group-item"><a href="/index.php/player/zones?id=<?php echo $player["player_id"]; ?>">Zones and Lots</a></li>
         <?php endif; ?>
     </ul>
+</div>

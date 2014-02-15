@@ -1,105 +1,74 @@
-<div class="col75">
-
-    <form method="post" action="/index.php/zone/edit/save?id=<?php echo $zone["zone_id"]; ?>" class="wide">
-        <h3 class="infoHeader">Info</h3>
-
-        <div class="field">
-            <label for="name">Name</label>
-            <div class="element">
-                <input type="text" id="name" name="name" value="<?php echo $zone["zone_name"]; ?>" />
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Editing the zone: "<?php echo $zone["zone_name"]; ?>"</h3>
             </div>
-            <div class="end">&nbsp;</div>
-        </div>
-        <div class="field">
-            <label for="owner">Main Owner</label>
-            <div class="element">
-                <input type="text" id="owner" name="owner" value="<?php echo $zone["zone_owner"]; ?>" />
+            <div class="panel-body">
+                <form role="form" method="post" action="/index.php/zone/edit/save?id=<?php echo $zone["zone_id"]; ?>">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $zone["zone_name"]; ?>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="owner">Main Owner</label>
+                        <input type="text" class="form-control" id="owner" name="owner" value="<?php echo $zone["zone_owner"]; ?>" />
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="enter" name="enter" value="1" <?php echo $zone["zone_enterdefault"] ? 'checked="checked"' : ''; ?>> Enter Default
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="place" name="place" value="1" <?php echo $zone["zone_placedefault"] ? 'checked="checked"' : ''; ?>> Place Blocks Default
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="destroy" name="destroy" value="1" <?php echo $zone["zone_destroydefault"] ? 'checked="checked"' : ''; ?>> Destroy Blocks Default
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="pvp" name="pvp" value="1" <?php echo $zone["zone_pvp"] ? 'checked="checked"' : ''; ?>> PVP
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="hostiles" name="hostiles" value="1" <?php echo $zone["zone_hostiles"] ? 'checked="checked"' : ''; ?>> Hostiles
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="communist" name="communist" value="1" <?php echo $zone["zone_communist"] ? 'checked="checked"' : ''; ?>> Communist
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="owner">Enter Message</label>
+                        <input type="text" class="form-control" id="entermsg" name="entermsg" value="<?php echo $zone["zone_entermessage"]; ?>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="owner">Exit Message</label>
+                        <input type="text" class="form-control" id="exitmsg" name="exitmsg" value="<?php echo $zone["zone_exitmessage"]; ?>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="owner">Texture</label>
+                        <input type="text" class="form-control" id="texture" name="texture" value="<?php echo $zone["zone_texture"]; ?>" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Save Changes</button>
+                </form>
             </div>
-            <div class="end">&nbsp;</div>
         </div>
-        <div class="field">
-            <label for="enter">Enter Default</label>
-            <div class="element">
-                <input type="checkbox" id="enter" name="enter" value="1" <?php echo $zone["zone_enterdefault"] ? 'checked="checked"' : ''; ?> />
-                <label for="enter">Yes</label>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Actions</h3>
             </div>
-            <div class="end">&nbsp;</div>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="/index.php/zone/info?id=<?php echo $zone["zone_id"]; ?>">Info</a></li>
+            </ul>
         </div>
-        <div class="field">
-            <label for="place">Place Blocks Default</label>
-            <div class="element">
-                <input type="checkbox" id="place" name="place" value="1" <?php echo $zone["zone_placedefault"] ? 'checked="checked"' : ''; ?> />
-                <label for="place">Yes</label>
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-        <div class="field">
-            <label for="destroy">Destroy Blocks Default</label>
-            <div class="element">
-                <input type="checkbox" id="destroy" name="destroy" value="1" <?php echo $zone["zone_destroydefault"] ? 'checked="checked"' : ''; ?> />
-                <label for="destroy">Yes</label>
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-        <div class="field">
-            <label for="pvp">PVP</label>
-            <div class="element">
-                <input type="checkbox" id="pvp" name="pvp" value="1" <?php echo $zone["zone_pvp"] ? 'checked="checked"' : ''; ?> />
-                <label for="pvp">Yes</label>
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-        <div class="field">
-            <label for="hostiles">Hostiles</label>
-            <div class="element">
-                <input type="checkbox" id="hostiles" name="hostiles" value="1" <?php echo $zone["zone_hostiles"] ? 'checked="checked"' : ''; ?> />
-                <label for="hostiles">Yes</label>
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-        <div class="field">
-            <label for="communist">Communist</label>
-            <div class="element">
-                <input type="checkbox" id="communist" name="communist" value="1" <?php echo $zone["zone_communist"] ? 'checked="checked"' : ''; ?> />
-                <label for="communist">Yes</label>
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-        <div class="field">
-            <label for="entermsg">Enter Message</label>
-            <div class="element">
-                <input type="text" id="entermsg" name="entermsg" value="<?php echo $zone["zone_entermessage"]; ?>" />
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-        <div class="field">
-            <label for="exitmsg">Exit Message</label>
-            <div class="element">
-                <input type="text" id="exitmsg" name="exitmsg" value="<?php echo $zone["zone_exitmessage"]; ?>" />
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-        <div class="field">
-            <label for="texture">Texture</label>
-            <div class="element">
-                <input type="text" id="texture" name="texture" value="<?php echo $zone["zone_texture"]; ?>" />
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-
-        <div class="button">
-            <button type="submit">Save changes</button>
-        </div>
-    </form>
-
+    </div>
 </div>
-
-<div class="col25">
-    <h3 class="actionsHeader">Actions</h3>
-
-    <ul class="actions">
-        <li><a href="/index.php/zone/info?id=<?php echo $zone["zone_id"]; ?>">Info</a></li>
-    </ul>
-</div>
-
-<div class="col_clear">&nbsp;</div>

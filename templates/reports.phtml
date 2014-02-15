@@ -1,69 +1,59 @@
-<div class="col75">
-<h3 class="infoHeader">Recent reports</h3>
-<table style="width: 100%; border-spacing: 0;">
-    <?php foreach ($reports as $i => $report): 
-        $color = "#fff";
-        if ($report["report_action"] == "ban") {
-            $color = $i % 2 == 0 ? "#dfbbbb" : "#dfbbbb";
-        }
-        else if ($report["report_action"] == "softwarn" ||
-                 $report["report_action"] == "hardwarn") {
-            $color = $i % 2 == 0 ? "#bbbbd5" : "#bbbbdf";
-        }
-        else if ($report["report_action"] == "kick") {
-            $color = $i % 2 == 0 ? "#bbd5d5" : "#bbdfdf";
-        }
-        else if ($report["report_action"] == "comment") {
-            $color = $i % 2 == 0 ? "#d5d5d5" : "#dfdfdf";
-        }
-        ?>
-        <tr style="background-color: <?php echo $color; ?>;">
-            <td>
-                <div style="margin: 5px; padding: 10px;">
-                    <div style="text-align: center;">
-                        <a href="/index.php/player/search?q=<?php echo $report["subject"]; ?>" <?php echo userCSSColor($report["subject_id"]); ?>><?php echo $report["subject"]; ?></a>
-                    </div>
-                    <div style="text-align: center; text-transform: uppercase; font-weight: bold; font-size: 15px; padding: 20px; color: #777;">
-                        <?php echo ucfirst($report["report_action"]); ?>
-                    </div>
-                    <?php if ($report["report_validuntil"]): ?>
-                        <div style="text-align: center;">
-                            <?php echo "Until " . date("Y-m-d", $report["report_validuntil"]); ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </td>
-            <td>
-                <div style="font-size: 1.2em; padding-top: 10px;">
-                    <a href="/index.php/player/search?q=<?php echo $report["issuer"]; ?>" <?php echo userCSSColor($report["issuer_id"]); ?>><?php echo $report["issuer"]; ?>:</a>
-                </div>
-                <div style="font-size: 1.2em; padding: 20px;">
-                    <p>
-                    <?php
-                    $msg = $report["report_message"];
-                    $len = 500;
-                    if (strlen($msg) > $len) {
-                        $msg = substr($msg, 0, $len) . "...";
-                    }
-                    echo nl2br($msg);
-                    ?>
-                    </p>
-
-                    <p>
-                        <a href="/index.php/player/report?id=<?php echo $report["subject_id"]; ?>">View full report</a>
-                    </p>
-                </div>
-                <div style="text-align: right;">
-                    <?php echo niceTime($report["report_timestamp"]); ?>
-                </div>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <cols>
+                    <col style="width: 150px;" />
+                    <col style="width: 150px;" />
+                    <col style="width: 75px;" />
+                    <col style="width: 125px;" />
+                    <col style="width: 125px;" />
+                </cols>
+                <tr>
+                    <th>Issuer</th>
+                    <th>Subject</th>
+                    <th>Action</th>
+                    <th>Timestamp</th>
+                    <th>Valid Until</th>
+                </tr>
+                <?php foreach ($reports as $report): ?>
+                    <tr>
+                        <td style="font-style: italic;"><?php echo $report["issuer"]; ?></td>
+                        <td style="font-style: italic;">
+                            <a href="/index.php/player/report?id=<?php echo $report["subject_id"]; ?>"><?php echo $report["subject"]; ?></a>
+                        </td>
+                        <td style="font-style: italic;"><?php echo ucfirst($report["report_action"]); ?></td>
+                        <td style="font-style: italic;"><?php echo date("Y-m-d H:i:s", $report["report_timestamp"]); ?></td>
+                        <td style="font-style: italic;">
+                            <?php
+                            if ($report["report_validuntil"]) {
+                                echo date("Y-m-d H:i:s", $report["report_validuntil"]);
+                            } else {
+                                echo "N/A";
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px dotted #fff;" colspan="5">
+                            <?php
+                            $msg = $report["report_message"];
+                            $len = 500;
+                            if (strlen($msg) > $len) {
+                                $msg = substr($msg, 0, $len) . "...";
+                            }
+                            echo nl2br($msg);
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <?php require_once 'logs_menu.phtml'; ?>
+    </div>
 </div>
-
-<div class="col25">
-    <?php require_once 'logs_menu.phtml'; ?>
-</div>
-
-<div class="col_clear">&nbsp;</div>

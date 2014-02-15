@@ -1,25 +1,28 @@
-<div class="col col75">
-    <h2>Do you want to finish your donation?</h2>
-
-    <p>
-        As of yet, no money has been charged to your card or paypal account. If you are sure
-        you want to proceed, click on the link below. Otherwise, just close this page.
-    </p>
-
-    <p style="text-align: center;">
-        <a href="/index.php/donate/confirm/do?payerId=<?php echo $payerId; ?>" style="font-size: 16px; font-weight: bold;">Finish donation!</a>
-    </p>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Do you want to finsih your donation?</h3>
+            </div>
+            <div class="panel-body">
+                As of yet, no money has been charged to your card or paypal account. If you are sure
+                you want to proceed, click on the link below. Otherwise, just close this page.
+            </div>
+            <div class="alert alert-success">
+                <a href="/index.php/donate/confirm/do?payerId=<?php echo $payerId; ?>" style="font-size: 16px; font-weight: bold;">Finish donation!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Donation Steps</div>
+            <ul class="list-group">
+                <li class="list-group-item dark_blue">Select donation amount</li>
+                <li class="list-group-item dark_blue">Login at paypal</li>
+                <li class="list-group-item dark_blue">Enter payment information</li>
+                <li class="list-group-item blue">Confirm donation</li>
+                <li class="list-group-item">Finished!</li>
+            </ul>
+        </div>
+    </div>
 </div>
-
-<div class="col25">
-    <h3 class="actionsHeader">Donation Step</h3>
-    <ol class="actions">
-        <li class="done">Select donation amount</li>
-        <li class="done">Login at paypal</li>
-        <li class="done">Enter payment information</li>
-        <li class="active">Confirm donation</li>
-        <li>Finished!</li>
-    </ol>
-</div>
-
-<div class="col_clear">&nbsp;</div>

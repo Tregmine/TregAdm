@@ -1,14 +1,19 @@
-    <h3 class="actionsHeader">Logs</h3>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Logs</h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><a href="/index.php/logs">Logs Overview</a></li>
 
-    <ul class="actions">
-        <li><a href="/index.php/logs">Logs Overview</a></li>
         <?php if (hasRank("senior_admin", "junior_admin")): ?>
-            <li><a href="/index.php/chatlog">Chat Logs</a></li>
-            <li><a href="/index.php/donations">Donations</a></li>
+            <li class="list-group-item"><a href="/index.php/chatlog">Chat Logs</a></li>
+            <li class="list-group-item"><a href="/index.php/donations">Donations</a></li>
         <?php endif; ?>
+
         <?php if (hasRank("guardian", "coder", "builder", "junior_admin", "senior_admin")): ?>
-            <li><a href="/index.php/orelog">Ore Logs</a></li>
-            <li><a href="/index.php/reports">Reports</a></li>
-            <li><a href="/index.php/mentorlog">Mentor Log</a></li>
+            <li class="list-group-item"><a href="/index.php/orelog">Ore Logs</a></li>
+            <li class="list-group-item"><a href="/index.php/reports">Reports</a></li>
+            <li class="list-group-item"><a href="/index.php/mentorlog">Mentor Log</a></li>
         <?php endif; ?>
     </ul>
+</div>

@@ -1,27 +1,22 @@
-<div>
-
-    <form method="post" action="/index.php/zone/editprofile/save?id=<?php echo $zone["zone_id"]; ?>" class="wide">
-        <h3 class="infoHeader">Info</h3>
-
-        <div class="field">
-            <label for="text">Text</label>
-            <div class="element">
-                <textarea id="text" name="text" style="height: 300px; width: 700px;"><?php if ($profile) echo $profile["profile_text"]; ?></textarea>
-                <p>
-                    Zone profiles use Markdown for formatting. Full <a href="http://daringfireball.net/projects/markdown/basics">documentation</a> is available.
-                </p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Zone Profile Information - Editing zone "<?php echo $zone["zone_name"]; ?>"</h3>
             </div>
-            <div class="end">&nbsp;</div>
+            <div class="panel-body">
+                <form method="post" action="/index.php/zone/editprofile/save?id=<?php echo $zone["zone_id"]; ?>" role="form">
+                    <div class="form-group">
+                        <label for="text">Text</label>
+                        <textarea class="form-control" rows="3" id="text" name="text"></textarea>
+                    </div>
+                    <div class="alert alert-info">
+                        Zone profiles use Markdown for formatting. Full <a href="http://daringfireball.net/projects/markdown/basics">documentation</a> is available.
+                    </div>
+                    <button type="submit" class="btn btn-default">Save Changes</button>
+                </form>
+            </div>
         </div>
 
-        <div class="button">
-            <button type="submit">Save changes</button>
-        </div>
-    </form>
-
+    </div>
 </div>
-
-<div class="col25">
-</div>
-
-<div class="col_clear">&nbsp;</div>

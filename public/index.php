@@ -6,7 +6,6 @@ require_once '../include/check.php';
 
 if ($_SERVER["SERVER_NAME"] != "tregmine.info") {
     header('Location: http://tregmine.info' . $_SERVER["REQUEST_URI"]);
-    exit;
 }
 
 function render($page, $title, $context = array(), $styles = array(), $scripts = array())

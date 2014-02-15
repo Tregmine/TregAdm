@@ -1,25 +1,27 @@
-<?php foreach(array("Guardian","Admin","Builder","Senior") as $rank): ?>
-<div class="col25">
-    <table class="info">
-        <tr>
-            <th colspan="9" class="infoHeader"><?php echo $rank; ?></th>
-        </tr>
-        <?php foreach ($staff[$rank] as $key): ?>
-        <tr>
-            <td>
-                <a <?php echo userCSSColor($key); ?>" href="/index.php/player/search?q=<?php echo $key; ?>"> <?php echo $key; ?></a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-        <?php if (hasRank("senior_admin") && $rank == "Guardian"): ?>
-        <tr>
-            <td>
-                &raquo; <a href="/index.php/guardians">Manage Guardians</a>
-            </td>
-        </tr>
-        <?php endif; ?>
-    </table>
+<div class="row">
+    <?php foreach(array("Senior","Admin","Builder","Guardian") as $rank): ?>
+        <div class="col-md-3 table-responsive">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $rank; ?></h3>
+                </div>
+                <table class="table table-hover table-striped">
+                    <?php foreach ($staff[$rank] as $key): ?>
+                        <tr>
+                            <td>
+                                <a <?php echo userCSSColor($key); ?>" href="/index.php/player/search?q=<?php echo $key; ?>"> <?php echo $key; ?></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    <?php if (hasRank("senior_admin") && $rank == "Guardian"): ?>
+                        <tr>
+                            <td>
+                                &raquo; <a href="/index.php/guardians">Manage Guardians</a>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
-<?php endforeach; ?>
-
-<div class="col_clear">&nbsp;</div>

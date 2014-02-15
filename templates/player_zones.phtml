@@ -1,43 +1,42 @@
-<div class="col75">
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Zones</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th width=100%>Zone</th>
+                    <th>Rank</th>
+                    <th>World</th>
+                </tr>
+                <?php
+                foreach($zones as $zone) {
+                    echo "<tr><td><a href=\"/index.php/zone/info?id=" . $zone['zone_id'] . "\">" . $zone['zone_name'] . "</a></td><td>" . $zone['user_perm'] . "</td><td>" . $zone['zone_world'] . "</td></tr>\n";
+                }
+                ?>
+            </table>
+        </div>
 
-    <table class="info">
-        <tr>
-            <th colspan=3 class="infoHeader">Zones</th>
-        </tr>
-        <tr>
-            <th width=100%>Zone</th>
-            <th>Rank</th>
-            <th>World</th>
-        </tr>
-        <?php
-        foreach($zones as $zone) {
-            echo "<tr><td><a href=\"/index.php/zone/info?id=" . $zone['zone_id'] . "\">" . $zone['zone_name'] . "</a></td><td>" . $zone['user_perm'] . "</td><td>" . $zone['zone_world'] . "</td></tr>\n";
-        }
-        ?>
-    </table>
-
-    <table class="info">
-        <tr>
-            <th colspan=3 class="infoHeader">Lots</th>
-        </tr>
-        <tr>
-            <th width=100%>Lot Name</th>
-            <th>Zone</th>
-            <th>World</th>
-        </tr>
-        <?php
-        foreach($lots as $lot) {
-            echo "<tr><td>" . $lot['lot_name'] . "</td><td><a href=\"/index.php/zone/info?id=" . $lot['zone_id'] . "\">" . $lot['zone_name'] . "</a></td><td>" . $lot['zone_world'] . "</td></tr>\n";
-        }
-        ?>
-    </table>
-
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lots</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th width=100%>Lot Name</th>
+                    <th>Zone</th>
+                    <th>World</th>
+                </tr>
+                <?php
+                foreach($lots as $lot) {
+                    echo "<tr><td>" . $lot['lot_name'] . "</td><td><a href=\"/index.php/zone/info?id=" . $lot['zone_id'] . "\">" . $lot['zone_name'] . "</a></td><td>" . $lot['zone_world'] . "</td></tr>\n";
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <?php require_once 'player_menu.phtml'; ?>
+    </div>
 </div>
-
-<div class="col25">
-
-    <?php require_once 'player_menu.phtml'; ?>
-
-</div>
-
-<div class="col_clear">&nbsp;</div>

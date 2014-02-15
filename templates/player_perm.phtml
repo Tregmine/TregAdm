@@ -1,118 +1,104 @@
-<div class="col75">
-
-    <table class="info">
-        <tr>
-            <th colspan="9" class="infoHeader">Properties</th>
-        </tr>
-
-        <?php foreach ($settings as $key => $value): ?>
-            <tr>
-                <td><?php echo $key; ?></td>
-                <td><?php echo $value; ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <form method="post" action="/index.php/player/perm/save?id=<?php echo $player["player_id"]; ?>" class="wide">
-
-    <table class="info">
-        <tr>
-            <th colspan="9" class="infoHeader">Flags</th>
-        </tr>
-
-        <?php foreach ($flags as $key => $flag): 
-            if (!$flag["choice"]) continue; 
-            $selected = ($player["player_flags"] & (1 << $key)) != 0; ?>
-            <tr>
-                <td><input type="checkbox" name="flags[<?php echo $key; ?>]" id="flags_<?php echo $key; ?>" value="1" <?php if ($selected) echo 'checked="checked"'; ?> /></td>
-                <td><label for="flags_<?php echo $key; ?>"><?php echo $flag["name"]; ?></label></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <h3 class="infoHeader">Info</h3>
-
-    <div class="field">
-        <label for="rank">Rank</label>
-        <div class="element">
-            <select name="rank" id="rank">
-                <?php foreach ($permissionList as $key => $rank): ?>
-                    <?php if ($player["player_rank"] == $key): ?>
-                        <option class="<?php echo $rank["color"]; ?>" selected="selected" value="<?php echo $key; ?>"><?php echo $rank["name"]; ?></option>
-                    <?php else: ?>
-                        <option class="<?php echo $rank["color"]; ?>" value="<?php echo $key; ?>"><?php echo $rank["name"]; ?></option>
-                    <?php endif; ?>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Properties</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <?php foreach ($settings as $key => $value): ?>
+                    <tr>
+                        <td class="text-right"><?php echo $key; ?></td>
+                        <td><?php echo $value; ?></td>
+                    </tr>
                 <?php endforeach; ?>
-            </select>
+            </table>
         </div>
-        <div class="end">&nbsp;</div>
-    </div>
 
-    <?php if ($player["player_rank"] == "guardian"): ?>
-    <div class="field" id="guardian_field">
-    <?php else: ?>
-    <div class="field" id="guardian_field" style="display: none;">
-    <?php endif; ?>
-        <label for="guardian">Guardian Rank</label>
-        <div class="element">
-            <select name="guardian" id="guardian">
-                <option value="">Auto Assign</option>
-                <?php for ($i = 1; $i <= $maxRank+1; $i++): ?>
-                    <?php if (array_key_exists($i, $guardians)):
-                        $guardian = $guardians[$i]; ?>
-                        <?php if ($guardian["player_id"] == $player["player_id"]): ?>
-                            <option selected="selected" value="<?php echo $i; ?>"><?php echo $i; ?> - <?php echo $guardian["player_name"]; ?></option>
-                        <?php else: ?>
-                            <option disabled="disabled" value="<?php echo $i; ?>"><?php echo $i; ?> - <?php echo $guardian["player_name"]; ?></option>
-                        <?php endif; ?>
+        <form method="post" action="/index.php/player/perm/save?id=<?php echo $player["player_id"]; ?>" role="form">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Flags</h3>
+                </div>
+                <div class="panel-body">
+                    <?php foreach ($flags as $key => $flag):
+                        if (!$flag["choice"]) continue;
+                        $selected = ($player["player_flags"] & (1 << $key)) != 0; ?>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="flags_<?php echo $key; ?>" name="flags[<?php echo $key; ?>]" value="1" <?php if ($selected) echo 'checked="checked"'; ?>> <?php echo $flag["name"]; ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Player Information: "<?php echo $player["player_name"]; ?>"</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="action">Rank</label>
+                        <select name="rank" id="rank" class="form-control">
+                            <?php foreach ($permissionList as $key => $rank): ?>
+                                <?php if ($player["player_rank"] == $key): ?>
+                                    <option class="<?php echo $rank["color"]; ?>" selected="selected" value="<?php echo $key; ?>"><?php echo $rank["name"]; ?></option>
+                                <?php else: ?>
+                                    <option class="<?php echo $rank["color"]; ?>" value="<?php echo $key; ?>"><?php echo $rank["name"]; ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <?php if ($player["player_rank"] == "guardian"): ?>
+                    <div class="form-group">
                     <?php else: ?>
-                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                    <div class="form-group hidden">
                     <?php endif; ?>
-                <?php endfor; ?>
-            </select>
-        </div>
-        <div class="end">&nbsp;</div>
+                        <label for="guardian">Guardian Rank</label>
+                        <select name="guardian" id="guardian" class="form-control">
+                            <option value="">Auto Assign</option>
+                            <?php for ($i = 1; $i <= $maxRank+1; $i++): ?>
+                                <?php if (array_key_exists($i, $guardians)):
+                                    $guardian = $guardians[$i]; ?>
+                                    <?php if ($guardian["player_id"] == $player["player_id"]): ?>
+                                    <option selected="selected" value="<?php echo $i; ?>"><?php echo $i; ?> - <?php echo $guardian["player_name"]; ?></option>
+                                <?php else: ?>
+                                    <option disabled="disabled" value="<?php echo $i; ?>"><?php echo $i; ?> - <?php echo $guardian["player_name"]; ?></option>
+                                <?php endif; ?>
+                                <?php else: ?>
+                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quitmsg">Quit Message</label>
+                        <input type="text" class="form-control" id="quitmsg" name="quitmsg" value="<?php echo array_key_exists("quitmessage", $settings) ? $settings["quitmessage"] : ""; ?>" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="text" class="form-control" id="email" name="email" value="<?php echo $player["player_email"] ? $player["player_email"] : ""; ?>" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" class="form-control" id="password" name="password" />
+                    </div>
+                    <div class="alert alert-info">
+                        The password will only be changed if you enter something in this box.
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Save Changes</button>
+                </div>
+            </div>
+        </form>
+
     </div>
-
-    <div class="field">
-        <label for="quitmsg">Quit Message</label>
-        <div class="element">
-        <input type="text" name="quitmsg" id="quitmsg" value="<?php echo array_key_exists("quitmessage", $settings) ? $settings["quitmessage"] : ""; ?>" />
-        </div>
-        <div class="end">&nbsp;</div>
+    <div class="col-md-4">
+        <?php require_once 'player_menu.phtml'; ?>
     </div>
-
-    <div class="field">
-        <label for="email">E-mail</label>
-        <div class="element">
-        <input type="text" name="email" id="email" value="<?php echo $player["player_email"] ? $player["player_email"] : ""; ?>" />
-        </div>
-        <div class="end">&nbsp;</div>
-    </div>
-
-    <div class="field">
-        <label for="password">Password</label>
-        <div class="element">
-            <input type="text" name="password" id="password" />
-            <p>
-                The password will only be changed if you enter something in this box.
-            </p>
-        </div>
-        <div class="end">&nbsp;</div>
-    </div>
-
-    <div class="button">
-        <button type="submit">Save changes</button>
-    </div>
-
-    </form>
-
 </div>
-
-<div class="col25">
-
-    <?php require_once 'player_menu.phtml'; ?>
-
-</div>
-
-<div class="col_clear">&nbsp;</div>

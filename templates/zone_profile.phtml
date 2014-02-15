@@ -1,88 +1,101 @@
-<div class="col75">
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Map</h3>
+            </div>
+            <div class="panel-body">
+                <img src="/maps/<?php echo $map; ?>" />
+            </div>
+        </div>
 
-    <h3 class="infoHeader">Map</h3>
-    <div style="text-align: center; margin-bottom: 10px; background-color: #fff; padding: 10px;">
-        <img src="/maps/<?php echo $map; ?>" style="max-width: 100%;" />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Information</h3>
+            </div>
+            <div class="panel-body">
+                <?php if (!$profile): ?>
+                    <p>This zone doesn't have any info yet.</p>
+                <?php else:
+                    echo \Michelf\Markdown::defaultTransform($profile["profile_text"]);
+                endif; ?>
+
+                <?php if ($isOwner || hasRank("junior_admin", "senior_admin")): ?>
+                    <p style="text-align: right;"><a href="/index.php/zone/editprofile?id=<?php echo $zone["zone_id"]; ?>">Edit this text</a></p>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
+    <div class="col-md-4">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Rules</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <td>Who can enter?</td>
+                    <td><?php echo $zone["zone_enterdefault"] ? "Everyone" : "Whitelist"; ?></td>
+                </tr>
+                <tr>
+                    <td>Who can place blocks?</td>
+                    <td><?php echo $zone["zone_placedefault"] ? "Everyone" : "Whitelist"; ?></td>
+                </tr>
+                <tr>
+                    <td>Who can destroy blocks?</td>
+                    <td><?php echo $zone["zone_destroydefault"] ? "Everyone" : "Whitelist"; ?></td>
+                </tr>
+                <tr>
+                    <td>PVP</td>
+                    <td><?php echo $zone["zone_pvp"] ? "Yes" : "No"; ?></td>
+                </tr>
+                <tr>
+                    <td>Hostile mobs?</td>
+                    <td><?php echo $zone["zone_hostiles"] ? "Yes" : "No"; ?></td>
+                </tr>
+            </table>
+        </div>
 
-    <h3 class="infoHeader">Info</h3>
-    <div style="background-color: #fff; padding: 10px;">
-        <?php if (!$profile): ?>
-        <p>This zone doesn't have any info yet.</p>
-        <?php else: 
-        echo \Michelf\Markdown::defaultTransform($profile["profile_text"]);
-        endif; ?>
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Warps</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <?php foreach($warps as $warp):
+                    if (substr($warp["warp_name"], 0, 1) == "!") continue;
+                    ?>
+                    <tr>
+                        <td><?php echo $warp['warp_name']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
 
-        <?php if ($isOwner || hasRank("junior_admin", "senior_admin")): ?>
-        <p style="text-align: right;"><a href="/index.php/zone/editprofile?id=<?php echo $zone["zone_id"]; ?>">Edit this text</a></p>
-        <?php endif; ?>
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Staff</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <?php if ($zone["zone_owner"]): ?>
+                    <tr>
+                        <td>Main Owner</td>
+                        <td style="text-align: center;"><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/index.php/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                    <th>Name</th>
+                    <th>Rank</th>
+                </tr>
+                <?php
+                foreach ($users as $user): ?>
+                    <tr>
+                        <td>
+                            <?php
+                            echo "<a " . userCSSColor($user["player_id"]) . " href=\"/index.php/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
+                            ?>
+                        <td style="text-align: center;"><?php echo ucfirst($user["user_perm"]); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
     </div>
-
 </div>
-
-<div class="col25">
-    <h3 class="infoHeader">Rules</h3>
-
-    <table class="info">
-        <tr>
-            <td>Who can enter?</td>
-            <td><?php echo $zone["zone_enterdefault"] ? "Everyone" : "Whitelist"; ?></td>
-        </tr>
-        <tr>
-            <td>Who can place blocks?</td>
-            <td><?php echo $zone["zone_placedefault"] ? "Everyone" : "Whitelist"; ?></td>
-        </tr>
-        <tr>
-            <td>Who can destroy blocks?</td>
-            <td><?php echo $zone["zone_destroydefault"] ? "Everyone" : "Whitelist"; ?></td>
-        </tr>
-        <tr>
-            <td>PVP</td>
-            <td><?php echo $zone["zone_pvp"] ? "Yes" : "No"; ?></td>
-        </tr>
-        <tr>
-            <td>Hostile mobs?</td>
-            <td><?php echo $zone["zone_hostiles"] ? "Yes" : "No"; ?></td>
-        </tr>
-    </table>
-
-    <h3 class="infoHeader">Warps</h3>
-
-    <table class="info">
-        <?php foreach($warps as $warp): 
-            if (substr($warp["warp_name"], 0, 1) == "!") continue;
-            ?>
-            <tr>
-                <td><?php echo $warp['warp_name']; ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <h3 class="infoHeader">Staff</h3>
-
-    <table class="info">
-        <?php if ($zone["zone_owner"]): ?>
-        <tr>
-            <td>Main Owner</td>
-            <td style="text-align: center;"><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/index.php/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
-        </tr>
-        <?php endif; ?>
-        <tr>
-            <th>Name</th>
-            <th>Rank</th>
-        </tr>
-        <?php 
-        foreach ($users as $user): ?>
-            <tr>
-                <td>
-                <?php 
-                echo "<a " . userCSSColor($user["player_id"]) . " href=\"/index.php/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
-                ?>
-                <td style="text-align: center;"><?php echo ucfirst($user["user_perm"]); ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-</div>
-
-<div class="col_clear">&nbsp;</div>
