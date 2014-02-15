@@ -1,5 +1,7 @@
 <?php
 
+require_once '../include/functions.php';
+
 checkIfOnline();
 
 checkRank("senior_admin", "junior_admin");

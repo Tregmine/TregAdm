@@ -4,10 +4,10 @@ require_once '../include/init.php';
 require_once '../include/perm.php';
 require_once '../include/check.php';
 
-if ($_SERVER["SERVER_NAME"] != "tregmine.info") {
+/*if ($_SERVER["SERVER_NAME"] != "tregmine.info") {
     header('Location: http://tregmine.info');
     exit;
-}
+}*/
 
 function render($page, $title, $context = array(), $styles = array(), $scripts = array())
 {

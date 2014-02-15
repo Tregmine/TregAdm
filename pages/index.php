@@ -37,11 +37,19 @@ $stmt->execute(array());
 $stats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $resultCount = count($stats);
-$loginsCount = $stats[$resultCount-1]["c"];
-$uniqueCount = $stats[$resultCount-1]["uc"];
-$maxPlayers = $stats[$resultCount-1]["op"]+1;
-$loginsTrend = trend($stats, "c");
-$uniqueTrend = trend($stats, "uc");
+if (count($stats) > 0) {
+    $loginsCount = $stats[$resultCount-1]["c"];
+    $uniqueCount = $stats[$resultCount-1]["uc"];
+    $maxPlayers = $stats[$resultCount-1]["op"]+1;
+    $loginsTrend = trend($stats, "c");
+    $uniqueTrend = trend($stats, "uc");
+} else {
+    $loginsCount = 0;
+    $uniqueCount = 0;
+    $maxPlayers = 0;
+    $loginsTrend = array(0);
+    $uniqueTrend = array(0);
+}
 
 $context = array();
 $context["players"] = tregmine_online_players($tregmineApiKey);
