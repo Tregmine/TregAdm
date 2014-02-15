@@ -76,7 +76,7 @@ $stmt->closeCursor();
 
 $sql  = "SELECT * FROM playerinventory_item ";
 $sql .= "INNER JOIN playerinventory USING (playerinventory_id) ";
-$sql .= "WHERE playerinventory_type = 'player' AND playerinventory_name = 'survival' AND player_id = ?";
+$sql .= "WHERE playerinventory_type = 'main' AND playerinventory_name = 'survival' AND player_id = ?";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute(array($player["player_id"]));
