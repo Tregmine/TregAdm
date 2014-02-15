@@ -32,7 +32,7 @@ if (array_key_exists("factor", $_GET)) {
 }
 
 $filename = sprintf("%s.%d.png", $player, $factor);
-$cachePath = "../public/img/players/";
+$cachePath = "../public/img/playerheads/";
 if (file_exists($cachePath . $filename)) {
     //header('Location: /img/players/' . $filename);
     header('Content-type: image/png');
