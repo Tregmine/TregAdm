@@ -1,40 +1,29 @@
-<div class="col75">
-    <form method="get" action="/index.php/inventory" class="wide">
-        <h3 class="formHeader">Chest Log</h3>
-
-        <div class="field">
-            <label for="x">X</label>
-            <div class="element">
-                <input type="text" name="x" id="x" value="" />
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Chest Lookup</h3>
             </div>
-            <div class="end">&nbsp;</div>
-        </div>
-
-        <div class="field">
-            <label for="y">Y</label>
-            <div class="element">
-                <input type="text" name="y" id="y" value="" />
+            <div class="panel-body">
+                <form method="get" action="/index.php/inventory" role="form" class="form-inline">
+                    <div class="form-group">
+                        <label for="x" class="sr-only">X</label>
+                        <input type="text" class="form-control" id="x" name="x" placeholder="X" />
+                    </div>
+                    <div class="form-group">
+                        <label for="y" class="sr-only">Y</label>
+                        <input type="text" class="form-control" id="y" name="y" placeholder="Y" />
+                    </div>
+                    <div class="form-group">
+                        <label for="z" class="sr-only">Z</label>
+                        <input type="text" class="form-control" id="z" name="z" placeholder="Z" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Filter</button>
+                </form>
             </div>
-            <div class="end">&nbsp;</div>
         </div>
-
-        <div class="field">
-            <label for="z">Z</label>
-            <div class="element">
-                <input type="text" name="z" id="z" value="" />
-            </div>
-            <div class="end">&nbsp;</div>
-        </div>
-
-        <div class="button">
-            <button type="submit">Filter</button>
-        </div>
-    </form>
+    </div>
+    <div class="col-md-4">
+        <?php require_once 'logs_menu.phtml'; ?>
+    </div>
 </div>
-
-<div class="col25">
-    <?php require_once 'logs_menu.phtml'; ?>
-</div>
-
-<div class="col_clear">&nbsp;</div>
-

@@ -1,178 +1,183 @@
-<div class="col75">
-
-    <h3 class="infoHeader">Logins</h3>
-    <table class="info">
-        <tr>
-            <th>Timestamp</th>
-            <th>Action</th>
-            <?php if (hasRank("senior_admin")): ?>
-            <th>IP</th>
-            <th>Country</th>
-            <th>City</th>
-            <?php endif; ?>
-            <th>Duration</th>
-        </tr>
-        <?php 
-        foreach ($logins as $i => $row):
-            $duration = "";
-            if ($row["login_action"] == "logout") {
-                $last = array_key_exists($i+1, $logins) ? $logins[$i+1] : null;
-                if ($last != null && $last["login_action"] == "login") {
-                    $dur = $row["login_timestamp"] - $last["login_timestamp"];
-                    $min = $dur / 60;
-                    $sec = $dur % 60;
-                    $duration = sprintf("%02d:%02d", $min, $sec);
-                } else {
-                    $duration = "N/A";
-                }
-            }
-            ?>
-            <tr>
-                <td><?php echo date("Y-m-d H:i:s", $row["login_timestamp"]); ?></td>
-                <td><?php echo ucfirst($row["login_action"]); ?></td>
-                <?php if (hasRank("senior_admin")): ?>
-                <td><?php echo $row["login_ip"]; ?></td>
-                <td><?php echo $row["login_country"]; ?></td>
-                <td><?php echo $row["login_city"]; ?></td>
-                <?php endif; ?>
-                <td><?php echo $duration; ?></td>
-            </tr>
-        <?php endforeach; ?>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <?php if (hasRank("senior_admin")): ?>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <?php endif; ?>
-            <td>
-                <div>
-                    <span style="font-weight: bold;">Total time:</span>
-                    <?php
-                    $total = $properties["playtime"];
-                    $hours = $total / 3600;
-                    $min = ($total % 3600) / 60;
-                    $sec = $total % 60;
-                    printf("%02d:%02d:%02d", $hours, $min, $sec);
-                    ?>
-                </div>
-                <div>
-                    <span style="font-weight: bold;">Total logins:</span>
-                    <?php printf("%d", $loginCount); ?>
-                </div>
-            </td>
-            <?php if (!array_key_exists("all_logins", $_GET)): ?>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <?php if (hasRank("senior_admin")): ?>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <?php endif; ?>
-                <td>
-                    <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_logins=1">Show all logins</a>
-                </td>
-            </tr>
-            <?php endif; ?>
-            </tr>
-    </table>
-
-
-    <table class="info">
-        <tr>
-            <th colspan="4" class="infoHeader">Transactions</th>
-        </tr>
-        <tr>
-            <th>Sender</th>
-            <th>Receiver</th>
-            <th>Timestamp</th>
-            <th>Amount</th>
-        </tr>
-        <?php 
-        foreach ($transactions as $row): ?>
-            <tr>
-                <td>
-                    <?php 
-                    if ($row["sender_id"] == $player["player_id"]) {
-                        echo $player["player_name"]; 
-                    } else {
-                        echo $row["player_name"]; 
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php 
-                    if ($row["recipient_id"] == $player["player_id"]) {
-                        echo $player["player_name"]; 
-                    } else {
-                        echo $row["player_name"]; 
-                    }
-                    ?>
-                </td>
-                <td><?php echo date("Y-m-d H:i:s", $row["transaction_timestamp"]); ?></td>
-                <td><?php echo $row["transaction_amount"]; ?></td>
-            </tr>
-        <?php endforeach; ?>
-        <?php if (!array_key_exists("all_transactions", $_GET)): ?>
-        <tr>
-            <td colspan="4" style="text-align: right;">
-                <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_transactions=1">Show all transactions</a>
-            </td>
-        </tr>
-        <?php endif; ?>
-    </table>
-
-</div>
-<div class="col25">
-    <?php require_once 'player_menu.phtml'; ?>
-
-    <br />
-
-    <?php if (hasRank("junior_admin", "senior_admin")): ?>
-    <h3 class="infoHeader">Aliases</h3>
-    <table class="info">
-        <tr>
-            <td>
-                <?php foreach($aliases as $alias): ?>
-                <a <?php echo userCSSColor($alias['player_name']); ?> href="/index.php/player/search?q=<?php echo $alias['player_name']; ?>"><?php echo $alias['player_name']; ?></a><br>
-                <?php endforeach; ?>
-            </td>
-        </tr>
-    </table>
-    <?php endif; ?>
-
-</div>
-
-<div class="col_clear">&nbsp;</div>
-
-<table class="info">
-    <tr>
-        <th colspan="9" class="infoHeader">Inventory</th>
-    </tr>
-
-    <?php for ($x = 0; $x < 4; $x++): ?>
-    <tr>
-        <?php for ($y = 0; $y < 9; $y++): ?>
-            <td style="width: 11%; height: 75px; border: 1px solid #000; text-align: center; font-size: 10px;">
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Logins</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Action</th>
+                    <?php if (hasRank("senior_admin")): ?>
+                        <th>IP</th>
+                        <th>Country</th>
+                        <th>City</th>
+                    <?php endif; ?>
+                    <th>Duration</th>
+                </tr>
                 <?php
-                if (array_key_exists($x*9+$y, $slots)) {
-                    $slot = $slots[$x*9+$y];
-                    $item = $slot["item_material"];
-                    if (file_exists("../public/img/blocks_large/" . $item . ".png")) {
-                        echo '<div><img src="/img/blocks_large/' . $item . '.png" width="50" height="50" /></div>';
-                    } else {
-                        echo '<div style="height: 50px;">' . 
-                            implode(" ", array_map("ucfirst", array_map("strtolower", explode("_", $items[$item])))) . '</div>';
+                foreach ($logins as $i => $row):
+                    $duration = "";
+                    if ($row["login_action"] == "logout") {
+                        $last = array_key_exists($i+1, $logins) ? $logins[$i+1] : null;
+                        if ($last != null && $last["login_action"] == "login") {
+                            $dur = $row["login_timestamp"] - $last["login_timestamp"];
+                            $min = $dur / 60;
+                            $sec = $dur % 60;
+                            $duration = sprintf("%02d:%02d", $min, $sec);
+                        } else {
+                            $duration = "N/A";
+                        }
                     }
-                    echo '<div>' . $slot["item_count"] . '</div>';
-                } else {
-                    echo "&nbsp;";
-                }
-                ?>
-            </td>
-        <?php endfor; ?>
-    </tr>
-    <?php endfor; ?>
-</table>
+                    ?>
+                    <tr>
+                        <td><?php echo date("Y-m-d H:i:s", $row["login_timestamp"]); ?></td>
+                        <td><?php echo ucfirst($row["login_action"]); ?></td>
+                        <?php if (hasRank("senior_admin")): ?>
+                            <td><?php echo $row["login_ip"]; ?></td>
+                            <td><?php echo $row["login_country"]; ?></td>
+                            <td><?php echo $row["login_city"]; ?></td>
+                        <?php endif; ?>
+                        <td><?php echo $duration; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <?php if (hasRank("senior_admin")): ?>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    <?php endif; ?>
+                    <td>
+                        <div>
+                            <span style="font-weight: bold;">Total time:</span>
+                            <?php
+                            $total = $properties["playtime"];
+                            $hours = $total / 3600;
+                            $min = ($total % 3600) / 60;
+                            $sec = $total % 60;
+                            printf("%02d:%02d:%02d", $hours, $min, $sec);
+                            ?>
+                        </div>
+                        <div>
+                            <span style="font-weight: bold;">Total logins:</span>
+                            <?php printf("%d", $loginCount); ?>
+                        </div>
+                    </td>
+                    <?php if (!array_key_exists("all_logins", $_GET)): ?>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <?php if (hasRank("senior_admin")): ?>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    <?php endif; ?>
+                    <td>
+                        <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_logins=1">Show all logins</a>
+                    </td>
+                </tr>
+            <?php endif; ?>
+                </tr>
+            </table>
+        </div>
+
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Transactions</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                    <th>Timestamp</th>
+                    <th>Amount</th>
+                </tr>
+                <?php
+                foreach ($transactions as $row): ?>
+                    <tr>
+                        <td>
+                            <?php
+                            if ($row["sender_id"] == $player["player_id"]) {
+                                echo $player["player_name"];
+                            } else {
+                                echo $row["player_name"];
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if ($row["recipient_id"] == $player["player_id"]) {
+                                echo $player["player_name"];
+                            } else {
+                                echo $row["player_name"];
+                            }
+                            ?>
+                        </td>
+                        <td><?php echo date("Y-m-d H:i:s", $row["transaction_timestamp"]); ?></td>
+                        <td><?php echo $row["transaction_amount"]; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php if (!array_key_exists("all_transactions", $_GET)): ?>
+                    <tr>
+                        <td colspan="4" style="text-align: right;">
+                            <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_transactions=1">Show all transactions</a>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </table>
+        </div>
+
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Inventory</h3>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+                <?php for ($x = 0; $x < 4; $x++): ?>
+                    <tr>
+                        <?php for ($y = 0; $y < 9; $y++): ?>
+                            <td style="width: 11%; height: 75px; border: 1px solid #000; text-align: center; font-size: 10px;">
+                                <?php
+                                if (array_key_exists($x*9+$y, $slots)) {
+                                    $slot = $slots[$x*9+$y];
+                                    $item = $slot["item_material"];
+                                    if (file_exists("../public/img/blocks_large/" . $item . ".png")) {
+                                        echo '<div><img src="/img/blocks_large/' . $item . '.png" width="50" height="50" /></div>';
+                                    } else {
+                                        echo '<div style="height: 50px;">' .
+                                            implode(" ", array_map("ucfirst", array_map("strtolower", explode("_", $items[$item])))) . '</div>';
+                                    }
+                                    echo '<div>' . $slot["item_count"] . '</div>';
+                                } else {
+                                    echo "&nbsp;";
+                                }
+                                ?>
+                            </td>
+                        <?php endfor; ?>
+                    </tr>
+                <?php endfor; ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4 table-responsive">
+        <?php require_once 'player_menu.phtml'; ?>
+
+        <?php if (hasRank("junior_admin", "senior_admin")): ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Aliases</h3>
+            </div>
+            <table class="table">
+                <tr>
+                    <td>
+                        <?php foreach($aliases as $alias): ?>
+                            <a <?php echo userCSSColor($alias['player_name']); ?> href="/index.php/player/search?q=<?php echo $alias['player_name']; ?>"><?php echo $alias['player_name']; ?></a><br>
+                        <?php endforeach; ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>

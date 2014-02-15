@@ -1,45 +1,46 @@
-<div class="col75">
-    <h3 class="infoHeader">New players</h3>
-    <table class="info">
-        <cols>
-            <col />
-            <col />
-            <col style="width: 150px;" />
-            <col style="width: 150px;" />
-            <col style="width: 150px;" />
-        </cols>
-        <tr>
-            <th>Year</th>
-            <th>Month</th>
-            <th>New Players</th>
-            <th>Settlers</th>
-            <th>Rate</th>
-        </tr>
-        <?php
-        $months = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-        foreach ($players as $month):
-            if ($month["year"] == 2010) {
-                continue;
-            }
-            if ($month["year"] == 2011 && $month["month"] == 2) {
-                continue;
-            }
-            ?>
-            <tr>
-                <td style="text-align: center;"><?php echo $month["year"]; ?></td>
-                <td style="text-align: center;"><?php echo $months[$month["month"]-1]; ?></td>
-                <td style="text-align: center;"><?php echo $month["unverified"]+$month["settlers"]; ?></td>
-                <td style="text-align: center;"><?php echo $month["settlers"]; ?></td>
-                <td style="text-align: center;"><?php printf("%0.2f", 100*$month["settlers"]/($month["unverified"]+$month["settlers"])); ?>%</td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">New Players</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <cols>
+                    <col />
+                    <col />
+                    <col style="width: 150px;" />
+                    <col style="width: 150px;" />
+                    <col style="width: 150px;" />
+                </cols>
+                <tr>
+                    <th>Year</th>
+                    <th>Month</th>
+                    <th>New Players</th>
+                    <th>Settlers</th>
+                    <th>Rate</th>
+                </tr>
+                <?php
+                $months = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+                foreach ($players as $month):
+                    if ($month["year"] == 2010) {
+                        continue;
+                    }
+                    if ($month["year"] == 2011 && $month["month"] == 2) {
+                        continue;
+                    }
+                    ?>
+                    <tr>
+                        <td style="text-align: center;"><?php echo $month["year"]; ?></td>
+                        <td style="text-align: center;"><?php echo $months[$month["month"]-1]; ?></td>
+                        <td style="text-align: center;"><?php echo $month["unverified"]+$month["settlers"]; ?></td>
+                        <td style="text-align: center;"><?php echo $month["settlers"]; ?></td>
+                        <td style="text-align: center;"><?php printf("%0.2f", 100*$month["settlers"]/($month["unverified"]+$month["settlers"])); ?>%</td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <?php require_once 'stats_menu.phtml'; ?>
+    </div>
 </div>
-
-<div class="col25">
-    <?php require_once 'stats_menu.phtml'; ?>
-</div>
-
-<div class="col_clear">&nbsp;</div>
-

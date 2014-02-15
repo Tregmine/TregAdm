@@ -1,34 +1,34 @@
-<div class="col75">
-    <h3 class="infoHeader">Traffic</h3>
-    <table class="info">
-        <cols>
-            <col />
-            <col style="width: 75px;" />
-            <col style="width: 75px;" />
-        </cols>
-        <tr>
-            <th>Warp Name</th>
-            <th>Visitors</th>
-            <th>Unique Visitors</th>
-        </tr>
-        <?php foreach ($warps as $warp): ?>
-            <tr>
-                <td><?php echo $warp["warp_name"]; ?></td>
-                <td><?php echo $warp["c"]; ?></td>
-                <td><?php echo $warp["uc"]; ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <p>
-        Traffic to 50 most popular warps for the past week.
-    </p>
-
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Traffic</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <cols>
+                    <col />
+                    <col style="width: 75px;" />
+                    <col style="width: 120px;" />
+                </cols>
+                <tr>
+                    <th>Warp Name</th>
+                    <th>Visitors</th>
+                    <th>Unique Visitors</th>
+                </tr>
+                <?php foreach ($warps as $warp): ?>
+                    <tr>
+                        <td><?php echo $warp["warp_name"]; ?></td>
+                        <td><?php echo $warp["c"]; ?></td>
+                        <td><?php echo $warp["uc"]; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+            <div class="panel-body">
+                <div class="alert alert-info">Traffic to 50 most popular warps for the past week.</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <?php require_once 'stats_menu.phtml'; ?>
+    </div>
 </div>
-
-<div class="col25">
-    <?php require_once 'stats_menu.phtml'; ?>
-</div>
-
-<div class="col_clear">&nbsp;</div>
-

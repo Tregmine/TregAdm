@@ -1,25 +1,37 @@
-<div class="col75">
-    <h3 class="infoHeader">Traffic</h3>
-    <div id="logins_chart" style="width: 100%; height: 400px;"></div>
-    <div id="unique_chart" style="width: 100%; height: 400px;"></div>
-    <div id="online_chart" style="width: 100%; height: 400px;"></div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Traffic</h3>
+            </div>
+            <div class="panel-body">
+                <div id="logins_chart" style="width: 100%; height: 400px;"></div>
+                <div id="unique_chart" style="width: 100%; height: 400px;"></div>
+                <div id="online_chart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
 
-    <p />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sources</h3>
+            </div>
+            <div class="panel-body">
+                <div id="geo_chart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
 
-    <h3 class="infoHeader">Sources</h3>
-    <div id="geo_chart" style="width: 100%; height: 400px;"></div>
-
-    <p />
-
-    <?php if (array_key_exists("online", $_SESSION) && hasRank("guardian", "coder", "builder", "junior_admin", "senior_admin")): ?>
-    <h3 class="infoHeader">Gameplay</h3>
-    <div id="orelog_chart" style="width: 100%; height: 400px;"></div>
-    <?php endif; ?>
+        <?php if (array_key_exists("online", $_SESSION) && hasRank("guardian", "coder", "builder", "junior_admin", "senior_admin")): ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Gameplay</h3>
+            </div>
+            <div class="panel-body">
+                <div id="orelog_chart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+    <div class="col-md-4">
+        <?php require_once 'stats_menu.phtml'; ?>
+    </div>
 </div>
-
-<div class="col25">
-    <?php require_once 'stats_menu.phtml'; ?>
-</div>
-
-<div class="col_clear">&nbsp;</div>
-

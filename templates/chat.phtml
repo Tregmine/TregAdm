@@ -1,45 +1,43 @@
-<form class="wide">
-    <input type="hidden" id="token" value="<?php echo $token; ?>" />
-
-    <h3 class="formHeader">Message</h3>
-
-    <div class="field">
-        <label for="channel">Channel</label>
-        <div class="element">
-            <input type="text" name="channel" id="channel" value="GLOBAL" />
-        </div>
-        <div class="end">&nbsp;</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Message</h3>
     </div>
-
-    <div class="field">
-        <label for="message">Text</label>
-        <div class="element">
-            <input type="text" name="message" id="message" />
-        </div>
-        <div class="end">&nbsp;</div>
+    <div class="panel-body">
+        <form role="form" class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="channel">Channel</label>
+                <input type="text" class="form-control" id="channel" name="channel" value="GLOBAL" placeholder="Channel" />
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="message">Text</label>
+                <input type="password" class="form-control" id="message" name="message" placeholder="Text" />
+            </div>
+            <button type="submit" class="btn btn-default">Send</button>
+            <input type="hidden" id="token" value="<?php echo $token; ?>" />
+        </form>
     </div>
+</div>
 
-    <div class="button">
-        <button id="send" type="button">Send</button>
+<div class="panel panel-default table-responsive">
+    <div class="panel-heading">
+        <h3 class="panel-title">Log</h3>
     </div>
-</form>
-
-<h3 class="infoHeader">Log</h3>
-<table class="info">
-    <cols>
-        <col style="width: 100px;" />
-        <col style="width: 100px;" />
-        <col style="width: 100px;" />
-        <col />
-    </cols>
-    <thead>
+    <table class="table table-striped">
+        <cols>
+            <col style="width: 100px;" />
+            <col style="width: 100px;" />
+            <col style="width: 100px;" />
+            <col />
+        </cols>
+        <thead>
         <tr>
             <th>Timestamp</th>
             <th>Channel</th>
             <th>Sender</th>
             <th>Text</th>
         </tr>
-    </thead>
-    <tbody id="log">
-    </tbody>
-</table>
+        </thead>
+        <tbody id="log">
+        </tbody>
+    </table>
+</div>

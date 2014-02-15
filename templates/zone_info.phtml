@@ -1,136 +1,147 @@
-<div class="col75">
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Info for zone: "<?php echo $zone["zone_name"]; ?>"</h3>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th width=50%>Attribute</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>World</td>
+                    <td><?php echo $zone["zone_world"]; ?></td>
+                </tr>
+                <tr>
+                    <td>Coordinates</td>
+                    <td>
+                        <?php foreach ($rects as $rect): ?>
+                            <?php echo "(".($rect['rect_x1'] ? $rect['rect_x1'] : 'NULL').",".($rect['rect_y1'] ? $rect['rect_y1'] : 'NULL').") - (".($rect['rect_x2'] ? $rect['rect_x2'] : 'NULL').",".($rect['rect_y2'] ? $rect['rect_y2'] : 'NULL').")"; ?><br />
+                        <?php endforeach; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Main Owner</td>
+                    <td><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/index.php/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
+                </tr>
+                <tr>
+                    <td colspan=2>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Enter Default</td>
+                    <td><?php echo $zone["zone_enterdefault"] ? "yes" : "no"; ?></td>
+                </tr>
+                <tr>
+                    <td>Place Blocks Default</td>
+                    <td><?php echo $zone["zone_placedefault"] ? "yes" : "no"; ?></td>
+                </tr>
+                <tr>
+                    <td>Destroy Blocks Default</td>
+                    <td><?php echo $zone["zone_destroydefault"] ? "yes" : "no"; ?></td>
+                </tr>
+                <tr>
+                    <td>PVP</td>
+                    <td><?php echo $zone["zone_pvp"] ? "yes" : "no"; ?></td>
+                </tr>
+                <tr>
+                    <td>Hostiles</td>
+                    <td><?php echo $zone["zone_hostiles"] ? "yes" : "no"; ?></td>
+                </tr>
+                <tr>
+                    <td>Enter Message</td>
+                    <td><?php echo $zone["zone_entermessage"]; ?></td>
+                </tr>
+                <tr>
+                    <td>Exit Message</td>
+                    <td><?php echo $zone["zone_exitmessage"]; ?></td>
+                </tr>
+                <tr>
+                    <td>Texture</td>
+                    <td><?php echo $zone["zone_texture"]; ?></td>
+                </tr>
+            </table>
+        </div>
 
-    <h3 class="infoHeader">Info</h3>
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Warps</h3>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+                <cols>
+                    <col />
+                    <col style="width: 250px;" />
+                </cols>
+                <tr>
+                    <th>Name</th>
+                    <th>(x,y,z)</th>
+                </tr>
+                <?php foreach($warps as $warp): ?>
+                    <tr>
+                        <td><?php echo $warp['warp_name']; ?></td>
+                        <td>(<?php printf("%d, %d, %d", $warp['warp_x'], $warp['warp_y'], $warp['warp_z']); ?>)</td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
 
-    <table class="info">
-        <tr>
-            <th width=50%>Attribute</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>World</td>
-            <td><?php echo $zone["zone_world"]; ?></td>
-        </tr>
-        <tr>
-            <td>Coordinates</td>
-            <td>
-            <?php foreach ($rects as $rect): ?>
-                <?php echo "(".($rect['rect_x1'] ? $rect['rect_x1'] : 'NULL').",".($rect['rect_y1'] ? $rect['rect_y1'] : 'NULL').") - (".($rect['rect_x2'] ? $rect['rect_x2'] : 'NULL').",".($rect['rect_y2'] ? $rect['rect_y2'] : 'NULL').")"; ?><br />
-            <?php endforeach; ?>
-            </td>
-        </tr>
-        <tr>
-            <td>Main Owner</td>
-            <td><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/index.php/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
-        </tr>
-        <tr>
-            <td colspan=2>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>Enter Default</td>
-            <td><?php echo $zone["zone_enterdefault"] ? "yes" : "no"; ?></td>
-        </tr>
-        <tr>
-            <td>Place Blocks Default</td>
-            <td><?php echo $zone["zone_placedefault"] ? "yes" : "no"; ?></td>
-        </tr>
-        <tr>
-            <td>Destroy Blocks Default</td>
-            <td><?php echo $zone["zone_destroydefault"] ? "yes" : "no"; ?></td>
-        </tr>
-        <tr>
-            <td>PVP</td>
-            <td><?php echo $zone["zone_pvp"] ? "yes" : "no"; ?></td>
-        </tr>
-        <tr>
-            <td>Hostiles</td>
-            <td><?php echo $zone["zone_hostiles"] ? "yes" : "no"; ?></td>
-        </tr>
-        <tr>
-            <td>Enter Message</td>
-            <td><?php echo $zone["zone_entermessage"]; ?></td>
-        </tr>
-        <tr>
-            <td>Exit Message</td>
-            <td><?php echo $zone["zone_exitmessage"]; ?></td>
-        </tr>
-        <tr>
-            <td>Texture</td>
-            <td><?php echo $zone["zone_texture"]; ?></td>
-        </tr>
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Members</h3>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Rank</th>
+                    <!--<th>Action</th>-->
+                </tr>
+                <?php
+                foreach ($users as $user): ?>
+                    <tr>
+                        <td>
+                            <?php
+                            echo "<a " . userCSSColor($user["player_id"]) . " href=\"/index.php/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
+                            ?>
+                        <td><?php echo $user["user_perm"]; ?></td>
+                        <!--<td></td>-->
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
 
-    </table>
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lots</h3>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Owners</th>
+                </tr>
+                <?php foreach ($lots as $lot): ?>
+                    <tr>
+                        <td> <?php echo $lot["lot_name"]; ?></td>
+                        <td>
+                            <?php foreach($lot["users"] as $lVal): ?>
+                                <a <?php echo userCSSColor($lVal["player_id"]); ?>
+                                    href="/index.php/player/search?q=<?php echo $lVal["player_name"]; ?>">
+                                    <?php echo $lVal["player_name"]; ?></a><br>
+                            <?php endforeach; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Actions</div>
 
-    <h3 class="infoHeader">Warps</h3>
-
-    <table class="info">
-        <cols>
-            <col />
-            <col style="width: 250px;" />
-        </cols>
-        <tr>
-            <th>Name</th>
-            <th>(x,y,z)</th>
-        </tr>
-        <?php foreach($warps as $warp): ?>
-            <tr>
-                <td><?php echo $warp['warp_name']; ?></td>
-                <td>(<?php printf("%d, %d, %d", $warp['warp_x'], $warp['warp_y'], $warp['warp_z']); ?>)</td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <h3 class="infoHeader">Members</h3>
-
-    <table class="info">
-        <tr>
-            <th>Name</th>
-            <th>Rank</th>
-            <!--<th>Action</th>-->
-        </tr>
-        <?php 
-        foreach ($users as $user): ?>
-            <tr>
-                <td>
-                <?php 
-                echo "<a " . userCSSColor($user["player_id"]) . " href=\"/index.php/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
-                ?>
-                <td><?php echo $user["user_perm"]; ?></td>
-                <!--<td></td>-->
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <h3 class="infoHeader">Lots</h3>
-
-    <table class="info">
-        <tr>
-            <th>Name</th>
-            <th>Owners</th>
-        </tr>
-        <?php foreach ($lots as $lot): ?>
-        <tr>
-            <td> <?php echo $lot["lot_name"]; ?></td>
-            <td>
-            <?php foreach($lot["users"] as $lVal): ?>
-                <a <?php echo userCSSColor($lVal["player_id"]); ?>
-                   href="/index.php/player/search?q=<?php echo $lVal["player_name"]; ?>">
-                   <?php echo $lVal["player_name"]; ?></a><br>
-            <?php endforeach; ?>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+            <ul class="list-group">
+                <?php if (hasRank("junior_admin", "senior_admin")): ?>
+                    <li class="list-group-item"><a href="/index.php/zone/edit?id=<?php echo $zone["zone_id"]; ?>">Edit</a></li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
 </div>
-
-<div class="col25">
-    <h3 class="actionsHeader">Actions</h3>
-
-    <ul class="actions">
-        <?php if (hasRank("junior_admin", "senior_admin")): ?>
-        <li><a href="/index.php/zone/edit?id=<?php echo $zone["zone_id"]; ?>">Edit</a></li>
-        <?php endif; ?>
-    </ul>
-</div>
-
-<div class="col_clear">&nbsp;</div>

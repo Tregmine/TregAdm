@@ -1,52 +1,54 @@
-<div class="col75">
-    <h3 class="infoHeader">Ores found</h3>
-    <table class="info">
-        <cols>
-            <col style="width: 100px;" />
-            <col style="width: 50px;" />
-            <col />
-            <col style="width: 50px;" />
-            <col style="width: 50px;" />
-            <col style="width: 50px;" />
-            <col style="width: 50px;" />
-            <col style="width: 100px;" />
-        </cols>
-        <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>&nbsp;</th>
-            <th>Gold</th>
-            <th>Diamond</th>
-            <th>Lapis Lazuli</th>
-            <th>Emerald</th>
-            <th>Action</th>
-        </tr>
-        <?php foreach ($log as $entry): 
-            $timestamp = strtotime(sprintf("%s %02d:%02d", $entry["date"], $entry["hour"], $entry["min"])); ?>
-            <tr>
-                <td><?php echo $entry["date"]; ?></td>
-                <td><?php printf("%02d:%02d", $entry["hour"], $entry["min"]); ?></td>
-                <td>&nbsp;</th>
-                <td><?php echo $entry["gold"]; ?></td>
-                <td><?php echo $entry["diamond"]; ?></td>
-                <td><?php echo $entry["lapis"]; ?></td>
-                <td><?php echo $entry["emerald"]; ?></td>
-                <td>
-                    &raquo; <a href="#" onclick="show_coords(<?php echo $player["player_id"]; ?>, <?php echo $timestamp; ?>)">Show Coords</a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
-    <p>
-        Showing ores found with fifteen minute of resolution.
-    </p>
-
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ores found</h3>
+            </div>
+            <div class="panel-body">
+                <div class="alert alert-info">
+                    Showing ores found with fifteen minute of resolution.
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <cols>
+                    <col style="width: 100px;" />
+                    <col style="width: 50px;" />
+                    <col />
+                    <col style="width: 50px;" />
+                    <col style="width: 50px;" />
+                    <col style="width: 50px;" />
+                    <col style="width: 50px;" />
+                    <col style="width: 100px;" />
+                </cols>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>&nbsp;</th>
+                    <th>Gold</th>
+                    <th>Diamond</th>
+                    <th>Lapis</th>
+                    <th>Emerald</th>
+                    <th>Action</th>
+                </tr>
+                <?php foreach ($log as $entry):
+                    $timestamp = strtotime(sprintf("%s %02d:%02d", $entry["date"], $entry["hour"], $entry["min"])); ?>
+                    <tr>
+                        <td><?php echo $entry["date"]; ?></td>
+                        <td><?php printf("%02d:%02d", $entry["hour"], $entry["min"]); ?></td>
+                        <td>&nbsp;</td>
+                        <td><?php echo $entry["gold"]; ?></td>
+                        <td><?php echo $entry["diamond"]; ?></td>
+                        <td><?php echo $entry["lapis"]; ?></td>
+                        <td><?php echo $entry["emerald"]; ?></td>
+                        <td>
+                            &raquo; <a href="#" onclick="show_coords(<?php echo $player["player_id"]; ?>, <?php echo $timestamp; ?>)">Show Coords</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <?php require_once 'player_menu.phtml'; ?>
+    </div>
 </div>
-
-<div class="col25">
-    <?php require_once 'player_menu.phtml'; ?>
-</div>
-
-<div class="col_clear">&nbsp;</div>
-

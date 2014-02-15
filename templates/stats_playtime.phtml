@@ -1,47 +1,48 @@
-<div class="col75">
-    <h3 class="infoHeader">Players</h3>
-    <table class="info">
-        <cols>
-            <col />
-            <col style="width: 250px;" />
-        </cols>
-        <tr>
-            <th>Name</th>
-            <th>Playtime</th>
-        </tr>
-        <?php foreach ($players as $player): ?>
-            <tr>
-                <td>
-                    <a <?php echo userCSSColor($player["player_id"]); ?> href="/index.php/player/search?q=<?php echo $player["player_name"]; ?>">
-                       <?php echo $player["player_name"]; ?>
-                    </a>
-                </td>
-                <td>
-                    <?php
-                    $playtime = $player["player_playtime"];
-                    $days = floor($playtime/60/60/24);
-                    $hours = floor(($playtime - 60*60*24*$days)/60/60);
-                    $minutes = floor(($playtime - 60*60*24*$days - 60*60*$hours)/60);
-                    if ($days > 0) {
-                        printf("%d days, ", $days);
-                    }
-                    if ($hours > 0) {
-                        printf("%d hours, ", $hours);
-                    }
-                    if ($minutes > 0) {
-                        printf("%d minutes", $minutes);
-                    }
-                    ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title">Players</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <cols>
+                    <col />
+                    <col style="width: 250px;" />
+                </cols>
+                <tr>
+                    <th>Name</th>
+                    <th>Playtime</th>
+                </tr>
+                <?php foreach ($players as $player): ?>
+                    <tr>
+                        <td>
+                            <a <?php echo userCSSColor($player["player_id"]); ?> href="/index.php/player/search?q=<?php echo $player["player_name"]; ?>">
+                                <?php echo $player["player_name"]; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <?php
+                            $playtime = $player["player_playtime"];
+                            $days = floor($playtime/60/60/24);
+                            $hours = floor(($playtime - 60*60*24*$days)/60/60);
+                            $minutes = floor(($playtime - 60*60*24*$days - 60*60*$hours)/60);
+                            if ($days > 0) {
+                                printf("%d days, ", $days);
+                            }
+                            if ($hours > 0) {
+                                printf("%d hours, ", $hours);
+                            }
+                            if ($minutes > 0) {
+                                printf("%d minutes", $minutes);
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <?php require_once 'stats_menu.phtml'; ?>
+    </div>
 </div>
-
-<div class="col25">
-    <?php require_once 'stats_menu.phtml'; ?>
-</div>
-
-<div class="col_clear">&nbsp;</div>
-

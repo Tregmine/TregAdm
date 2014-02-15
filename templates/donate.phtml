@@ -1,76 +1,77 @@
-<div class="col col75 white">
-
-    <h3 class="infoHeader">Why would I donate?</h3>
-
-    <p>
-        Tregmine is run entirely on a volonteer basis. Nobody makes any money of Tregmine, and server
-        costs are funded out of our own pockets. If you want to help us to keep the server running,
-        you are welcome to make a donation.
-    </p>
-
-    <h3 class="infoHeader">Thank-you Gifts For Donators</h3>
-
-    <p>All donations over €5 EUR will receive the following gifts as our way of saying thanks:</p>
-
-    <ul>
-        <li>Gold colored name in the forums and in-game to show everyone you are a donator.</li>
-        <li>Ability to save a home teleport location, and warp there anytime by typing /home.</li>
-        <li>Teleport to players who are 10,000 blocks away.</li>
-        <li>Prevent other players from teleporting to you.</li>
-        <li>One free single blessed chest (a 30,000 Treg value!) and the option to upgrade to a double-blessed chest for an additional 30,000 Tregs.</li>
-        <li>Permission to use client-side mods for flying or other enhanced movement. (Does not apply to Donators who are currently warned and have a grey name.)</li>
-        <li>Access to donator-only warps and forums.</li>
-        <li>Reduced wait times when warping or teleporting.</li>
-        <li>Option to beta test new plugins.</li>
-        <li>Promotions to ranks such as Builder, Guardian or Admin will only be offered to donators.</li>
-        <li>A zone or a warp</li>
-    </ul>
-
-    <p>Donations of higher amounts will receive the above list of gifts, plus:</p>
-
-    <ul>
-        <li>€10 EUR or more: You get a complimentary warp <em>and</em> a zone.</li>
-    </ul>
-
-    <p>
-        If you have any specific wishes regarding who should receive the gifts of your donation,
-        type them in the message field.
-    </p>
-
-    <form method="get" action="/index.php/donate/do" class="wide">
-        <h3 class="formHeader">Donate using Paypal</h3>
-
-        <div class="field">
-            <label for="amount">Amount (euros)</label>
-            <div class="element">
-                <input type="text" id="amount" name="amount" value="10" />
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Why would I donate?</h3>
             </div>
-            <div class="end">&nbsp;</div>
-        </div>
-
-        <div class="field">
-            <label for="message">Message</label>
-            <div class="element">
-                <input type="text" id="message" name="message" value="" />
+            <div class="panel-body">
+                Tregmine is run entirely on a volonteer basis. Nobody makes any money of Tregmine, and server
+                costs are funded out of our own pockets. If you want to help us to keep the server running,
+                you are welcome to make a donation.
             </div>
-            <div class="end">&nbsp;</div>
         </div>
 
-        <div class="button">
-            <button type="submit">Donate!</button>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">What donators get.</h3>
+            </div>
+            <div class="panel-body">
+                All donations over €5 EUR will receive the following gifts as our way of saying thanks:
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">Gold colored name in the forums and in-game to show everyone you are a donator.</li>
+                <li class="list-group-item">Ability to save a home teleport location, and warp there anytime by typing /home.</li>
+                <li class="list-group-item">Teleport to players who are 10,000 blocks away.</li>
+                <li class="list-group-item">Prevent other players from teleporting to you.</li>
+                <li class="list-group-item">One free single blessed chest (a 30,000 Treg value!) and the option to upgrade to a double-blessed chest for an additional 30,000 Tregs.</li>
+                <li class="list-group-item">Permission to use client-side mods for flying or other enhanced movement. (Does not apply to Donators who are currently warned and have a grey name.)</li>
+                <li class="list-group-item">Access to donator-only warps and forums.</li>
+                <li class="list-group-item">Reduced wait times when warping or teleporting.</li>
+                <li class="list-group-item">Option to beta test new plugins.</li>
+                <li class="list-group-item">Promotions to ranks such as Builder, Guardian or Admin will only be offered to donators.</li>
+                <li class="list-group-item">A zone or a warp</li>
+            </ul>
+            <div class="panel-body">
+                Donations of higher amounts will receive the above list of gifts, plus:
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">€10 EUR or more: You get a complimentary warp <em>and</em> a zone.</li>
+            </ul>
         </div>
-    </form>
-</div>
 
-<div class="col25">
-    <h3 class="actionsHeader">Donation Step</h3>
-    <ol class="actions">
-        <li class="active">Select donation amount</li>
-        <li>Login at paypal</li>
-        <li>Enter payment information</li>
-        <li>Confirm donation</li>
-        <li>Finished!</li>
-    </ol>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Donate using Paypal</h3>
+            </div>
+            <div class="panel-body">
+                If you have any specific wishes regarding who should receive the gifts of your donation,
+                type them in the message field.
+            </div>
+            <div class="panel-body">
+                <form role="form" method="get" action="/index.php/donate/do">
+                    <div class="form-group">
+                        <label for="amount">Amount (euros)</label>
+                        <input type="text" class="form-control" id="amount" name="amount" value="10" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <input type="text" class="form-control" id="message" name="message" value="" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Donation Steps</div>
+            <ul class="list-group">
+                <li class="list-group-item blue">Select donation amount</li>
+                <li class="list-group-item">Login at paypal</li>
+                <li class="list-group-item">Enter payment information</li>
+                <li class="list-group-item">Confirm donation</li>
+                <li class="list-group-item">Finished!</li>
+            </ul>
+        </div>
+    </div>
 </div>
-
-<div class="col_clear">&nbsp;</div>
