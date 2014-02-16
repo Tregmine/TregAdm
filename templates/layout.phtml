@@ -11,10 +11,6 @@
     <link rel="stylesheet" href="/css/bootstrap.css" />
     <link rel="stylesheet" href="/css/colors.css" />
     <link rel="stylesheet" href="/css/custom.css" />
-    <link rel="stylesheet" href="/css/jquery-ui.css" />
-
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/js/jquery-ui.js"></script>
 
     <?php foreach ($styles as $style): ?>
     <link rel="stylesheet" href="<?php echo $style; ?>" />
@@ -27,8 +23,9 @@
 <body>
 
 <div class="container">
+
     <div class="jumbotron"></div>
-    
+
     <div class="header">
         <nav class="navbar navbar-default">
             <div class="navbar-header">
@@ -58,8 +55,8 @@
                         <?php endif; ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/index.php/logout">Sign out</a></li>
                         <p class="navbar-text">Signed in as <a href="/index.php/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>&nbsp;</p>
+                        <li><a href="/index.php/logout">Sign out</a></li>
                     </ul>
                 <?php else: ?>
                     <ul class="nav navbar-nav">
@@ -94,6 +91,7 @@ ga('send', 'pageview');
 
 </script>
 
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="/js/bootstrap.js"></script>
 </body>
 </html>
