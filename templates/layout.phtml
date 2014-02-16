@@ -22,7 +22,12 @@
 </head>
 <body>
 
+<a href="https://github.com/EmilHernvall/tregmine" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="../img/github_ribbon.png" alt="View Tregmine on GitHub"></a>
+
 <div class="container">
+
+    <div class="jumbotron img-rounded"></div>
+
     <div class="header">
         <nav class="navbar navbar-default">
             <div class="navbar-header">
@@ -52,8 +57,8 @@
                         <?php endif; ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/index.php/logout">Sign out</a></li>
                         <p class="navbar-text">Signed in as <a href="/index.php/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>&nbsp;</p>
+                        <li><a href="/index.php/logout">Sign out</a></li>
                     </ul>
                 <?php else: ?>
                     <ul class="nav navbar-nav">
@@ -65,8 +70,6 @@
             </div>
         </nav>
     </div>
-
-    <div class="jumbotron"></div>
 
     <?php
         $template = '../templates/' . $page;
