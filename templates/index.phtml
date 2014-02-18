@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-9">
         <?php require_once 'index_news.phtml'; ?>
 
         <div class="row">
@@ -41,16 +41,8 @@
                                 <td style="vertical-align: middle;">
                                     <a <?php echo userCSSColor($settler["student_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["student_name"]; ?>">
                                         <?php echo $settler["student_name"]; ?>
-                                    </a>
-                                </td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td style="vertical-align: middle;">
-                                    mentored by <a <?php echo userCSSColor($settler["mentor_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["mentor_name"]; ?>">
-                                        <?php echo $settler["mentor_name"]; ?>
-                                    </a>
+                                    </a><br />
+                                    <span>mentored by <a <?php echo userCSSColor($settler["mentor_id"]); ?> href="/index.php/player/search?q=<?php echo $settler["mentor_name"]; ?>"><?php echo $settler["mentor_name"]; ?></a></span>
                                 </td>
                                 <td rowspan="1" style="width: 20px;">
                                     <img src="/index.php/player/head?player=<?php echo $settler["mentor_name"]; ?>&factor=4" class="img-rounded table-margin-5" />
@@ -68,7 +60,7 @@
         </div>
     </div>
 
-    <div class="col-xs-6 col-md-4">
+    <div class="col-xs-12 col-md-3">
         <?php if (!array_key_exists("online", $_SESSION)): ?>
             <?php if (array_key_exists("error", $_GET)) { ?>
                 <div class="panel panel-danger">
