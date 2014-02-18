@@ -129,14 +129,19 @@ $(document).ready(
             });
 
         $("#send").click(
-            function() {
+            function(e) {
                 var msg = $("#message").val();
                 if (msg.trim() == "") {
-                    return;
+                    e.preventDefault();
+                    return false;
                 }
 
                 sendMessage(msg);
                 $("#message").val("");
+
+                e.preventDefault();
+
+                return false;
             });
 
         $("#message").focus();

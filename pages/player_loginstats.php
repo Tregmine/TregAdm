@@ -33,6 +33,9 @@ foreach ($result as $i => $row) {
 
 $data["online"][] = array("Date", "Max Online Players");
 foreach ($result as $row) {
+    if ($row["op"] == 0) {
+        continue;
+    }
     $data["online"][] = array($row["d"], intval($row["op"])+1); // the online stats is always off by one
 }
 

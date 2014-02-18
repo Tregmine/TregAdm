@@ -30,7 +30,7 @@ function tregmine_online_players($key) {
     return $players;
 }
 
-function tregmine_kick_player($key, $subjectId, $issuerId) {
+function tregmine_kick_player($key, $subjectId, $issuerId, $message) {
     $host = "localhost:9192";
     $path = "/playerkick";
     $query = sprintf("subjectId=%d&issuerId=%d&message=%s",
