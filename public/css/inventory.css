@@ -1,0 +1,171 @@
+/*
+* Handles all the CSS for the Inventory Viewer
+*/
+
+@font-face{
+    font-family: Minecraft;
+    src: url('/fonts/minecraft.ttf');
+}
+
+.inventory {
+    width: 686px;
+    height: auto;
+    overflow: auto;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 10px;
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-bottom: 1px solid #555555;
+    border-right: 1px solid #555555;
+    background: #c6c6c6;
+    font-family: Minecraft;
+    font-size: 16px;
+}
+
+.armour{
+    width: 84px;
+    height: 306px;
+    background: #c6c6c6;;
+    border-radius: 10px;
+    float: left;
+}
+.upper{
+    width: 656px;
+    height: 232px;
+    background: #c6c6c6;
+    border-radius: 10px;
+    float: left;
+}
+.hotbar{
+    width: 656px;
+    height: 84px;
+    background: #c6c6c6;
+    border-radius: 10px;
+    float: left;
+}
+.slot{
+    width: 62px;
+    height: 62px;
+    border-radius: 8px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #373737;
+    border-left: 1px solid #373737;
+    border-bottom: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    background: #8b8b8b;
+    cursor: pointer;
+}
+.rest{
+    width: 552px;
+    background: #c6c6c6;
+    height: 306px;
+    float: left;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+.mcbutton{
+    width: 265px;
+    height: 62px;
+    background: #6f6f6f;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    text-align: center;
+    padding-top: 6px;
+    cursor: pointer;
+    border: 1px solid #000000;
+    box-shadow: inset 0 0 1px 1px #aaaaaa;
+    color: rgb(224, 224, 224);
+    font-size: 40px;
+    font-weight: normal;
+    text-shadow: 2px 2px rgb(22, 22, 22);
+}
+
+.slot-notfound {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.slot-found {
+    width: 45px;
+    height: 45px;
+    margin: 8px;
+}
+.mcbutton.disabled {
+    cursor: default;
+    color: rgba(224, 224, 224, 0.5);
+    text-shadow: 2px 2px rgba(22, 22, 22, 0.5);
+}
+.mcbutton.enabled:hover {
+    box-shadow: inset 0 0 1px 1px #bfc7ff;
+    background: #7d87c1;
+    color: #ffff9a;
+    text-shadow: 2px 2px #3f3f26;
+}
+.mcbutton.ender {
+    margin-left: 0px;
+}
+.item{
+    height: 286px;
+    width: 266px;
+    margin-top: 10px;
+    line-height: 20px;
+    float: right;
+    text-align: center;
+}
+.item.ender {
+    width: 366px;
+}
+.rest.ender {
+    width: 652px;
+}
+.helmet{
+    background: url("items/slot_empty_helmet.png");
+    background-repeat: no-repeat;
+    background-size: 54px 54px;
+    height: 54px;
+    width: 54px;
+    margin: 4px auto;
+}
+.chest{
+    background: url("items/slot_empty_chestplate.png");
+    background-repeat: no-repeat;
+    background-size: 54px 54px;
+    height: 54px;
+    width: 54px;
+    margin: 4px auto;
+}
+.leg{
+    background: url("items/slot_empty_leggings.png");
+    background-repeat: no-repeat;
+    background-size: 54px 54px;
+    height: 54px;
+    width: 54px;
+    margin: 4px auto;
+}
+.feet{
+    background: url("items/slot_empty_boots.png");
+    background-repeat: no-repeat;
+    background-size: 54px 54px;
+    height: 54px;
+    width: 54px;
+    margin: 4px auto;
+}
+
+.modal-width-reset {
+    width: 756px;
+}
+
+.item-label{
+    position: absolute;
+    margin-top:-20px;
+    margin-left: 0px;
+    width: 55px;
+    text-align: right;
+    font-size: 16px;
+    color: white;
+    text-shadow: 2px 2px #3f3f3f;
+}
