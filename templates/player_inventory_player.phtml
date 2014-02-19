@@ -15,11 +15,12 @@
                             if (array_key_exists($i, $armourslots)) {
                                 $armourslot = $armourslots[$i];
                                 $item = $armourslot['item_material'];
+                                $dvalue = $armourslot['item_data'];
 
                                 if ($item == 0) {
                                     // Nothing
                                 } elseif (array_key_exists($item, $itemDBArray)) {
-                                    $data = $itemDBArray[$item];
+                                    $data = $itemDBArray[$item][$dvalue];
                                     $link = $data['link'];
                                     echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found\"/>";
                                 } else {
@@ -52,14 +53,15 @@
                                     if (array_key_exists($i, $slots)) {
                                         $slot = $slots[$i];
                                         $item = $slot['item_material'];
+                                        $dvalue = $slot['item_data'];
                                         $count = $slot['item_count'];
 
-                                        if ($count == "0") {
+                                        if ($count == "1") {
                                             $count = "";
                                         }
 
                                         if (array_key_exists($item, $itemDBArray)) {
-                                            $data = $itemDBArray[$item];
+                                            $data = $itemDBArray[$item][$dvalue];
                                             $link = $data['link'];
 
                                             if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
@@ -90,14 +92,15 @@
                                 if (array_key_exists($i, $slots)) {
                                     $slot = $slots[$i];
                                     $item = $slot['item_material'];
+                                    $dvalue = $slot['item_data'];
                                     $count = $slot['item_count'];
 
-                                    if ($count == "0") {
+                                    if ($count == "1") {
                                         $count = "";
                                     }
 
                                     if (array_key_exists($item, $itemDBArray)) {
-                                        $data = $itemDBArray[$item];
+                                        $data = $itemDBArray[$item][$dvalue];
                                         $link = $data['link'];
 
                                         if (file_exists("../public/img/texture/default/" . $link) && $link != null) {

@@ -139,7 +139,10 @@ $stmt->closeCursor();
 
 $itemDBArray = array();
 foreach ($itemDB as $item) {
-    $itemDBArray[$item["item_id"]] = $item;
+    if (!array_key_exists($item["item_id"], $itemDBArray)) {
+        $itemDBArray[$item["item_id"]] = array();
+    }
+    $itemDBArray[$item["item_id"]][$item["item_data"]] = $item;
 }
 
 // Aliases

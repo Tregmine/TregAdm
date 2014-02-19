@@ -26,14 +26,15 @@
                                     if (array_key_exists($i, $enderslots)) {
                                         $slot = $enderslots[$i];
                                         $item = $slot['item_material'];
+                                        $dvalue = $slot['item_data'];
                                         $count = $slot['item_count'];
 
-                                        if ($count == "0") {
+                                        if ($count == "1") {
                                             $count = "";
                                         }
 
                                         if (array_key_exists($item, $itemDBArray)) {
-                                            $data = $itemDBArray[$item];
+                                            $data = $itemDBArray[$item][$dvalue];
                                             $link = $data['link'];
 
                                             if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
