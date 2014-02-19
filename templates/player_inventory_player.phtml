@@ -1,0 +1,125 @@
+<div class="modal-dialog">
+    <div class="modal-content modal-width-reset">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Survival Inventory for: <?php echo $player["player_name"]; ?></h4>
+        </div>
+        <div class="modal-body">
+            <div class="inventory">
+                <div class="armour">
+                    <?php
+                    for($i = 3; $i >= 0; $i--){
+                        ?>
+                        <div class="slot">
+                            <?php
+                            if (array_key_exists($i, $armourslots)) {
+                                $armourslot = $armourslots[$i];
+                                $item = $armourslot['item_material'];
+
+                                if ($item == 0) {
+                                    // Nothing
+                                } elseif (array_key_exists($item, $itemDBArray)) {
+                                    $data = $itemDBArray[$item];
+                                    $link = $data['link'];
+                                    echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found\"/>";
+                                } else {
+                                    echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
+                                }
+                            }
+                            ?>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <div class="rest">
+                    <div class="item">
+                        It is not recommended to modify a players inventories whilst they are in the server. <br /> <br />
+                        This can have undesired effects as their inventory is constantly updating. <br /> <br />
+                        If you do have to modify an inventory whilst they are online - I recommend refreshing before and after every action.
+                    </div>
+                    <div class="mcbutton disabled">Add</div>
+                    <div class="mcbutton disabled">Remove</div>
+                    <div class="mcbutton disabled">Modify</div>
+                    <div class="mcbutton disabled">Refresh</div>
+                </div>
+                <div class="upper">
+                    <?php
+                        for($i = 9; $i <= 35; $i++){
+                    ?>
+                            <div class="slot">
+                                <?php
+                                    if (array_key_exists($i, $slots)) {
+                                        $slot = $slots[$i];
+                                        $item = $slot['item_material'];
+                                        $count = $slot['item_count'];
+
+                                        if ($count == "0") {
+                                            $count = "";
+                                        }
+
+                                        if (array_key_exists($item, $itemDBArray)) {
+                                            $data = $itemDBArray[$item];
+                                            $link = $data['link'];
+
+                                            if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
+                                                if ($data['round']) {
+                                                    echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found img-rounded\"/><div class=\"item-label\">".$count."</div>";
+                                                } else {
+                                                    echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found\"/><div class=\"item-label\">".$count."</div>";
+                                                }
+                                            } else {
+                                                echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
+                                            }
+                                        } else {
+                                            echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
+                                        }
+                                    }
+                                ?>
+                            </div>
+                    <?php
+                        }
+                    ?>
+                </div>
+                <div class="hotbar">
+                    <?php
+                        for($i = 0; $i < 9; $i++){
+                    ?>
+                        <div class="slot">
+                            <?php
+                                if (array_key_exists($i, $slots)) {
+                                    $slot = $slots[$i];
+                                    $item = $slot['item_material'];
+                                    $count = $slot['item_count'];
+
+                                    if ($count == "0") {
+                                        $count = "";
+                                    }
+
+                                    if (array_key_exists($item, $itemDBArray)) {
+                                        $data = $itemDBArray[$item];
+                                        $link = $data['link'];
+
+                                        if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
+                                            if ($data['round']) {
+                                                echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found img-rounded\"/><div class=\"item-label\">".$count."</div>";
+                                            } else {
+                                                echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found\"/><div class=\"item-label\">".$count."</div>";
+                                            }
+                                        } else {
+                                            echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
+                                        }
+                                    } else {
+                                        echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
+                                    }
+                                }
+                            ?>
+                        </div>
+                    <?php
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

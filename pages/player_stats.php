@@ -74,12 +74,19 @@ $stmt->execute(array($_GET["id"], $_GET["id"]));
 $transactions = $stmt->fetchAll();
 $stmt->closeCursor();
 
+if (array_key_exists("inv", $_GET)) {
+    $playerinventory_name = $_GET["inv"];
+} else {
+    $playerinventory_name = "survival";
+}
+
+// Main Inventory
 $sql  = "SELECT * FROM playerinventory_item ";
 $sql .= "INNER JOIN playerinventory USING (playerinventory_id) ";
-$sql .= "WHERE playerinventory_type = 'main' AND playerinventory_name = 'survival' AND player_id = ?";
+$sql .= "WHERE playerinventory_type = 'main' AND playerinventory_name = ? AND player_id = ?";
 
 $stmt = $conn->prepare($sql);
-$stmt->execute(array($player["player_id"]));
+$stmt->execute(array($playerinventory_name, $player["player_id"]));
 
 $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
@@ -87,6 +94,52 @@ $stmt->closeCursor();
 $slots = array();
 foreach ($inventory as $item) {
     $slots[$item["item_slot"]] = $item;
+}
+
+// Armour Inventory
+$sql  = "SELECT * FROM playerinventory_item ";
+$sql .= "INNER JOIN playerinventory USING (playerinventory_id) ";
+$sql .= "WHERE playerinventory_type = 'armour' AND playerinventory_name = ? AND player_id = ?";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute(array($playerinventory_name, $player["player_id"]));
+
+$armour = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+
+$armourslots = array();
+foreach ($armour as $item) {
+    $armourslots[$item["item_slot"]] = $item;
+}
+
+// Ender Inventory
+$sql  = "SELECT * FROM playerinventory_item ";
+$sql .= "INNER JOIN playerinventory USING (playerinventory_id) ";
+$sql .= "WHERE playerinventory_type = 'ender' AND playerinventory_name = ? AND player_id = ?";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute(array($playerinventory_name, $player["player_id"]));
+
+$ender = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+
+$enderslots = array();
+foreach ($ender as $item) {
+    $enderslots[$item["item_slot"]] = $item;
+}
+
+// Items Database
+$sql  = "SELECT * FROM item";
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+$itemDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+
+$itemDBArray = array();
+foreach ($itemDB as $item) {
+    $itemDBArray[$item["item_id"]] = $item;
 }
 
 // Aliases
@@ -120,12 +173,19 @@ $context["player"] = $player;
 $context["transactions"] = $transactions;
 $context["inventory"] = $inventory;
 $context["slots"] = $slots;
+$context["armour"] = $armour;
+$context["armourslots"] = $armourslots;
+$context["ender"] = $ender;
+$context["enderslots"] = $enderslots;
+$context["itemDB"] = $itemDB;
+$context["itemDBArray"] = $itemDBArray;
+$context["invname"] = $playerinventory_name;
 $context["logins"] = $logins;
 $context["aliases"] = $aliases;
 $context["items"] = $items;
 $context["properties"] = $properties;
 $context["loginCount"] = $loginCount["c"];
 
-$styles = array();
+$styles = array("/css/inventory.css");
 $scripts = array();
 render('player_stats.phtml', $title, $context, $styles, $scripts);
