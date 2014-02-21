@@ -6,7 +6,9 @@ function show_fishyblock(id) {
             container.css("position", "absolute");
             container.css("backgroundColor", "#fff");
             container.css("width", "50%");
-            container.css("height", "500px");
+            container.css("min-width", "300px");
+            container.css("height", "80%");
+            container.css("min-height", "300px");
             container.css("overflow", "auto");
             container.css("top", (window.scrollY + 100) + "px");
             container.css("left", "25%");
@@ -85,7 +87,9 @@ function show_account(id) {
             container.css("position", "absolute");
             container.css("backgroundColor", "#fff");
             container.css("width", "50%");
-            container.css("height", "500px");
+            container.css("min-width", "300px");
+            container.css("height", "80%");
+            container.css("min-height", "300px");
             container.css("overflow", "auto");
             container.css("top", (window.scrollY + 100) + "px");
             container.css("left", "25%");
@@ -145,7 +149,10 @@ function show_account(id) {
                     tbl.append(row);
                 }
 
-                container.append(tbl);
+                var tblWrap = $(document.createElement("DIV"));
+                tblWrap.append(tbl);
+                tblWrap.addClass("table-responsive");
+                container.append(tblWrap);
 
             $("body").append(container);
         });
