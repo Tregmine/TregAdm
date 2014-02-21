@@ -56,8 +56,9 @@
                     <col style="width: 250px;" />
                 </cols>
                 <tr>
-                    <th>Item Information</th>
-                    <th>Item Value</th>
+                    <th><a href="/index.php/items?order=id">ID</a></th>
+                    <th><a href="/index.php/items?order=name">Name</a></th>
+                    <th><a href="/index.php/items?order=value">Value</a></th>
 
                     <?php if (hasRank("junior_admin", "senior_admin")): ?>
                     <th>Actions</th>
@@ -66,7 +67,10 @@
                 <?php foreach ($items as $item): ?>
                     <tr>
                         <td>
-                            <?php echo $item['item_name'] . " (" . $item['item_id'] . ":" . $item['item_data'] . ")"; ?>
+                            <?php echo $item['item_id'] . ":" . $item['item_data']; ?>
+                        </td>
+                        <td>
+                            <?php echo $item['item_name']; ?>
                         </td>
                         <td>
                             <?php echo $item['item_value']; ?>
