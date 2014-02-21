@@ -4,6 +4,13 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Federal Reserve of Tregmine Prices</h3>
             </div>
+
+            <?php if (hasRank("junior_admin", "senior_admin")): ?>
+            <a href="" class="btn btn-default form-control">
+                <span class="glyphicon glyphicon-plus-sign"></span> Add new item
+            </a>
+            <?php endif; ?>
+
             <table class="table table-striped table-hover">
                 <cols>
                     <col />
@@ -12,6 +19,10 @@
                 <tr>
                     <th>Item Information</th>
                     <th>Item Value</th>
+
+                    <?php if (hasRank("junior_admin", "senior_admin")): ?>
+                    <th>Actions</th>
+                    <?php endif; ?>
                 </tr>
                 <?php foreach ($items as $item): ?>
                     <tr>
@@ -21,6 +32,13 @@
                         <td>
                             <?php echo $item['item_value']; ?>
                         </td>
+
+                        <?php if (hasRank("junior_admin", "senior_admin")): ?>
+                        <td>
+                            <a class="glyphicon glyphicon-pencil black"></a>
+                            <a href="/index.php/economy/deleteSell?id=<?php echo $item['item_id']; ?>&data=<?php echo $item['item_data']; ?>" class="glyphicon glyphicon-minus-sign black"></a>
+                        </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </table>
