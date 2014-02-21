@@ -1,0 +1,129 @@
+<div class="row">
+
+    <div class="col-md-8">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">My Transactions</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                    <th>Timestamp</th>
+                    <th>Amount</th>
+                </tr>
+                <?php
+                foreach ($transactions as $row): ?>
+                    <tr>
+                        <td>
+                            <?php
+                            if ($row["sender_id"] == $player["player_id"]) {
+                                echo $player["player_name"];
+                            } else {
+                                echo $row["player_name"];
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if ($row["recipient_id"] == $player["player_id"]) {
+                                echo $player["player_name"];
+                            } else {
+                                echo $row["player_name"];
+                            }
+                            ?>
+                        </td>
+                        <td><?php echo date("Y-m-d H:i:s", $row["transaction_timestamp"]); ?></td>
+                        <td><?php echo $row["transaction_amount"]; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php if (!array_key_exists("all_transactions", $_GET)): ?>
+                    <tr>
+                        <td colspan="4" style="text-align: right;">
+                            <a href="/index.php/economy?all_transactions=1">Show all transactions</a>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </table>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">My Fishyblocks</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Item</th>
+                    <th>Cost</th>
+                    <th>Available</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <?php foreach ($fishyblocks as $row): ?>
+                    <tr>
+                        <td>
+                            <div>
+                            <?php 
+                            if ($row["item_id"]) {
+                                echo $row["item_name"];
+                            } else {
+                                echo $row["fishyblock_material"] . $row["fishyblock_data"];
+                            }
+                            ?>
+                            </div>
+                            <?php if ($row["fishyblock_enchantments"]): ?>
+                            <div>
+                            <ul>
+                            <?php
+                            $enchs = explode("&", $row["fishyblock_enchantments"]);
+                            foreach ($enchs as $ench) {
+                                list($name, $level) = explode("=", $ench);
+                                $name = implode(" ", array_map("ucfirst", array_map("strtolower", explode("_", $name))));
+                                printf("<li>%s lvl %s</li>", $name, $level);
+                            }
+                            ?>
+                            </ul>
+                            </div>
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo $row["fishyblock_cost"]; ?></td>
+                        <td><?php echo $row["fishyblock_inventory"]; ?></td>
+                        <td><?php echo ucfirst($row["fishyblock_status"]); ?></td>
+                        <td><?php echo niceTime($row["fishyblock_created"]); ?></td>
+                        <td>&raquo; <a href="javascript:show_fishyblock(<?php echo $row["fishyblock_id"]; ?>)">Transactions</a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Bank Accounts</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Bank</th>
+                    <th>Zone</th>
+                    <th>Account#</th>
+                    <th>Balance</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <?php foreach ($accounts as $row): ?>
+                    <tr>
+                        <td><?php $s = explode(".", $row["lot_name"]); echo $s[0]; ?></td>
+                        <td><?php echo $row["zone_name"]; ?></td>
+                        <td><?php echo $row["account_number"]; ?></td>
+                        <td><?php echo $row["account_balance"]; ?></td>
+                        <td>&raquo; <a href="javascript:show_account(<?php echo $row["account_id"]; ?>)">Transactions</a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <?php require_once 'economy_menu.phtml'; ?>
+    </div>
+</div>
