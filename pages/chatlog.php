@@ -39,13 +39,21 @@ if ($channel) {
     $sql .= "AND chatlog_channel = ? ";
     $params[] = $channel;
 }
-$sql .= "ORDER BY chatlog_timestamp DESC ";
+if ($start) {
+    $sql .= "ORDER BY chatlog_timestamp ";
+} else {
+    $sql .= "ORDER BY chatlog_timestamp DESC ";
+}
 $sql .= "LIMIT 1000";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute($params);
 
 $chatlogs = $stmt->fetchAll();
+
+if ($start) {
+    $chatlogs = array_reverse($chatlogs);
+}
 
 $context = array();
 $context["players"] = $players;
