@@ -1,7 +1,7 @@
 <?php
 
 checkIfOnline();
-checkRank("junior_admin", "senior_admin");
+checkRank("senior_admin");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $itemName = $_POST['itemName_search'];
