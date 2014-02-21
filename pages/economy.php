@@ -12,6 +12,5 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $context = array("items" => $items);
 $styles = array();
-$scripts = array();
+$scripts = array("/js/item_autocomplete.js");
 render('economy.phtml', 'Tregmine Economy', $context, $styles, $scripts);
-
