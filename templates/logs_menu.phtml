@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Logs</h3>
+        <h3 class="panel-title">Staff</h3>
     </div>
     <ul class="list-group">
         <li class="list-group-item"><a href="/index.php/logs">Logs Overview</a></li>
@@ -14,6 +14,10 @@
             <li class="list-group-item"><a href="/index.php/orelog">Ore Logs</a></li>
             <li class="list-group-item"><a href="/index.php/reports">Reports</a></li>
             <li class="list-group-item"><a href="/index.php/mentorlog">Mentor Log</a></li>
+        <?php endif; ?>
+
+        <?php if (hasRank("senior_admin")): ?>
+            <li class="list-group-item"><a href="/index.php/admin/items">Item Database</a></li>
         <?php endif; ?>
     </ul>
 </div>
