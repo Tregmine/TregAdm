@@ -15,5 +15,9 @@
             <li class="list-group-item"><a href="/index.php/reports">Reports</a></li>
             <li class="list-group-item"><a href="/index.php/mentorlog">Mentor Log</a></li>
         <?php endif; ?>
+
+        <?php if (hasRank("senior_admin")): ?>
+            <li class="list-group-item"><a href="/index.php/admin/items">Item Database</a></li>
+        <?php endif; ?>
     </ul>
 </div>
