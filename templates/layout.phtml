@@ -47,19 +47,18 @@
             <div class="collapse navbar-collapse" id="nav-1">
                 <?php if (array_key_exists("online", $_SESSION)): ?>
                     <ul class="nav navbar-nav">
-                        <li><a href="/index.php/start">Start</a></li>
                         <li><a href="/index.php/stats">Stats</a></li>
-                        <li><a href="/index.php/staff">Staff</a></li>
                         <li><a href="/index.php/economy">Economy</a></li>
-                        <li><a href="http://discourse.tregmine.info/">Forum</a></li>
+                        <li><a href="/index.php/staff">Staff</a></li>
                         <li><a href="/index.php/donate">Donate</a></li>
                         <li><a href="/index.php/zone/search">Zones</a></li>
                         <?php if (hasRank("donator", "coder", "guardian", "builder", "junior_admin", "senior_admin")): ?>
                             <li><a href="/index.php/chat">Chat</a></li>
                         <?php endif; ?>
                         <?php if (hasRank("guardian", "coder", "builder", "junior_admin", "senior_admin")): ?>
-                            <li><a href="/index.php/logs">Logs</a></li>
+                            <li><a href="/index.php/logs">Staff</a></li>
                         <?php endif; ?>
+                        <li><a href="http://discourse.tregmine.info/">Forum</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <p class="navbar-text">Signed in as <a href="/index.php/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>&nbsp;</p>
