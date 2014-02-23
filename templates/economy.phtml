@@ -60,7 +60,6 @@
                     <th>Item</th>
                     <th>Cost</th>
                     <th>Available</th>
-                    <th>Status</th>
                     <th>Created</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -93,7 +92,6 @@
                         </td>
                         <td><?php echo $row["fishyblock_cost"]; ?></td>
                         <td><?php echo $row["fishyblock_inventory"]; ?></td>
-                        <td><?php echo ucfirst($row["fishyblock_status"]); ?></td>
                         <td><?php echo niceTime($row["fishyblock_created"]); ?></td>
                         <td>&raquo; <a href="javascript:show_fishyblock(<?php echo $row["fishyblock_id"]; ?>)">Transactions</a></td>
                     </tr>

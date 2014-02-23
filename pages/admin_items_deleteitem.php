@@ -1,7 +1,7 @@
 <?php
 
 checkIfOnline();
-checkRank("senior_admin");
+checkRank("junior_admin", "senior_admin");
 
 if (!array_key_exists("id", $_GET)) {
     exit;

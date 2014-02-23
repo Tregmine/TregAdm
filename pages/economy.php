@@ -65,7 +65,7 @@ $stmt->closeCursor();
 
 $sqlFishyblocks  = "SELECT * FROM fishyblock " 
                  . "LEFT JOIN item ON fishyblock_material = item_id AND fishyblock_data = item_data "
-                 . "WHERE player_id = ? ";
+                 . "WHERE player_id = ? AND fishyblock_status = 'active'";
 
 $stmt = $conn->prepare($sqlFishyblocks);
 $stmt->execute(array($id));
