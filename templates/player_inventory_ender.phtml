@@ -21,37 +21,41 @@
                     <?php
                         for($i = 0; $i <= 26; $i++){
                     ?>
-                            <div class="slot">
-                                <?php
-                                    if (array_key_exists($i, $enderslots)) {
-                                        $slot = $enderslots[$i];
-                                        $item = $slot['item_material'];
-                                        $dvalue = $slot['item_data'];
-                                        $count = $slot['item_count'];
+                        <div class="slot">
+                            <?php
+                                if (array_key_exists($i, $enderslots)) {
+                                    $slot = $enderslots[$i];
+                                    $item = $slot['item_material'];
+                                    $dvalue = $slot['item_data'];
+                                    $count = $slot['item_count'];
 
-                                        if ($count == "1") {
-                                            $count = "";
-                                        }
+                                    if ($count == "1") {
+                                        $count = "";
+                                    }
 
-                                        if (array_key_exists($item, $itemDBArray)) {
+                                    if (array_key_exists($item, $itemDBArray)) {
+                                        if (array_key_exists($dvalue, $itemDBArray[$item])) {
                                             $data = $itemDBArray[$item][$dvalue];
-                                            $link = $data['link'];
+                                        } else {
+                                            $data = $itemDBArray[$item][0];
+                                        }
+                                        $link = $data['link'];
 
-                                            if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
-                                                if ($data['round']) {
-                                                    echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found img-rounded\"/><div class=\"item-label\">".$count."</div>";
-                                                } else {
-                                                    echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found\"/><div class=\"item-label\">".$count."</div>";
-                                                }
+                                        if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
+                                            if ($data['round']) {
+                                                echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found img-rounded\"/><div class=\"item-label\">".$count."</div>";
                                             } else {
-                                                echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
+                                                echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found\"/><div class=\"item-label\">".$count."</div>";
                                             }
                                         } else {
                                             echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
                                         }
+                                    } else {
+                                        echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
                                     }
-                                ?>
-                            </div>
+                                }
+                            ?>
+                        </div>
                     <?php
                         }
                     ?>
