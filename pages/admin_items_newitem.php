@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['itemFullName'];
     $sign = $_POST['itemSignName'];
     $link = $_POST['itemLink'];
+    $page = $_POST['itemPage'];
 
     if(isset($_POST['itemEnch'])) {
         $ench = "yes";
@@ -29,5 +30,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($id, $data, $name, $sign, $ench, $link, $round));
 
-    header('Location: /index.php/admin/items');
+    header('Location: /index.php/admin/items?pg='.$page.'');
 }

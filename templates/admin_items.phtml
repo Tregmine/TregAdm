@@ -22,6 +22,7 @@
                                 Try and make all names as clear as possible!</div>
 
                             <form method="post" action="/index.php/admin/items/newitem" role="form">
+                                <input type="hidden" id="itemPage" value="<?php echo $current; ?>" />
                                 <div class="form-group">
                                     <label for="itemID" class="col-sm-3 control-label">Item ID</label>
                                     <div class="col-sm-9">
@@ -158,6 +159,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form method="post" action="/index.php/admin/items/updateitem" role="form" class="form-horizontal">
+                                            <input type="hidden" id="itemPage" value="<?php echo $current; ?>" />
                                             <input type="hidden" name="itemID" id="itemID" value="<?php echo $item['item_id']; ?>" />
                                             <input type="hidden" name="itemData" id="itemData" value="<?php echo $item['item_data']; ?>" />
 
