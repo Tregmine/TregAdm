@@ -1,5 +1,8 @@
 <?php
 
+checkIfOnline();
+checkRank("junior_admin", "senior_admin");
+
 $orders = array("id", "name", "sign");
 $dir = array("id" => "ASC", "name" => "ASC", "value" => "ASC");
 $order = "id";

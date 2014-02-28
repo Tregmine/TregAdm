@@ -5,7 +5,7 @@
                 <h3 class="panel-title">Tregmine Item Database</h3>
             </div>
 
-            <?php if (hasRank("senior_admin")): ?>
+            <?php if (hasRank("junior_admin", "senior_admin")): ?>
             <a href="#addItem" data-toggle="modal" class="btn btn-default form-control">
                 <span class="glyphicon glyphicon-plus-sign"></span> Add new item
             </a>
@@ -112,7 +112,7 @@
                     <th><a href="/index.php/items?order=name">Name</a></th>
                     <th><a href="/index.php/items?order=value">Sign Version</a></th>
 
-                    <?php if (hasRank("senior_admin")): ?>
+                    <?php if (hasRank("junior_admin", "senior_admin")): ?>
                     <th>Actions</th>
                     <?php endif; ?>
                 </tr>
@@ -143,7 +143,7 @@
                             ?>
                         </td>
 
-                        <?php if (hasRank("senior_admin")): ?>
+                        <?php if (hasRank("junior_admin", "senior_admin")): ?>
                         <td>
                             <a href="#modifyItem<?php echo $item['item_id'] . "-" . $item['item_data']; ?>" data-toggle="modal" class="glyphicon glyphicon-pencil black"></a>
                             <a href="/index.php/admin/items/deleteitem?id=<?php echo $item['item_id']; ?>&data=<?php echo $item['item_data']; ?>" class="glyphicon glyphicon-minus-sign black"></a>
