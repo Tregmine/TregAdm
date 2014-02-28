@@ -20,7 +20,11 @@
                                 if ($item == 0) {
                                     // Nothing
                                 } elseif (array_key_exists($item, $itemDBArray)) {
-                                    $data = $itemDBArray[$item][$dvalue];
+                                    if (array_key_exists($dvalue, $itemDBArray[$item])) {
+                                        $data = $itemDBArray[$item][$dvalue];
+                                    } else {
+                                        $data = $itemDBArray[$item][0];
+                                    }
                                     $link = $data['link'];
                                     echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found\"/>";
                                 } else {
@@ -61,7 +65,11 @@
                                         }
 
                                         if (array_key_exists($item, $itemDBArray)) {
-                                            $data = $itemDBArray[$item][$dvalue];
+                                            if (array_key_exists($dvalue, $itemDBArray[$item])) {
+                                                $data = $itemDBArray[$item][$dvalue];
+                                            } else {
+                                                $data = $itemDBArray[$item][0];
+                                            }
                                             $link = $data['link'];
 
                                             if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
@@ -100,7 +108,11 @@
                                     }
 
                                     if (array_key_exists($item, $itemDBArray)) {
-                                        $data = $itemDBArray[$item][$dvalue];
+                                        if (array_key_exists($dvalue, $itemDBArray[$item])) {
+                                            $data = $itemDBArray[$item][$dvalue];
+                                        } else {
+                                            $data = $itemDBArray[$item][0];
+                                        }
                                         $link = $data['link'];
 
                                         if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
