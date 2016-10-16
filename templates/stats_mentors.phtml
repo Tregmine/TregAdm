@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Most students mentored</h3>
             </div>
@@ -16,7 +16,7 @@
                 <?php foreach ($mentors as $mentor): ?>
                     <tr>
                         <td>
-                            <a <?php echo userCSSColor($mentor["mentor_id"]); ?>" href="/index.php/player/orelog?id=<?php echo $player["player_id"]; ?>"> <?php echo $mentor["player_name"]; ?></a>
+                            <a <?php echo userCSSColor($mentor["mentor_id"]); ?>" href="/player/orelog?id=<?php echo $player["player_id"]; ?>"> <?php echo $mentor["player_name"]; ?></a>
                         </td>
                         <td style="text-align: center;"><?php echo $mentor["c"]; ?></td>
                     </tr>

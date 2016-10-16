@@ -1,29 +1,39 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">New Report</h3>
             </div>
             <div class="panel-body">
-                <form method="post" action="/index.php/player/report/save?id=<?php echo $player["player_id"]; ?>" role="form">
+                <form method="post" action="/player/report/save?id=<?php echo $player["player_id"]; ?>" role="form">
                     <div class="form-group">
+                      <i>You can only file a donation report through <a href="https://www.tregmine.com/donations">the donations panel</a></i>
+                      <hr>
                         <label for="action">Action</label>
                         <select name="action" id="action" class="form-control">
+                          <?php if(isset($_GET['type']) && $_GET['type'] == "donate"){
+                            ?>
+                            <option value="donation">Donation</option>
+                            <?php
+                          }else{?>
                             <option value="comment">Comment</option>
-                            <?php if (hasRank("junior_admin", "senior_admin")): ?>
+
+                            <?php  if (hasRank("junior_admin", "senior_admin")): ?>
                                 <option value="softwarn">Softwarn</option>
                                 <option value="hardwarn">Hardwarn</option>
                                 <option value="ban">Ban</option>
-                            <?php endif; ?>
+                            <?php endif;
+                          } ?>
                         </select>
                     </div>
-
-                    <?php if (hasRank("junior_admin", "senior_admin")): ?>
+                    <?php
+                    if (hasRank("junior_admin", "senior_admin") && !isset($_GET["type"]) && $_GET["type"] !== "donate"): ?>
                     <div class="form-group">
                         <label for="duration">Duration</label>
                         <input type="text" class="form-control" id="duration" name="duration" />
                     </div>
-                    <?php endif; ?>
+                  <?php endif;
+                ?>
 
                     <div class="form-group">
                         <label for="text">Message</label>
@@ -35,7 +45,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-warning table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">History</h3>
             </div>
@@ -76,7 +86,7 @@
                                 $report["report_action"] == "hardwarn";
                             $valid = $report["report_validuntil"] > time();
                             if ($type && hasRank("junior_admin", "senior_admin") && $valid): ?>
-                                <a href="/index.php/player/report/save?do=cancel&reportid=<?php echo $report["report_id"]; ?>" onclick="return confirm('Are you sure?');">Cancel</a>
+                                <a href="/player/report/save?do=cancel&reportid=<?php echo $report["report_id"]; ?>" onclick="return confirm('Are you sure?');">Cancel</a>
                             <?php endif; ?>
                         </td>
                     </tr>

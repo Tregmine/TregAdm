@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Logins</h3>
             </div>
@@ -75,7 +75,7 @@
                         <td>&nbsp;</td>
                     <?php endif; ?>
                     <td>
-                        <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_logins=1">Show all logins</a>
+                        <a href="/player/stats?id=<?php echo $player["player_id"]; ?>&all_logins=1">Show all logins</a>
                     </td>
                 </tr>
             <?php endif; ?>
@@ -83,7 +83,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-warning table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Transactions</h3>
             </div>
@@ -122,14 +122,14 @@
                 <?php if (!array_key_exists("all_transactions", $_GET)): ?>
                     <tr>
                         <td colspan="4" style="text-align: right;">
-                            <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&all_transactions=1">Show all transactions</a>
+                            <a href="/player/stats?id=<?php echo $player["player_id"]; ?>&all_transactions=1">Show all transactions</a>
                         </td>
                     </tr>
                 <?php endif; ?>
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-success table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Inventory</h3>
             </div>
@@ -142,8 +142,8 @@
                 <a href="#inventorySurvival" class="btn btn-primary" data-toggle="modal">Open Main "<?php echo $invname; ?>" Inventory</a>
                 <a href="#inventoryEnder" class="btn btn-primary" data-toggle="modal">Open Ender "<?php echo $invname; ?>" Inventory</a> <br /><br />
 
-                <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>" class="btn btn-primary">Survival</a>
-                <a href="/index.php/player/stats?id=<?php echo $player["player_id"]; ?>&inv=anarchy" class="btn btn-primary">Anarchy</a>
+                <a href="/player/stats?id=<?php echo $player["player_id"]; ?>" class="btn btn-primary">Survival</a>
+                <a href="/player/stats?id=<?php echo $player["player_id"]; ?>&inv=anarchy" class="btn btn-primary">Anarchy</a>
             </div>
 
             <div class="modal fade" id="inventorySurvival" tabindex="-1" role="dialog" aria-hidden="true">
@@ -158,7 +158,7 @@
         <?php require_once 'player_menu.phtml'; ?>
 
         <?php if (hasRank("junior_admin", "senior_admin")): ?>
-        <div class="panel panel-default">
+        <div class="panel panel-danger">
             <div class="panel-heading">
                 <h3 class="panel-title">Aliases</h3>
             </div>
@@ -166,7 +166,7 @@
                 <tr>
                     <td>
                         <?php foreach($aliases as $alias): ?>
-                            <a <?php echo userCSSColor($alias['player_name']); ?> href="/index.php/player/search?q=<?php echo $alias['player_name']; ?>"><?php echo $alias['player_name']; ?></a><br>
+                            <a <?php echo userCSSColor($alias['player_name']); ?> href="/player/search?q=<?php echo $alias['player_name']; ?>"><?php echo $alias['player_name']; ?></a><br>
                         <?php endforeach; ?>
                     </td>
                 </tr>

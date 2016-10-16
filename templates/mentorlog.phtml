@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Mentor Log</h3>
             </div>
@@ -14,8 +14,8 @@
                 <?php foreach ($sessions as $session): ?>
                     <tr>
                         <td>
-                            <div>Student: <a <?php echo userCSSColor($session["student_id"]); ?>" href="/index.php/session/search?q=<?php echo $session["student_name"]; ?>"> <?php echo $session["student_name"]; ?></a></div>
-                            <div>Mentor: <a <?php echo userCSSColor($session["mentor_id"]); ?>" href="/index.php/session/search?q=<?php echo $session["mentor_name"]; ?>"> <?php echo $session["mentor_name"]; ?></a></div>
+                            <div>Student: <a <?php echo userCSSColor($session["student_id"]); ?>" href="/session/search?q=<?php echo $session["student_name"]; ?>"> <?php echo $session["student_name"]; ?></a></div>
+                            <div>Mentor: <a <?php echo userCSSColor($session["mentor_id"]); ?>" href="/session/search?q=<?php echo $session["mentor_name"]; ?>"> <?php echo $session["mentor_name"]; ?></a></div>
                         </td>
                         <td><?php echo ucfirst($session["mentorlog_status"]); ?></td>
                         <td>
@@ -48,7 +48,7 @@
                         </td>
                         <td>
                             <?php if ($session["mentorlog_channel"]): ?>
-                                <a href="/index.php/chatlog?channel=<?php echo $session["mentorlog_channel"]; ?>"><?php echo $session["mentorlog_channel"]; ?></a>
+                                <a href="/chatlog?channel=<?php echo $session["mentorlog_channel"]; ?>"><?php echo $session["mentorlog_channel"]; ?></a>
                             <?php endif; ?>
                         </td>
                     </tr>

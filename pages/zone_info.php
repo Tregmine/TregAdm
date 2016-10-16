@@ -16,14 +16,30 @@ $stmt->closeCursor();
 // Get zone users and roles
 $sqlUsers  = "SELECT zone_user.*, player.*, property_value color FROM zone_user ";
 $sqlUsers .= "INNER JOIN player ON user_id = player.player_id ";
-$sqlUsers .= "INNER JOIN player_property ON player_property.player_id = player.player_id "
-           . "AND property_key = 'color' ";
+$sqlUsers .= "INNER JOIN player_property ON player_property.player_id = player.player_id ";
 $sqlUsers .= "WHERE zone_id = ? ORDER BY user_perm";
 
 $stmt = $conn->prepare($sqlUsers);
+
 $stmt->execute(array($zone["zone_id"]));
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$users_dirty = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
+$users = array();
+$count = 0;
+foreach($users_dirty as $user){
+	$continue = true;
+	foreach($users as $check){
+		if($check["user_id"] == $user["user_id"]){
+			$continue = false;
+		}
+	}
+	if($continue){
+	$count++;
+	$users[$count] = $user;
+	}else{
+		continue;
+	}
+}
 
 // Get lot and owner info
 $stmt = $conn->prepare("SELECT * FROM zone_lot WHERE zone_id = ?");

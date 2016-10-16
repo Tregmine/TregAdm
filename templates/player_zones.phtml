@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Zones</h3>
             </div>
@@ -12,13 +12,13 @@
                 </tr>
                 <?php
                 foreach($zones as $zone) {
-                    echo "<tr><td><a href=\"/index.php/zone/info?id=" . $zone['zone_id'] . "\">" . $zone['zone_name'] . "</a></td><td>" . $zone['user_perm'] . "</td><td>" . $zone['zone_world'] . "</td></tr>\n";
+                    echo "<tr><td><a href=\"/zone/info?id=" . $zone['zone_id'] . "\">" . $zone['zone_name'] . "</a></td><td>" . $zone['user_perm'] . "</td><td>" . $zone['zone_world'] . "</td></tr>\n";
                 }
                 ?>
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-warning table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Lots</h3>
             </div>
@@ -30,7 +30,7 @@
                 </tr>
                 <?php
                 foreach($lots as $lot) {
-                    echo "<tr><td>" . $lot['lot_name'] . "</td><td><a href=\"/index.php/zone/info?id=" . $lot['zone_id'] . "\">" . $lot['zone_name'] . "</a></td><td>" . $lot['zone_world'] . "</td></tr>\n";
+                    echo "<tr><td>" . $lot['lot_name'] . "</td><td><a href=\"/zone/info?id=" . $lot['zone_id'] . "\">" . $lot['zone_name'] . "</a></td><td>" . $lot['zone_world'] . "</td></tr>\n";
                 }
                 ?>
             </table>

@@ -1,7 +1,17 @@
 <div class="row">
     <?php foreach(array("Senior","Admin","Builder","Guardian") as $rank): ?>
         <div class="col-md-3 table-responsive">
-            <div class="panel panel-default">
+            <?php if($rank == "Senior"){ echo '<div class="panel panel-primary">';
+            }else if($rank == "Admin"){
+            	echo '<div class="panel panel-warning">';
+            }else if($rank == "Builder"){
+            	echo '<div class="panel panel-success">';
+            }else{
+            	echo '<div class="panel panel-danger">';
+            }
+            
+            
+            ?>
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $rank; ?></h3>
                 </div>
@@ -9,14 +19,14 @@
                     <?php foreach ($staff[$rank] as $key): ?>
                         <tr>
                             <td>
-                                <a <?php echo userCSSColor($key); ?>" href="/index.php/player/search?q=<?php echo $key; ?>"> <?php echo $key; ?></a>
+                                <a <?php echo userCSSColor($key); ?>" href="/player/search?q=<?php echo $key; ?>"> <?php echo $key; ?></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                     <?php if (hasRank("senior_admin") && $rank == "Guardian"): ?>
                         <tr>
                             <td>
-                                &raquo; <a href="/index.php/guardians">Manage Guardians</a>
+                                &raquo; <a href="/guardians">Manage Guardians</a>
                             </td>
                         </tr>
                     <?php endif; ?>

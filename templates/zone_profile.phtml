@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Map</h3>
             </div>
@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-warning">
             <div class="panel-heading">
                 <h3 class="panel-title">Information</h3>
             </div>
@@ -21,13 +21,13 @@
                 endif; ?>
 
                 <?php if ($isOwner || hasRank("junior_admin", "senior_admin")): ?>
-                    <p style="text-align: right;"><a href="/index.php/zone/editprofile?id=<?php echo $zone["zone_id"]; ?>">Edit this text</a></p>
+                    <p style="text-align: right;"><a href="/zone/editprofile?id=<?php echo $zone["zone_id"]; ?>">Edit this text</a></p>
                 <?php endif; ?>
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-danger table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Rules</h3>
             </div>
@@ -55,7 +55,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-info table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Warps</h3>
             </div>
@@ -70,7 +70,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-success table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Staff</h3>
             </div>
@@ -78,7 +78,7 @@
                 <?php if ($zone["zone_owner"]): ?>
                     <tr>
                         <td>Main Owner</td>
-                        <td style="text-align: center;"><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/index.php/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
+                        <td style="text-align: center;"><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
                     </tr>
                 <?php endif; ?>
                 <tr>
@@ -90,7 +90,7 @@
                     <tr>
                         <td>
                             <?php
-                            echo "<a " . userCSSColor($user["player_id"]) . " href=\"/index.php/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
+                            echo "<a " . userCSSColor($user["player_id"]) . " href=\"/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
                             ?>
                         <td style="text-align: center;"><?php echo ucfirst($user["user_perm"]); ?></td>
                     </tr>

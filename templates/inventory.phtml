@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Inventory</h3>
             </div>
@@ -31,7 +31,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-warning table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Access Log</h3>
             </div>
@@ -43,7 +43,7 @@
                 <?php foreach ($accessLog as $access): ?>
                     <tr>
                         <td>
-                            <a href="/index.php/player/search?q=<?php echo $access["player_name"]; ?>" <?php echo userCSSColor($access["player_id"]); ?>><?php echo $access["player_name"]; ?></a>
+                            <a href="/player/search?q=<?php echo $access["player_name"]; ?>" <?php echo userCSSColor($access["player_id"]); ?>><?php echo $access["player_name"]; ?></a>
                         </td>
                         <td><?php echo niceTime($access["accesslog_timestamp"]); ?></td>
                     </tr>
@@ -51,7 +51,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-success table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Change Log</h3>
             </div>
@@ -90,7 +90,7 @@
                         </td>
                         <td><?php echo $change["changelog_amount"]; ?></td>
                         <td>
-                            <a href="/index.php/player/search?q=<?php echo $change["player_name"]; ?>" <?php echo userCSSColor($change["player_id"]); ?>><?php echo $change["player_name"]; ?></a>
+                            <a href="/player/search?q=<?php echo $change["player_name"]; ?>" <?php echo userCSSColor($change["player_id"]); ?>><?php echo $change["player_name"]; ?></a>
                         </td>
                         <td><?php echo niceTime($change["changelog_timestamp"]); ?></td>
                     </tr>

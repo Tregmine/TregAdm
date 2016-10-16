@@ -24,7 +24,7 @@ google.setOnLoadCallback(
                     });
             });
 
-        /*$.getJSON("/index.php/player/hourstats",
+        $.getJSON("/index.php/player/hourstats",
             function(raw_data) {
                 var data = google.visualization.arrayToDataTable(raw_data);
 
@@ -32,7 +32,7 @@ google.setOnLoadCallback(
                 chart.draw(data, {
                         title: 'Number of players online (CET, Server Time)'
                     });
-            });*/
+            });
 
         $.getJSON("/index.php/player/geostats",
             function(raw_data) {

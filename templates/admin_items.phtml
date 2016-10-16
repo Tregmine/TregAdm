@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Tregmine Item Database</h3>
             </div>
@@ -21,7 +21,7 @@
                             <div class="alert alert-info">If you do not understand the image link structure - Leave it blank.<br />
                                 Try and make all names as clear as possible!</div>
 
-                            <form method="post" action="/index.php/admin/items/newitem" role="form">
+                            <form method="post" action="/admin/items/newitem" role="form">
                                 <input type="hidden" id="itemPage" value="<?php echo $current; ?>" />
                                 <div class="form-group">
                                     <label for="itemID" class="col-sm-3 control-label">Item ID</label>
@@ -63,7 +63,7 @@
                                     <div class="col-sm-offset-3 col-sm-9">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" disabled value="1"> Can be sold in '/sell'
+                                                <input type="checkbox"> Can be sold in '/sell'
                                             </label>
                                             <span class="help-block">This value can only be modified on <a>this</a> page</span>
                                         </div>
@@ -109,9 +109,9 @@
                     <col style="width: 250px;" />
                 </cols>
                 <tr>
-                    <th><a href="/index.php/items?order=id">ID</a></th>
-                    <th><a href="/index.php/items?order=name">Name</a></th>
-                    <th><a href="/index.php/items?order=value">Sign Version</a></th>
+                    <th><a href="/items?order=id">ID</a></th>
+                    <th><a href="/items?order=name">Name</a></th>
+                    <th><a href="/items?order=value">Sign Version</a></th>
 
                     <?php if (hasRank("junior_admin", "senior_admin")): ?>
                     <th>Actions</th>
@@ -147,7 +147,7 @@
                         <?php if (hasRank("junior_admin", "senior_admin")): ?>
                         <td>
                             <a href="#modifyItem<?php echo $item['item_id'] . "-" . $item['item_data']; ?>" data-toggle="modal" class="glyphicon glyphicon-pencil black"></a>
-                            <a href="/index.php/admin/items/deleteitem?id=<?php echo $item['item_id']; ?>&data=<?php echo $item['item_data']; ?>" class="glyphicon glyphicon-minus-sign black"></a>
+                            <a href="/admin/items/deleteitem?id=<?php echo $item['item_id']; ?>&data=<?php echo $item['item_data']; ?>" class="glyphicon glyphicon-minus-sign black"></a>
                         </td>
 
                         <div class="modal fade" id="modifyItem<?php echo $item['item_id'] . "-" . $item['item_data']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -158,7 +158,7 @@
                                         <h4 class="modal-title">Modify Item: <?php echo $item['item_name'] . " (" . $item['item_id'] . ":" . $item['item_data'] . ")"; ?></h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="post" action="/index.php/admin/items/updateitem" role="form" class="form-horizontal">
+                                        <form method="post" action="/admin/items/updateitem" role="form" class="form-horizontal">
                                             <input type="hidden" id="itemPage" value="<?php echo $current; ?>" />
                                             <input type="hidden" name="itemID" id="itemID" value="<?php echo $item['item_id']; ?>" />
                                             <input type="hidden" name="itemData" id="itemData" value="<?php echo $item['item_data']; ?>" />
@@ -235,11 +235,11 @@
             </table>
             <div class="panel-body">
                 <ul class="pagination">
-                    <li <?php echo $previous; ?>><a href="/index.php/admin/items?pg=1">1</a></li>
+                    <li <?php echo $previous; ?>><a href="/admin/items?pg=1">1</a></li>
                     <li <?php echo $previous; ?>><a <?php echo $previousLink; ?>>&laquo;</a></li>
                     <li class="active">          <a ><?php echo $current; ?></a></li>
                     <li <?php echo $next; ?>>    <a <?php echo $nextLink; ?>>&raquo;</a></li>
-                    <li <?php echo $next; ?>>    <a href="/index.php/admin/items?pg=<?php echo $last; ?>"><?php echo $last; ?></a></li>
+                    <li <?php echo $next; ?>>    <a href="/admin/items?pg=<?php echo $last; ?>"><?php echo $last; ?></a></li>
                 </ul>
             </div>
         </div>
@@ -247,7 +247,7 @@
     <div class="col-md-4">
         <?php require_once 'logs_menu.phtml'; ?>
 
-        <div class="panel panel-default">
+        <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">Table Key</h3>
             </div>

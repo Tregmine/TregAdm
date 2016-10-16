@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Traffic</h3>
             </div>
@@ -15,16 +15,21 @@
                     <th>Visitors</th>
                     <th>Unique Visitors</th>
                 </tr>
-                <?php foreach ($warps as $warp): ?>
+                <?php foreach ($warps as $warp):if($warp['hidden'] == "false"){ ?>
                     <tr>
                         <td><?php echo $warp["warp_name"]; ?></td>
                         <td><?php echo $warp["c"]; ?></td>
                         <td><?php echo $warp["uc"]; ?></td>
                     </tr>
-                <?php endforeach; ?>
+                <?php }endforeach; ?>
             </table>
             <div class="panel-body">
+            <?php 
+            if(!$_SESSION["mobile"]){ ?>
                 <div class="alert alert-info">Traffic to 50 most popular warps for the past week.</div>
+                <?php }else{ ?>
+                <div class="alert alert-info">Traffic to 10 most popular warps for the past week.</div>
+                <?php }?>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Info for zone: "<?php echo $zone["zone_name"]; ?>"</h3>
             </div>
@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td>Main Owner</td>
-                    <td><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/index.php/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
+                    <td><?php echo $zone["zone_owner"] ? "<a " . userCSSColor($zone["zone_owner"]) . "href=\"/player/search?q=" . $zone["zone_owner"] . "\">" . $zone["zone_owner"] . "</a>" : 'NULL'; ?></td>
                 </tr>
                 <tr>
                     <td colspan=2>&nbsp;</td>
@@ -63,7 +63,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-warning table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Warps</h3>
             </div>
@@ -85,7 +85,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-success table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Members</h3>
             </div>
@@ -100,7 +100,7 @@
                     <tr>
                         <td>
                             <?php
-                            echo "<a " . userCSSColor($user["player_id"]) . " href=\"/index.php/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
+                            echo "<a " . userCSSColor($user["player_id"]) . " href=\"/player/search?q=" . $user["player_name"] . "\">" . $user["player_name"] . "</a></td>\n";
                             ?>
                         <td><?php echo $user["user_perm"]; ?></td>
                         <!--<td></td>-->
@@ -109,7 +109,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-danger table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Lots</h3>
             </div>
@@ -124,7 +124,7 @@
                         <td>
                             <?php foreach($lot["users"] as $lVal): ?>
                                 <a <?php echo userCSSColor($lVal["player_id"]); ?>
-                                    href="/index.php/player/search?q=<?php echo $lVal["player_name"]; ?>">
+                                    href="/player/search?q=<?php echo $lVal["player_name"]; ?>">
                                     <?php echo $lVal["player_name"]; ?></a><br>
                             <?php endforeach; ?>
                         </td>
@@ -134,12 +134,12 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">Actions</div>
 
             <ul class="list-group">
                 <?php if (hasRank("junior_admin", "senior_admin")): ?>
-                    <li class="list-group-item"><a href="/index.php/zone/edit?id=<?php echo $zone["zone_id"]; ?>">Edit</a></li>
+                    <li class="list-group-item"><a href="/zone/edit?id=<?php echo $zone["zone_id"]; ?>">Edit</a></li>
                 <?php endif; ?>
             </ul>
         </div>

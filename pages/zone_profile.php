@@ -83,7 +83,7 @@ $profile = $stmt->fetch();
 
 $stmt->closeCursor();
 
-$map = strtoupper(md5($zone["zone_id"] . "," . $mapSecret)) . ".png";
+$map = strtoupper(md5($zone["zone_id"] . "," . "supersecret")) . ".png";
 
 $title = $zone["zone_name"];
 

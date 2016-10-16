@@ -1,19 +1,24 @@
 <?php
 
 $permissionList = array(
-        "senior_admin" => array("name" => "Senior Admin", "color" => "dark_red"),
-        "junior_admin" => array("name" => "Admin", "color" => "red"),
-        "builder" => array("name" => "Builder", "color" => "yellow"),
-        "coder" => array("name" => "Coder", "color" => "dark_purple"),
-        "guardian" => array("name" => "Guardian", "color" => "dark_blue"),
-        "donator" => array("name" => "Donator", "color" => "gold"),
-        "resident" => array("name" => "Resident", "color" => "dark_green"),
-        "settler" => array("name" => "Settler", "color" => "green"),
-        "tourist" => array("name" => "Tourist", "color" => "white"),
-        "unverified" => array("name" => "Unverified", "color" => "white")
+        "senior_admin" => array("name" => "Senior Admin", "color" => "dark_red", "staff" => true),
+        "junior_admin" => array("name" => "Admin", "color" => "red", "staff" => true),
+        "builder" => array("name" => "Builder", "color" => "yellow", "staff" => false),
+        "coder" => array("name" => "Coder", "color" => "dark_purple", "staff" => true),
+        "guardian" => array("name" => "Guardian", "color" => "dark_blue", "staff" => true),
+        "donator" => array("name" => "Donator", "color" => "gold", "staff" => false),
+        "resident" => array("name" => "Resident", "color" => "dark_green", "staff" => false),
+        "settler" => array("name" => "Settler", "color" => "green", "staff" => false),
+        "tourist" => array("name" => "Tourist", "color" => "white", "staff" => false),
+        "unverified" => array("name" => "Unverified", "color" => "white", "staff" => false)
     );
 
-$flags = array(array("name" => "Child", "choice" => false),
+function isStaff($rank, $permlist){
+	$rankperms = $permlist[$rank];
+	return $rankperms["staff"];
+}
+
+$flags = array(array("name" => "Child", "choice" => true, "rank" => "senior_admin"),
                array("name" => "Teleport Shield", "choice" => true),
                array("name" => "Soft Warned", "choice" => false),
                array("name" => "Hard Warned", "choice" => false),
@@ -22,7 +27,8 @@ $flags = array(array("name" => "Child", "choice" => false),
                array("name" => "Fly Enabled", "choice" => true),
                array("name" => "Force shield", "choice" => true),
                array("name" => "Chest log", "choice" => true),
-               array("name" => "Hidden Announcement", "choice" => true));
+               array("name" => "Hidden Announcement", "choice" => true)
+               );
 
 // Colorize the username based on rank or the color stored in the db
 // Also, grey background warned players and strikethrough banned players

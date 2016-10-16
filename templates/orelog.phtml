@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Ore Log</h3>
             </div>
             <div class="panel-body">
-                <form method="get" action="/index.php/orelog" role="form">
+                <form method="get" action="/orelog" role="form">
                     <div class="form-group">
                         <label for="start">Start Date</label>
                         <input type="text" class="form-control" id="start" name="start" value="<?php echo $start; ?>" />
@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-warning table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Logs</h3>
             </div>
@@ -33,7 +33,7 @@
                 <?php foreach ($log as $player): ?>
                     <tr>
                         <td>
-                            <a <?php echo userCSSColor($player["player_id"]); ?>" href="/index.php/player/orelog?id=<?php echo $player["player_id"]; ?>"> <?php echo $player["player_name"]; ?></a>
+                            <a <?php echo userCSSColor($player["player_id"]); ?>" href="/player/orelog?id=<?php echo $player["player_id"]; ?>"> <?php echo $player["player_name"]; ?></a>
                         </td>
                         <td><?php echo $player["orelog_world"]; ?></td>
                         <td><?php echo $player["item_name"]; ?></td>

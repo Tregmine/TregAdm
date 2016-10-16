@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Zone Profile Information - Editing zone "<?php echo $zone["zone_name"]; ?>"</h3>
             </div>
             <div class="panel-body">
-                <form method="post" action="/index.php/zone/editprofile/save?id=<?php echo $zone["zone_id"]; ?>" role="form">
+                <form method="post" action="/zone/editprofile/save?id=<?php echo $zone["zone_id"]; ?>" role="form">
                     <div class="form-group">
                         <label for="text">Text</label>
                         <textarea class="form-control" rows="3" id="text" name="text"></textarea>

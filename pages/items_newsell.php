@@ -10,15 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $itemID = $_POST['itemID'];
     $itemData = $_POST['itemData'];
     $itemPrice = $_POST['itemPrice'];
+	$minePrice = $_POST['mineItemPrice'];
 
     // Chose the ID/Data route
     if ($itemID != null) {
         $sql  = "UPDATE item ";
-        $sql .= "SET sellable = 'yes', item_value = ? ";
+        $sql .= "SET sellable = 'yes', item_value = ?, mine_value = ? ";
         $sql .= "WHERE item_id = ? AND item_data = ?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute(array($itemPrice, $itemID, $itemData));
+        $stmt->execute(array($itemPrice, $minePrice, $itemID, $itemData));
 
         header('Location: /index.php/items');
         exit;

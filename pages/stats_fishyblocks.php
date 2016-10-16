@@ -9,6 +9,9 @@ $sql .= "LEFT JOIN fishyblock_transaction USING (fishyblock_id) ";
 $sql .= "WHERE transaction_type = 'buy' ";
 $sql .= "GROUP BY fishyblock.player_id ";
 $sql .= "ORDER BY cost DESC";
+if($_SESSION["mobile"]){
+	$sql .= " LIMIT 15";
+}
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();

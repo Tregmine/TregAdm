@@ -52,8 +52,7 @@ $(document).ready(
 
         log.addMessage("INFO", "Client", null, "Loaded");
 
-        var connection = new WebSocket('ws://tregmine.info:9192/chat/');
-        //var connection = new WebSocket('ws://localhost:9192/chat/', ['soap', 'xmpp']);
+        var connection = new WebSocket('ws://api.rabil.org:9192/chat/');
         connection.onopen =
             function() {
                 log.addMessage("INFO", "Client", null, "Connected");

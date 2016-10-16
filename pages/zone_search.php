@@ -14,6 +14,7 @@ if ($q) {
 if (!hasRank("junior_admin", "senior_admin")) {
     $sql .= "AND zone_publicprofile = '1' ";
 }
+$sql .= "AND zone_name NOT LIKE '!%' ";
 $sql .= "ORDER BY zone_name";
 
 $stmt = $conn->prepare($sql);

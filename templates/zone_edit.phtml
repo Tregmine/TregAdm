@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Editing the zone: "<?php echo $zone["zone_name"]; ?>"</h3>
             </div>
             <div class="panel-body">
-                <form role="form" method="post" action="/index.php/zone/edit/save?id=<?php echo $zone["zone_id"]; ?>">
+                <form role="form" method="post" action="/zone/edit/save?id=<?php echo $zone["zone_id"]; ?>">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="<?php echo $zone["zone_name"]; ?>" />
@@ -62,12 +62,12 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">Actions</h3>
             </div>
             <ul class="list-group">
-                <li class="list-group-item"><a href="/index.php/zone/info?id=<?php echo $zone["zone_id"]; ?>">Info</a></li>
+                <li class="list-group-item"><a href="/zone/info?id=<?php echo $zone["zone_id"]; ?>">Info</a></li>
             </ul>
         </div>
     </div>

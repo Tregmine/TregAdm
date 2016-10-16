@@ -19,7 +19,7 @@ $stmt->execute(array($_GET["id"]));
 
 $rawSettings = $stmt->fetchAll();
 foreach ($rawSettings as $setting) {
-    $settings[$setting["property_key"]] = $setting["property_value"];
+    $psettings[$setting["property_key"]] = $setting["property_value"];
 }
 
 $sql  = "SELECT player_id, player_name, property_value FROM player_property ";
@@ -42,7 +42,7 @@ $title = "Permissions: " . $player["player_name"];
 
 $context = array();
 $context["player"] = $player;
-$context["settings"] = $settings;
+$context["settings"] = $psettings;
 $context["guardians"] = $guardians;
 $context["permissionList"] = $permissionList;
 $context["maxRank"] = $maxRank;

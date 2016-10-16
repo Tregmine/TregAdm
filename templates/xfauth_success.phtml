@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">XenForo connection is complete!</h3>
+            </div>
+            <div class="alert alert-success">
+                <?php 
+                $profile = $context['xenforoprofile'];
+                $xenforousername = $profile['username'];
+                echo "Your Tregmine account has been linked to the Tregmine Forums account with the username " . $xenforousername; ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">Account Connection Steps</div>
+            <ul class="list-group">
+                <li class="list-group-item dark_blue">Login to Tregmine Forums</li>
+                <li class="list-group-item blue">Finished!</li>
+            </ul>
+        </div>
+    </div>
+</div>

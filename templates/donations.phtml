@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Panel title</h3>
             </div>
@@ -25,13 +25,13 @@
                             <?php echo $player["donation_id"]; ?>
                         </td>
                         <td>
-                            <a <?php echo userCSSColor($player["player_id"]); ?>" href="/index.php/player/search?q=<?php echo $player["player_name"]; ?>"> <?php echo $player["player_name"]; ?></a>
+                            <a <?php echo userCSSColor($player["player_id"]); ?>" href="/player/search?q=<?php echo $player["player_name"]; ?>"> <?php echo $player["player_name"]; ?></a>
                         </td>
                         <td><?php echo $player["donation_amount"]; ?></td>
                         <td><?php echo niceTime($player["donation_timestamp"]); ?></td>
                         <td><?php echo $player["donation_message"]; ?></td>
                         <td>
-                            &raquo; <a href="/index.php/player/report?id=<?php echo $player["player_id"]; ?>">Report</a><br />
+                            &raquo; <a href="/player/report?id=<?php echo $player["player_id"]; ?>&type=donate">Report</a><br />
                         </td>
                     </tr>
                 <?php endforeach; ?>

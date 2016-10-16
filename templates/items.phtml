@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Federal Reserve of Tregmine Prices</h3>
             </div>
 
-            <?php if (hasRank("senior_admin") || $_SESSION["id"] == 41802): ?>
+            <?php if (hasRank("senior_admin")): ?>
             <a href="#addItem" data-toggle="modal" class="btn btn-default form-control">
                 <span class="glyphicon glyphicon-plus-sign"></span> Add new item
             </a>
@@ -21,7 +21,7 @@
                             <div class="alert alert-info">You only need to specify either the 'Item Name' OR the 'Item ID & Item Data'.<br />
                             You also need to specify the price either way.</div>
 
-                            <form method="post" action="/index.php/items/newsell" role="form">
+                            <form method="post" action="/items/newsell" role="form">
                                 <div class="form-group">
                                     <label for="itemName_search">Item Name</label>
                                     <input type="name" class="form-control" name="itemName_search" id="itemName_search" placeholder="Item Name">
@@ -42,6 +42,10 @@
                                     <label for="itemPrice">Price</label>
                                     <input type="name" class="form-control" name="itemPrice" id="itemPrice" placeholder="Item Price">
                                 </div>
+								<div class="form-group">
+                                    <label for="itemPrice">Mining Price</label>
+                                    <input type="name" class="form-control" name="mineItemPrice" id="mineItemPrice" placeholder="Mining Price">
+                                </div>
                                 <button type="submit" class="btn btn-default">Add</button>
                             </form>
                         </div>
@@ -56,9 +60,10 @@
                     <col style="width: 250px;" />
                 </cols>
                 <tr>
-                    <th><a href="/index.php/items?order=id">ID</a></th>
-                    <th><a href="/index.php/items?order=name">Name</a></th>
-                    <th><a href="/index.php/items?order=value">Value</a></th>
+                    <th><a href="/items?order=id">ID</a></th>
+                    <th><a href="/items?order=name">Name</a></th>
+                    <th><a href="/items?order=value">Value</a></th>
+					<th><a href="/items?order=miningvalue">Mining Value</a></th>
 
                     <?php if (hasRank("senior_admin") || $_SESSION["id"] == 41802): ?>
                     <th>Actions</th>
@@ -75,14 +80,17 @@
                         <td>
                             <?php echo $item['item_value']; ?>
                         </td>
+						<td>
+							<?php echo $item['mine_value']; ?>
+						</td>
 
                         <?php if (hasRank("senior_admin") || $_SESSION["id"] == 41802): ?>
                         <td>
-                            <a href="#modifyItem" data-toggle="modal" class="glyphicon glyphicon-pencil black"></a>
-                            <a href="/index.php/items/deletesell?id=<?php echo $item['item_id']; ?>&data=<?php echo $item['item_data']; ?>" class="glyphicon glyphicon-minus-sign black"></a>
+                            <a href=<?php echo '"#modifyItem'.$item['id'].'"';?> data-toggle="modal" class="glyphicon glyphicon-pencil black"></a>
+                            <a href="/items/deletesell?id=<?php echo $item['item_id']; ?>&data=<?php echo $item['item_data']; ?>" class="glyphicon glyphicon-minus-sign black"></a>
                         </td>
 
-                        <div class="modal fade" id="modifyItem" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal fade" id=<?php echo '"modifyItem'.$item['id'].'"';?> tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content modal-width-reset">
                                     <div class="modal-header">
@@ -90,13 +98,20 @@
                                         <h4 class="modal-title">Modify Item: <?php echo $item['item_name'] . " (" . $item['item_id'] . ":" . $item['item_data'] . ")"; ?></h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="post" action="/index.php/items/updatesell" role="form">
+                                        <form method="post" action="/items/updatesell" role="form">
                                             <div class="form-group">
                                                 <input type="hidden" name="itemID" id="itemID" value="<?php echo $item['item_id']; ?>" />
                                                 <input type="hidden" name="itemData" id="itemData" value="<?php echo $item['item_data']; ?>" />
 
                                                 <label for="newPrice">Price</label>
                                                 <input type="name" class="form-control" name="newPrice" id="newPrice" placeholder="Price" value="<?php echo $item['item_value']; ?>">
+                                            </div>
+											<div class="form-group">
+                                                <input type="hidden" name="itemID" id="itemID" value="<?php echo $item['item_id']; ?>" />
+                                                <input type="hidden" name="itemData" id="itemData" value="<?php echo $item['item_data']; ?>" />
+
+                                                <label for="newPrice">Mining Value</label>
+                                                <input type="name" class="form-control" name="newMiningPrice" id="newMiningPrice" placeholder="Price" value="<?php echo $item['mine_value']; ?>">
                                             </div>
                                             <button type="submit" class="btn btn-default">Update</button>
                                         </form>

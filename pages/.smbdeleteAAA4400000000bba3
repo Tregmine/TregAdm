@@ -1,0 +1,9 @@
+<?php
+$request = $_GET["request"];
+echo ".";
+switch ($request):
+  case "homepage":
+    echo "yes!";
+    break;
+echo "---END OF API---";
+?>

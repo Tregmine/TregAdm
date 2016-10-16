@@ -15243,3 +15243,56 @@ i[class^="icon-animation-"] {
 .pricing-table > .price.price-inverse.featured {
   box-shadow: 0 0 0 15px rgba(210, 8, 19, 0.5);
 }
+.navbar-custom {
+  background-color: #e74c3c;
+  border-color: #c0392b;
+}
+.navbar-custom .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus {
+  color: #ffbbbc;
+}
+.navbar-custom .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-custom .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus {
+  color: #ffbbbc;
+}
+.navbar-custom .navbar-nav > .active > a,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+.navbar-custom .navbar-nav > .open > a,
+.navbar-custom .navbar-nav > .open > a:hover,
+.navbar-custom .navbar-nav > .open > a:focus {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+.navbar-custom .navbar-toggle {
+  border-color: #c0392b;
+}
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: #c0392b;
+}
+.navbar-custom .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-custom .navbar-collapse,
+.navbar-custom .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-custom .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-custom .navbar-link:hover {
+  color: #ffbbbc;
+}

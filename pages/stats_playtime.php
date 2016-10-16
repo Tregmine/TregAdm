@@ -5,7 +5,12 @@ $sql  = "SELECT player_id, player_name, player_rank, player_flags, "
       . "FROM player_property ";
 $sql .= "INNER JOIN player using (player_id) ";
 $sql .= "WHERE property_key = 'playtime' ";
-$sql .= "ORDER BY player_playtime DESC LIMIT 250";
+$sql .= "ORDER BY player_playtime DESC";
+if($_SESSION["mobile"]){
+	$sql .= " LIMIT 50";
+}else{
+	$sql .= " LIMIT 250";
+}
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();

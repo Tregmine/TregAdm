@@ -1,51 +1,41 @@
-<div class="panel panel-default">
+<?php
+?>
+<div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $title; ?> <small>mc.tregmine.info</small></h3>
+        <h3 class="panel-title"><?php echo $title; ?> <small>mc.tregmine.com</small></h3>
     </div>
     <div class="panel-body">
-        <p>Tregmine is a Minecraft Economy server running Bukkit (1.7.2).
-        We have two main worlds: an economy world and an anarchy world.
-        Regardless of whether you want to build up towns and corporations 
-        or cause destruction and mayhem - this is the server for you!</p>
+        <p>Tregmine is a Minecraft Economy server running Spigot 1.10.
+        If you want to build up towns and corporations, go out on your
+		own, or become a builder, this server is the one for you!</p>
         
         <p>We run a custom set of plugins developed by our team. They're
         all publicly available and anyone is welcome to contribute!</p>
     </div>
 </div>
-
-<div class="panel panel-default">
+<div class="panel panel-success">
     <div class="panel-heading">
         <h3 class="panel-title">Recent News</h3>
     </div>
-
-    <div class="panel-body">
-        <h4>New Homepage <small>February 18, 2014</small></h4>
-        <p>
-            We've had a basic website in addition to our forum for a while, but as many has pointed out, it suffered from certain issues.
-            Today it is our pleasure to unveil a completely revamped website, which constitute a significant leap forward in terms of
-            both looks and usability. While a lot of work still remains, we're confident that it'll contribute to making Tregmine
-            a much better experience.
-        </p>
-
-        <p>
-            As always, we welcome feedback - positive as well as constructively negative.
-        </p>
-
-        <h4>Tregmine is back after latest attack. <small>9th September, 2013</small></h4>
-        <p>Tregmine is back after a prolonged service disruption
-        caused by a DDOS attack. We have taken steps to safeguard
-        ourselves from similiar efforts, by deploying a DDOS
-        defense service. While we're not yet sure if it'll prove
-        effective, we hope that it'll make us more resilient.</p>
-        <p>We do not know who perpetrated this attack, or for what
-        reason. DDOS's are by definition hard to trace, and even
-        though we'll make an effort, the likelihood of actually
-        tracking someone is low.</p>
-
-        <h4>Plugins are now open source <small>1st July, 2013</small></h4>
-        <p>Although it has been in the works for many years, it's
-        finally done: The Tregmine plugins are open source, and
-        available <a href="http://github.com/EmilHernvall/tregmine">on github</a>.</p>
-        <p>Contributions are welcome!</p>
+	<div class="panel-body">
+		<h4>Status Update <small>16th October, 2016</small></h4>
+		<p>Tregmine has reached a point of stability for Minecraft 1.10.2. The following changes and bug fixes have been introduced to the plugin:
+		</p>
+		<ul>
+		<li>A referral system has been implemented to attract more players! Players invite their friends onto the server and provide them with a referral code (this code is also their player ID.) When the new player joins and provides the referral code, the inviter recieves 10K tregs. This shows up in the transaction log as INVITEE->INVITER 10,000 tregs</li>
+		<li>A failsafe has been implemented to prevent the loss of new players when there are no teachers available. If there are less than three teachers online, the new player can type `/mentor complete` to skip the mentoring process and become a settler.</li>
+		<li>Players can now hover on many messages from the server to get extra information about the message</li>
+		<li>All of the images originally on the Tregmine website are now back due to improved caching and servers</li>
+		<li>Bugs relating to being unable to login to the server after eight hours of no user logins have been fixed</li>
+		<li>Players now mine for tregs again instead of /sell</li>
+		<li>Discord integration is complete</li>
+		<li>Players are now identified solely by UUID and name changes are fully compatible</li>
+		<li>The forums are back and better than ever! They have been moved to a Linode server to provide better performance. The Linode server is used for images on the website as well.</li>
+		<li><a href="https://docs.google.com/document/d/1YZARKy2CIXNGoi0s5rokxowB_UE2cFfnsT1uDo21xQA/edit?usp=sharing">The Tregmine policy</a> has been polished and updated. I recommend that everyone takes a look at it.</li>
+		<li>Dead links have been revived and mod_rewrite is now cooperative.</li>
+		<li>Tregmine is now completely SSL-based and any http:// requests are rewritten to https://</li>
+		</ul>
+		<p>There are more changes on the way, including an improved donation system to ensure that players recieve their perks in a timely basis, an improved BungeeCord plugin along with use for the other two servers, and the wiki is on the way.</p>
+		</p>
     </div>
 </div>

@@ -13,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = $_POST["username"];
     $password = $_POST["pass"];
-
+    
+    
     $stmt = $conn->prepare("SELECT * FROM player WHERE player_name = ?");
     $stmt->execute(array($username));
 
@@ -33,8 +34,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt = $conn->prepare("SELECT * FROM player_property WHERE player_id = ?");
     $stmt->execute(array($user["player_id"]));
-
     $properties = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $conn->prepare("SELECT * FROM xf_map WHERE playerid = ?");
+    $stmt->execute(array($user["player_id"]));
+    $xenlinks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach($xenlinks as $xenlink){
+    	$gotXen = $xenlink;
+    	$linked = true;
+    }
+    $_SESSION['xenLink'] = $gotXen;
+    $_SESSION['xenLinked'] = $linked;
+
+
 
     $_SESSION["online"] = true;
     $_SESSION["id"] = $user["player_id"];

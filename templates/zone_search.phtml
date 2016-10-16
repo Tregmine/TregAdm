@@ -1,6 +1,6 @@
-<div class="panel panel-default">
+<div class="panel panel-danger">
     <div class="panel-body">
-        <form role="form" method="get" action="/index.php/zone/search">
+        <form role="form" method="get" action="/zone/search">
             <div class="form-group">
                 <label for="zone_search">Zone</label>
                 <input type="text" class="form-control" id="zone_search" name="q" value="<?php echo htmlspecialchars($q); ?>" />
@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div class="panel panel-default table-responsive">
+<div class="panel panel-primary table-responsive">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo count($hits); ?> results for "<?php echo htmlspecialchars($q); ?>"</h3>
     </div>
@@ -41,10 +41,10 @@
                         <?php echo $hit["zone_world"]; ?>
                     </td>
                     <td>
-                        &raquo; <a href="/index.php/zone/profile?id=<?php echo $hit["zone_id"]; ?>">Profile</a><br />
+                        &raquo; <a href="/zone/profile?id=<?php echo $hit["zone_id"]; ?>">Profile</a><br />
                         <?php if (hasRank("junior_admin", "senior_admin")): ?>
-                            &raquo; <a href="/index.php/zone/info?id=<?php echo $hit["zone_id"]; ?>">Info</a><br />
-                            &raquo; <a href="/index.php/zone/edit?id=<?php echo $hit["zone_id"]; ?>">Edit</a>
+                            &raquo; <a href="/zone/info?id=<?php echo $hit["zone_id"]; ?>">Info</a><br />
+                            &raquo; <a href="/zone/edit?id=<?php echo $hit["zone_id"]; ?>">Edit</a>
                         <?php endif; ?>
                     </td>
                 </tr>

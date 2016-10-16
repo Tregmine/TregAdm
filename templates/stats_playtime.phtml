@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default table-responsive">
+        <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Players</h3>
             </div>
@@ -16,7 +16,7 @@
                 <?php foreach ($players as $player): ?>
                     <tr>
                         <td>
-                            <a <?php echo userCSSColor($player["player_id"]); ?> href="/index.php/player/search?q=<?php echo $player["player_name"]; ?>">
+                            <a <?php echo userCSSColor($player["player_id"]); ?> href="/player/search?q=<?php echo $player["player_name"]; ?>">
                                 <?php echo $player["player_name"]; ?>
                             </a>
                         </td>

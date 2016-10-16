@@ -6,6 +6,9 @@ $sql  = "SELECT year(player_created) year, "
       . "count(if(player_rank != 'unverified' and player_rank != 'tourist', 1, null)) settlers "
       . "FROM player ";
 $sql .= "GROUP BY year, month HAVING year != 0";
+if($_SESSION["mobile"]){
+	$sql .= " ORDER BY year DESC LIMIT 5";
+}
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();

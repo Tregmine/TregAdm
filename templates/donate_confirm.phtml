@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Do you want to finsih your donation?</h3>
             </div>
@@ -9,12 +9,12 @@
                 you want to proceed, click on the link below. Otherwise, just close this page.
             </div>
             <div class="alert alert-success">
-                <a href="/index.php/donate/confirm/do?payerId=<?php echo $payerId; ?>" style="font-size: 16px; font-weight: bold;">Finish donation!</a>
+                <a href="/donate/confirm/do?payerId=<?php echo $payerId; ?>&paymentId=<?php echo $_GET['paymentId'];?>&token=<?php echo $_GET['token']?>" style="font-size: 16px; font-weight: bold;">Finish donation!</a>
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">Donation Steps</div>
             <ul class="list-group">
                 <li class="list-group-item dark_blue">Select donation amount</li>

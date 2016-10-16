@@ -21,7 +21,7 @@ a {
     background-color: #c4c7bf;
     border-radius: 10px;
     box-shadow: 5px 5px 5px #ddd;
-    background-image: url('../img/banner.jpg');
+    background-image: url('https://forum.tregmine.com/cache/img/banner.jpg');
     background-repeat: no-repeat;
 }
 

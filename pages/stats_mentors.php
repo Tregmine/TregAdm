@@ -5,6 +5,7 @@ $sql .= "INNER JOIN player mentor ON mentor.player_id = mentor_id ";
 $sql .= "WHERE mentorlog_status = 'completed' ";
 $sql .= "GROUP BY mentor_id ";
 $sql .= "ORDER BY c desc";
+if($_SESSION["mobile"]) $sql .= " LIMIT 20";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
