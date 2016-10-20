@@ -1,6 +1,7 @@
-<?
+<?php
 ini_set('display_errors', '0');
 error_reporting(E_ALL | E_STRICT);
+include '../include/settings.php';
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -128,6 +129,7 @@ error_reporting(E_ALL | E_STRICT);
             <div class="col-md-6 src-links">
                 &raquo; <a href="https://github.com/EmilHernvall/TregAdm">Homepage Source</a>
                 &raquo; <a href="https://github.com/Clunker5/tregmine-2.0">Plugin Source</a>
+				&raquo; Bundle Version <?php echo $settings['bundleVersion']; ?>
             </div>
             <div class="col-md-6 copyright">
                 Copyright &copy; 2011-2016 Tregmine Contributors<br />
