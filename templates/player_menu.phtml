@@ -13,6 +13,7 @@
 
         <?php if ($_SESSION["rank"] == "senior_admin" || $_SESSION["rank"] == "junior_admin"): ?>
             <li class="list-group-item"><a href="/player/zones?id=<?php echo $player["player_id"]; ?>">Zones and Lots</a></li>
+            <li class="list-group-item"><a href="/player/reset/keyword?id=<?php echo $player["player_id"]; ?>">Reset Keyword</a></li>
         <?php endif; ?>
     </ul>
 </div>
