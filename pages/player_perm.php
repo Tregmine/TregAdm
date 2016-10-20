@@ -14,8 +14,8 @@ $player = $stmt->fetch();
 
 $stmt->closeCursor();
 
-$stmt = $conn->prepare("SELECT * FROM player_property WHERE player_id = ?");
-$stmt->execute(array($_GET["id"]));
+$stmt = $conn->prepare("SELECT * FROM player_property WHERE player_id = ? AND NOT property_key = ?");
+$stmt->execute(array($_GET["id"], "keyword"));
 
 $rawSettings = $stmt->fetchAll();
 foreach ($rawSettings as $setting) {
