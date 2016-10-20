@@ -1,11 +1,22 @@
 <div class="row">
     <div class="col-md-8">
+      <?php if($keywordRemoved == true){?>
+      <div class="alert alert-success">
+
+			<div class="panel-heading">
+				<h3 class="panel-title">Keyword Removed.<small></small></h3>
+			</div>
+			<div class="panel-body">
+        <?php echo "The keyword for ".$player['player_name']." has been removed."; ?>
+			</div>
+			</div>
+      <?php } ?>
         <div class="panel panel-primary table-responsive">
             <div class="panel-heading">
                 <h3 class="panel-title">Properties</h3>
             </div>
             <table class="table table-striped table-hover">
-                <?php foreach ($settings as $key => $value): ?>
+                <?php foreach ($psettings as $key => $value): ?>
                     <tr>
                         <td class="text-right"><?php echo $key; ?></td>
                         <td><?php echo $value; ?></td>
@@ -79,7 +90,7 @@
 
                     <div class="form-group">
                         <label for="quitmsg">Quit Message</label>
-                        <input type="text" class="form-control" id="quitmsg" name="quitmsg" value="<?php echo array_key_exists("quitmessage", $settings) ? $settings["quitmessage"] : ""; ?>" />
+                        <input type="text" class="form-control" id="quitmsg" name="quitmsg" value="<?php echo array_key_exists("quitmessage", $psettings) ? $psettings["quitmessage"] : ""; ?>" />
                     </div>
 
                     <div class="form-group">
