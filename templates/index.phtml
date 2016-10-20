@@ -123,15 +123,6 @@
 <div class="row">
     <div class="col-xs-12 col-md-3">
         <?php if (!array_key_exists("online", $_SESSION)){ ?>
-        		<div class="panel panel-success">
-	                <div class="panel-heading">
-	                	<h3 class="panel-title">Coming from the old server?</h3>
-                	</div>
-	                <div class="panel-body">
-		                Your password has been reset<hr>
-		                To set a new password, do /password [password] in-game before logging in.
-	                </div>
-                </div>
             <?php
             if(!$settings["disablelogin"]){
             	if (array_key_exists("error", $_GET)) { ?>
