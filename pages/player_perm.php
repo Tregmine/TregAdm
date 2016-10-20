@@ -42,7 +42,7 @@ $title = "Permissions: " . $player["player_name"];
 
 $context = array();
 $context["player"] = $player;
-$context["settings"] = $psettings;
+$context["psettings"] = $psettings;
 $context["guardians"] = $guardians;
 $context["permissionList"] = $permissionList;
 $context["maxRank"] = $maxRank;
