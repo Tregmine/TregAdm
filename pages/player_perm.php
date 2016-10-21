@@ -47,6 +47,11 @@ $context["guardians"] = $guardians;
 $context["permissionList"] = $permissionList;
 $context["maxRank"] = $maxRank;
 $context["flags"] = $flags;
+if(array_key_exists($_POST['keywordRemoved'])){
+  $context["keywordRemoved"] = true;
+}else{
+  $context["keywordRemoved"] = 0;
+}
 
 $styles = array();
 $scripts = array("/js/player_perm.js");
