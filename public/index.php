@@ -4,10 +4,8 @@ error_reporting(E_ALL | E_STRICT);
 require_once '../include/init.php';
 require_once '../include/perm.php';
 require_once '../include/check.php';
+require_once '../include/settings.php';
 $requesturi = explode(".",$_SERVER['HTTP_HOST']);
-if(!isset($_SERVER['HTTPS'])){
-	header('Location: https://www.tregmine.com');
-}
 
 if (array_key_exists("tregadm_login_nonce", $_COOKIE) &&
     (!array_key_exists("online", $_SESSION) || !$_SESSION["online"])) {
@@ -43,6 +41,8 @@ if(array_shift((explode(".",$_SERVER['HTTP_HOST']))) == "m"){
 }
 function render($page, $title, $context = array(), $styles = array(), $scripts = array())
 {
+  $context["settings"] = $settings;
+  print_r($settings);
 	extract($context);
 	echo "<!ERIC WAS HERE 04/28/2016 8:02 PM EST>";
 	echo "<!ERIC WAS HERE 05/14/2016 1:23 PM EST>";
