@@ -13,7 +13,7 @@ error_reporting(E_ALL | E_STRICT);
     <title><?php echo $title; ?></title>
 
     <?php if(!$_SESSION["mobile"]){ ?>
-    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css" />
     <?php }else{ ?>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <?php } ?>
@@ -71,7 +71,7 @@ error_reporting(E_ALL | E_STRICT);
             <div class="collapse navbar-collapse" id="nav-1">
             <ul class="nav navbar-nav navbar-right">
                     	<li><a href="https://docs.google.com/document/d/1YZARKy2CIXNGoi0s5rokxowB_UE2cFfnsT1uDo21xQA/edit?usp=sharing">Policy</a></li>
-                    	<li><a href="https://www.tregmine.com/error/910">Wiki</a></li>
+                    	<li><a href="/error/910">Wiki</a></li>
                     	<li><a href="https://github.com/EricRabil/tregmine/issues">Bugs</a></li>
                     </ul>
                 <?php if (array_key_exists("online", $_SESSION)): ?>
@@ -89,7 +89,7 @@ error_reporting(E_ALL | E_STRICT);
                         <?php endif; ?>
 
 
-                        <li><a href="https://forum.tregmine.com/">Forum</a></li>
+                        <li><a href="/forum">Forum</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <p class="navbar-text">Signed in as <a href="/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>
@@ -99,7 +99,7 @@ error_reporting(E_ALL | E_STRICT);
                     <ul class="nav navbar-nav">
                         <li><a href="/stats">Stats</a></li>
                         <li><a href="https://discord.gg/0uSbLbQIFDRpUYvW">Discord</a></li>
-                        <li><a href="https://forum.tregmine.com/">Forum</a></li>
+                        <li><a href="/forum">Forum</a></li>
 
                     </ul>
 
