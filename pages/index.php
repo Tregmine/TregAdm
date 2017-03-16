@@ -12,8 +12,8 @@ $stmt->execute();
 
 $logins = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$sql  = "SELECT student_id, student.player_name student_name, "
-      . "mentor_id, mentor.player_name mentor_name, "
+$sql  = "SELECT student_id, student.player_name student_name, student.player_uuid student_uuid, "
+      . "mentor_id, mentor.player_name mentor_name, mentor.player_uuid mentor_uuid, "
       . "mentorlog_completedtime FROM mentorlog ";
 $sql .= "INNER JOIN player student ON student.player_id = student_id ";
 $sql .= "INNER JOIN player mentor ON mentor.player_id = mentor_id ";
@@ -56,7 +56,7 @@ if (count($stats) > 0) {
 }
 
 $context = array();
-$context["players"] = tregmine_online_players($tregmineApiKey);
+$context["players"] = tregmine_online_players();
 $context["logins"] = $logins;
 $context["settlers"] = $settlers;
 $context["loginsCount"] = $loginsCount;
@@ -66,18 +66,6 @@ $context["loginsTrend"] = $loginsTrend[count($loginsTrend)-1];
 $context["uniqueTrend"] = $uniqueTrend[count($uniqueTrend)-1];
 $context["settings"] = $settings;
 
-// if(!empty($_GET["err"]) && !isset($errCode)){
-// 	$errCode = $_GET["err"];
-// }else{
-// 	$errCode = false;
-// }
-// if($errCode == false && !empty($_GET["code"])){
-// 	$errCode = $_GET["code"];
-// }
-// $errCode = false;
-// if(isset($_GET['err'])) $errCode = $_GET['err'];
-// if(isset($_GET['code'])) $errCode = $_GET['code'];
-// if(isset($_GET['error'])) $errCode = $_GET['error'];
 $context["errCode"] = $errCode;
 $styles = array();
 $scripts = array("/js/start.js");
@@ -85,3 +73,4 @@ render('index.phtml', 'Welcome to Tregmine!', $context, $styles, $scripts);
 
 // JAMES WUZ ERE 2K14 @11:37PM GMT ON LYK FRIDAY 14TH FEBZ
 // ERIC WUZ ERE 2K16 @7:09PM UTC-5 ON LYK THURSDAY 24TH MARCHZ
+// ERIC WUZ ERE 2K17 @7:53PM UTC-5 ON LYK THURSDAY 16TH MARCHZ
