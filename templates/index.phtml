@@ -75,7 +75,7 @@
                         <?php foreach ($logins as $login): ?>
                             <tr>
                                <td rowspan="1" style="width: 20px;">
-                                    <img src="https://forum.tregmine.com/player_head.php?u=<?php echo $login["player_name"]; ?>" class="img-rounded table-margin-5" />
+                                    <img src="https://visage.surgeplay.com/face/48/<?php echo $login["player_uuid"]; ?>" class="img-rounded table-margin-5" />
                                </td>
                                 <td>
                                     <a <?php echo userCSSColor($login["player_id"]); ?> href="/player/search?q=<?php echo $login["player_name"]; ?>">
@@ -97,7 +97,7 @@
                         <?php foreach ($settlers as $settler): ?>
                             <tr>
                                 <td rowspan="1" style="width: 20px;">
-                                     <img src="https://forum.tregmine.com/player_head.php?u=<?php echo $settler["student_name"]; ?>" class="img-rounded table-margin-5" />
+                                     <img src="https://visage.surgeplay.com/face/48/<?php echo $settler["student_uuid"]; ?>" class="img-rounded table-margin-5" />
                                 </td>
                                 <td style="vertical-align: middle;">
                                     <a <?php echo userCSSColor($settler["student_id"]); ?> href="/player/search?q=<?php echo $settler["student_name"]; ?>">
@@ -106,7 +106,7 @@
                                     <span>mentored by <a <?php echo userCSSColor($settler["mentor_id"]); ?> href="/player/search?q=<?php echo $settler["mentor_name"]; ?>"><?php echo $settler["mentor_name"]; ?></a></span>
                                 </td>
                                 <td rowspan="1" style="width: 20px;">
-                                     <img src="https://forum.tregmine.com/player_head.php?u=<?php echo $settler["mentor_name"]; ?>" class="img-rounded table-margin-5" />
+                                     <img src="https://visage.surgeplay.com/face/48/<?php echo $settler["mentor_uuid"]; ?>" class="img-rounded table-margin-5" />
                                 </td>
                                 <td rowspawn="1" style="width: 20px;">
                                 <td>&nbsp;</td>
@@ -198,7 +198,7 @@
                         </div>
 
                         <div class="col-xs-6 col-md-4">
-                            <img src="/player/skin?u=<?php echo $_SESSION["name"]; ?>" />
+                            <img src="https://visage.surgeplay.com/frontfull/116/<?php echo $_SESSION["name"]; ?>" />
                         </div>
                     </div>
                 </div>
@@ -265,7 +265,7 @@
                         }
                 ?>
                 <tr>
-                    <td><img src="https://forum.tregmine.com/player_head.php?u=<?php echo $player["name"]; ?>" class="img-rounded image-right table-margin-5" /></td>
+                    <td><img src="https://visage.surgeplay.com/face/48/<?php echo $player["name"]; ?>" class="img-rounded image-right table-margin-5" /></td>
                     <td>
                         <a <?php echo userCSSColor($player["id"]); ?> href="/player/search?q=<?php echo $player["name"]; ?>">
                             <?php echo $player["name"]; ?>
