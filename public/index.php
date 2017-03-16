@@ -32,7 +32,7 @@ if (array_key_exists("tregadm_login_nonce", $_COOKIE) &&
         $_SESSION["flags"] = $user["player_flags"];
     }
 }
-if(array_shift((explode(".",$_SERVER['HTTP_HOST']))) == "m"){
+if(array_shift($requesturi) == "m"){
   $settings['mobile'] = true;
   $_SESSION["mobile"] = true;
 }else{
@@ -41,8 +41,8 @@ if(array_shift((explode(".",$_SERVER['HTTP_HOST']))) == "m"){
 }
 function render($page, $title, $context = array(), $styles = array(), $scripts = array())
 {
+  global $settings;
   $context["settings"] = $settings;
-  print_r($settings);
 	extract($context);
 	echo "<!ERIC WAS HERE 04/28/2016 8:02 PM EST>";
 	echo "<!ERIC WAS HERE 05/14/2016 1:23 PM EST>";
