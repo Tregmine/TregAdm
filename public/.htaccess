@@ -23,7 +23,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*?)/?$ index.php/$1 [QSA,L]
 
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^(.+?)/$ index.php/$1 [QSA,L]
-RewriteRule api/(.*)$ api.php?method=$1 [QSA,NC,L]
 Redirect 301 /ios10.mobileconfig https://beta.apple.com/sp/betaprogram/
