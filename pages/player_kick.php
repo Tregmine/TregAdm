@@ -16,5 +16,5 @@ $subjectId = $_GET["subject"];
 $issuerId = $_SESSION["id"];
 $message = $_GET["message"];
 
-$result = tregmine_kick_player($tregmineApiKey, $subjectId, $issuerId, $message);
+$result = tregmine_kick_player($subjectId, $issuerId, $message);
 echo json_encode($result);

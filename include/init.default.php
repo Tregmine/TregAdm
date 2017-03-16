@@ -10,11 +10,12 @@ $paypalEndpoint = "api.sandbox.paypal.com";
 $paypalClientId = "";
 $paypalSecret = "";
 
-$dsn = 'mysql:dbname=tregmine;host=localhost;port=3306';
-$user = 'root';
+$dsn = 'mysql:dbname=tregmine_db;host=localhost;port=3306';
+$user = 'tregmine_db';
 $password = '';
 
-define('TREGMINE_API_KEY', '8x5nAX4J5qfp0Emzi214dxWhm43nn3vi');
+define('TREGMINE_API_KEY', 'Your_Key');
+define('TREGMINE_API_HOST', '127.0.0.1:9192');
 
 try {
     $conn = new PDO($dsn, $user, $password);

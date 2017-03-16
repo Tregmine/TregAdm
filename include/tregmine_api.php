@@ -1,22 +1,7 @@
 <?php
-
-if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""){
-	//if(substr($_SERVER['REQUEST_URI'], 0, 15) != "/index.php/chat"){
-    //$redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    //header("HTTP/1.1 301 Moved Permanently");
-    //header("Location: $redirect");
-	//}
-}
-if(substr($_SERVER['REQUEST_URI'], 0, 15) == "/index.php/chat"){
-	if(isset($_SERVER['HTTPS'])){
-		$redirect = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-	    header("HTTP/1.1 301 Moved Permanently");
-    	header("Location: $redirect");
-	}
-}
 function tregmine_online_players() {
 
-    $host = "10.10.0.5:9192";
+    $host = TREGMINE_API_HOST;
     $path = "/playerlist";
     $query = "";
 
@@ -46,7 +31,7 @@ function tregmine_online_players() {
 }
 
 function tregmine_kick_player($subjectId, $issuerId, $message) {
-    $host = "localhost:9192";
+    $host = TREGMINE_API_HOST;
     $path = "/playerkick";
     $query = sprintf("subjectId=%d&issuerId=%d&message=%s",
             $subjectId,
@@ -72,7 +57,7 @@ function tregmine_kick_player($subjectId, $issuerId, $message) {
     return json_decode($data, true);
 }
 function tregmine_push_notification($sendTo, $sentFrom, $type){
-	$host = "localhost:9192";
+	$host = TREGMINE_API_HOST;
 	$path = "/push";
 	$query = sprintf("pushTo=%d&pushFrom=%d&type=%s", $sendTo, $sentFrom, $type);
 	    $signingKey = $path;
@@ -94,7 +79,7 @@ function tregmine_push_notification($sendTo, $sentFrom, $type){
     return json_decode($data, true);
 }
 function tregmine_auth($id) {
-    $host = "10.10.0.5:9192";
+    $host = TREGMINE_API_HOST;
     $path = "/auth";
     $query = sprintf("id=%d", $id);
 
