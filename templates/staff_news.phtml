@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-xs-12 col-md-9">
+        <div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title"><?php echo $title; ?></h3>
+		    </div>
+		    <div class="panel-body">
+		        <p>This is the staff news board for any changes or announcements. Please check this page regularly.</p>
+		    </div>
+		</div>
+		<?php 
+		foreach($context["news"] as $news){
+			?>
+			<div class="panel panel-warning">
+			    <div class="panel-heading">
+			        <h3 class="panel-title"><span <?php echo $news['playercolor'];?> ><?php echo $news['player']; ?></span> at <?php
+			        $date = new DateTime();
+			        $date->setTimestamp($news['timestamp']);
+			        echo $date->format('g:ia \o\n F jS Y');
+			        if($_SESSION['rank'] == "senior_admin"){
+			        ?>
+			        <span style="float:right"><a href=<?php echo '"?delete='.$news['id'].'"'; ?>>Delete</a></span>
+			        <?php }?>
+			        </h3>
+			    </div>
+			    <div class="panel-body">
+			        <p><?php echo $news['msg']; ?></p>
+			    </div>
+			</div>
+			<?php
+		}
+		?>
+    </div>
+
+    <div class="col-xs-12 col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h3 class="panel-title">Player Information</h3></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                            <div <?php echo userCSSColor($_SESSION["id"]); ?> style="font-size: 14px; font-weight: bold;">
+                                <?php
+                                    echo $_SESSION["name"] . "<br />";
+                                    echo ucwords(str_replace("_", " ", $_SESSION["rank"]));
+                                ?>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-md-4">
+                            <img src="/player/skin?player=<?php echo $_SESSION["name"]; ?>&factor=4" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-warning">
+                <div class="panel-heading"><h3 class="panel-title">Player Quick search</h3></div>
+                <div class="panel-body">
+                    <form role="form" method="get" action="/player/search">
+                        <div class="form-group">
+                            <label for="player_search">Username</label>
+                            <input type="text" class="form-control" id="player_search" name="q" />
+                        </div>
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>

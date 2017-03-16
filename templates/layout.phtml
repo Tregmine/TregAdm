@@ -1,0 +1,144 @@
+<?
+ini_set('display_errors', '0');
+error_reporting(E_ALL | E_STRICT);
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The best Minecraft server around!">
+    <meta name="author" content="Tregmine!">
+    <title><?php echo $title; ?></title>
+
+    <?php if(!$_SESSION["mobile"]){ ?>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <?php }else{ ?>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <?php } ?>
+    <link rel="stylesheet" href="/css/colors.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/jquery-ui.css" />
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/css/gh-fork-ribbon.ie.css">
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+
+    <style>
+    .github-fork-ribbon.right-bottom:before {
+            background-color: #090;
+        }
+
+        .github-fork-ribbon.right-top:before {
+            background-color: #f80;
+        }
+
+        .github-fork-ribbon.left-bottom:before {
+            background-color: #333;
+        }
+    </style>
+
+    <?php foreach ($styles as $style): ?>
+    <link rel="stylesheet" href="<?php echo $style; ?>" />
+    <?php endforeach; ?>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <?php foreach ($scripts as $script): ?>
+    <script type="text/javascript" src="<?php echo $script; ?>"></script>
+    <?php endforeach; ?>
+</head>
+
+<body>
+
+<!-- <a class="ribbon" href="https://github.com/Clunker5/tregmine-2.0" target="_blank"><img style="position: fixed; top: 0; left: 0; border: 0;" src="/img/github_ribbon.png" alt="View Tregmine on GitHub"></a> -->
+<div class="container">
+
+    <div class="jumbotron img-rounded"></div>
+
+    <div class="header">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Tregmine</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="nav-1">
+            <ul class="nav navbar-nav navbar-right">
+                    	<li><a href="https://docs.google.com/document/d/1YZARKy2CIXNGoi0s5rokxowB_UE2cFfnsT1uDo21xQA/edit?usp=sharing">Policy</a></li>
+                    	<li><a href="https://www.tregmine.com/error/910">Wiki</a></li>
+                    	<li><a href="https://github.com/EricRabil/tregmine/issues">Bugs</a></li>
+                    </ul>
+                <?php if (array_key_exists("online", $_SESSION)): ?>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/stats">Stats</a></li>
+                        <li><a href="/economy">Economy</a></li>
+                        <li><a href="/staff">Staff</a></li>
+                        <li><a href="/donate">Donate</a></li>
+                        <li><a href="/zone/search">Zones</a></li>
+                        <li><a href="/player/mail">Mail</a></li>
+                        <li><a href="https://discord.gg/0uSbLbQIFDRpUYvW">Discord</a></li>
+
+                        <?php if (hasRank("guardian", "coder", "builder", "junior_admin", "senior_admin")): ?>
+                            <li><a href="/logs">Admin</a></li>
+                        <?php endif; ?>
+
+
+                        <li><a href="https://forum.tregmine.com/">Forum</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <p class="navbar-text">Signed in as <a href="/player/search?q=<?php echo $_SESSION["name"]; ?>"><?php echo $_SESSION["name"] ?></a>
+                        <li><a href="/logout">Sign out</a></li>
+                    </ul>
+                <?php else: ?>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/stats">Stats</a></li>
+                        <li><a href="https://discord.gg/0uSbLbQIFDRpUYvW">Discord</a></li>
+                        <li><a href="https://forum.tregmine.com/">Forum</a></li>
+
+                    </ul>
+
+                <?php endif; ?>
+
+            </div>
+        </nav>
+    </div>
+
+    <?php
+        $template = '../templates/' . $page;
+
+        if (file_exists($template)) {
+            include '../templates/' . $template;
+        } else {
+            // header('Location: /error/404');
+            header('Location: /?err=404');
+        }
+    ?>
+
+</div>
+
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 src-links">
+                &raquo; <a href="https://github.com/EmilHernvall/TregAdm">Homepage Source</a>
+                &raquo; <a href="https://github.com/Clunker5/tregmine-2.0">Plugin Source</a>
+            </div>
+            <div class="col-md-6 copyright">
+                Copyright &copy; 2011-2016 Tregmine Contributors<br />
+                Code is MIT Licensed
+
+                </div>
+            </div>
+
+    </div>
+</div>
+
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>

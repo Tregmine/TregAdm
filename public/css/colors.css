@@ -1,0 +1,73 @@
+.black  {
+    color: #000;
+}
+
+.dark_blue  {
+    color: #00A;
+}
+
+.dark_green  {
+    color: #050;
+}
+
+.dark_aqua  {
+    color: #0AA;
+}
+
+.dark_red  {
+    color: #A00;
+}
+
+.dark_purple  {
+    color: #A0A;
+}
+
+.gold  {
+    color: #FA0;
+}
+
+.gray  {
+    color: #AAA;
+}
+
+.dark_gray  {
+    color: #555;
+}
+
+.blue  {
+    color: #55F;
+}
+
+.green  {
+    color: #2A2;
+}
+
+.aqua  {
+    color: #5FF;
+}
+
+.red  {
+    color: #F55;
+}
+
+.light_purple  {
+    color: #F5F;
+}
+
+.yellow  {
+    color: #bb2;
+}
+
+/* Need to change the actual color of 'white' to black so it shows up on the screen */
+.white  {
+    color: #000;
+}
+
+.banned {
+    /* text-decoration: line-through; */
+    background-color: #000;
+}
+
+.warned {
+    background-color: #AAA;
+}

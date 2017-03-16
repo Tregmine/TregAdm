@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Message</h3>
+    </div>
+
+    <div class="panel-body">
+        <form role="form" class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="channel">Channel</label>
+                <input type="text" class="form-control" id="channel" name="channel" value="GLOBAL" placeholder="Channel" />
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="message">Text</label>
+                <input type="text" class="form-control" id="message" name="message" maxlength="100" placeholder="Text" />
+            </div>
+            <button id="send" type="button" class="btn btn-default">Send</button>
+            <input type="hidden" id="token" value="<?php echo $token; ?>" />
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-default table-responsive">
+    <div class="panel-heading">
+        <h3 class="panel-title">Log</h3>
+    </div>
+    <table class="table table-striped">
+        <cols>
+            <col style="width: 100px;" />
+            <col style="width: 100px;" />
+            <col style="width: 100px;" />
+            <col />
+        </cols>
+        <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Channel</th>
+            <th>Sender</th>
+            <th>Text</th>
+        </tr>
+        </thead>
+        <tbody id="log">
+        </tbody>
+    </table>
+</div>

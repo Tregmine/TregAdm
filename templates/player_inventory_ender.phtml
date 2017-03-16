@@ -1,0 +1,66 @@
+<div class="modal-dialog">
+    <div class="modal-content modal-width-reset">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Ender Inventory for: <?php echo $player["player_name"]; ?></h4>
+        </div>
+        <div class="modal-body">
+            <div class="inventory">
+                <div class="rest ender">
+                    <div class="item ender">
+                        This page is displaying the ender chest of the player you have selected. <br /> <br />
+                        Be careful when modifying this inventory whilst the player is online - If the player is inside their ender chest, it can have undesired effects. <br /><br />
+                        It is recommended that you refresh before and after every action incase it is updated.
+                    </div>
+                    <div class="mcbutton ender disabled">Add</div>
+                    <div class="mcbutton ender disabled">Remove</div>
+                    <div class="mcbutton ender disabled">Modify</div>
+                    <div class="mcbutton ender disabled">Refresh</div>
+                </div>
+                <div class="upper">
+                    <?php
+                        for($i = 0; $i <= 26; $i++){
+                    ?>
+                        <div class="slot">
+                            <?php
+                                if (array_key_exists($i, $enderslots)) {
+                                    $slot = $enderslots[$i];
+                                    $item = $slot['item_material'];
+                                    $dvalue = $slot['item_data'];
+                                    $count = $slot['item_count'];
+
+                                    if ($count == "1") {
+                                        $count = "";
+                                    }
+
+                                    if (array_key_exists($item, $itemDBArray)) {
+                                        if (array_key_exists($dvalue, $itemDBArray[$item])) {
+                                            $data = $itemDBArray[$item][$dvalue];
+                                        } else {
+                                            $data = $itemDBArray[$item][0];
+                                        }
+                                        $link = $data['link'];
+
+                                        if (file_exists("../public/img/texture/default/" . $link) && $link != null) {
+                                            if ($data['round']) {
+                                                echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found img-rounded\"/><div class=\"item-label\">".$count."</div>";
+                                            } else {
+                                                echo "<img src=\"/img/texture/default/".$link."\" class=\"slot-found\"/><div class=\"item-label\">".$count."</div>";
+                                            }
+                                        } else {
+                                            echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
+                                        }
+                                    } else {
+                                        echo "<div class=\"slot-notfound\">ID: ". $item ."</div>";
+                                    }
+                                }
+                            ?>
+                        </div>
+                    <?php
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

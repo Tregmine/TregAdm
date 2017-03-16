@@ -1,0 +1,296 @@
+    <div class="col-xs-12 col-md-9">
+	<?php if(true == false){?>
+	<div class="alert alert-danger">
+	<div class="panel-heading">
+				<h3 class="panel-title">Tregmine is in maintenance-mode.<small></small></h3>
+			</div>
+			<div class="panel-body">
+			The server is currently undergoing maintenance and will be down for a few hours.
+			</div>
+	</div>
+	<?php }?>
+        <?php
+		if($errCode !== false){
+			include '../include/code_handling.php';
+			include '../include/code_registry.php';
+			if(code_exists($errCode, $registry)){
+				switch(get_code_type($errCode, $registry)){
+					case 1:
+					?>
+					<div class="alert alert-danger">
+					<?php
+					break;
+					case 2:
+						?>
+						<div class="alert alert-success">
+						<?php
+						break;
+				}
+			?>
+
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $errCode." - ".get_code_header($errCode, $registry); ?><small></small></h3>
+			</div>
+			<div class="panel-body">
+			<?php
+			if($errCode == 907){
+				if(!isset($_SESSION[907][1]) || !isset($_SESSION[907][2])){
+					header('Location: /?err=908');
+				}
+			$oldplayer = $_SESSION[907][1];
+			$newplayer = $_SESSION[907][2];
+			}
+			echo get_code_message($errCode, $registry); ?>
+			</div>
+			</div>
+			<?php
+			}else{
+				?>
+				<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo "0 - ".get_code_header(0, $registry); ?><small></small></h3>
+			</div>
+			<div class="panel-body">
+			<?php echo get_code_message(0, $registry); ?>
+			</div>
+			</div>
+				<?php
+
+			}
+		}
+            if (array_key_exists("er", $_GET)) {
+                echo "<div class=\"alert alert-danger\">" . $_GET['er'] . "</div>";
+            }
+        ?>
+
+        <?php require_once 'index_news.phtml'; ?>
+
+            <?php if(!$settings["mobile"]){?>
+            <div class="col-xs-6 table-responsive">
+                <div class="panel panel-default">
+                    <table class="table table-striped table-responsive table-hover">
+                        <tr>
+                            <th colspan="2">Recent logins</th>
+                        </tr>
+                        <?php foreach ($logins as $login): ?>
+                            <tr>
+                               <td rowspan="1" style="width: 20px;">
+                                    <img src="https://forum.tregmine.com/player_head.php?u=<?php echo $login["player_name"]; ?>" class="img-rounded table-margin-5" />
+                               </td>
+                                <td>
+                                    <a <?php echo userCSSColor($login["player_id"]); ?> href="/player/search?q=<?php echo $login["player_name"]; ?>">
+                                        <?php echo $login["player_name"]; ?>
+                                    </a><br/>
+                                    <?php echo niceTime($login["login_timestamp"]); ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-6 table-responsive">
+                <div class="panel panel-default">
+                    <table class="table table-responsive table-striped table-hover">
+                        <tr>
+                            <th colspan="11">New Members</th>
+                        </tr>
+                        <?php foreach ($settlers as $settler): ?>
+                            <tr>
+                                <td rowspan="1" style="width: 20px;">
+                                     <img src="https://forum.tregmine.com/player_head.php?u=<?php echo $settler["student_name"]; ?>" class="img-rounded table-margin-5" />
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <a <?php echo userCSSColor($settler["student_id"]); ?> href="/player/search?q=<?php echo $settler["student_name"]; ?>">
+                                        <?php echo $settler["student_name"]; ?>
+                                    </a><br />
+                                    <span>mentored by <a <?php echo userCSSColor($settler["mentor_id"]); ?> href="/player/search?q=<?php echo $settler["mentor_name"]; ?>"><?php echo $settler["mentor_name"]; ?></a></span>
+                                </td>
+                                <td rowspan="1" style="width: 20px;">
+                                     <img src="https://forum.tregmine.com/player_head.php?u=<?php echo $settler["mentor_name"]; ?>" class="img-rounded table-margin-5" />
+                                </td>
+                                <td rowspawn="1" style="width: 20px;">
+                                <td>&nbsp;</td>
+                                <td><?php echo niceTime($settler["mentorlog_completedtime"]); ?></td>
+                                <td>&nbsp;</td>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+            </div>
+            <?php }?>
+    </div>
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        <?php if (!array_key_exists("online", $_SESSION)){ ?>
+        		<div class="panel panel-success">
+	                <div class="panel-heading">
+	                	<h3 class="panel-title">Coming from the old server?</h3>
+                	</div>
+	                <div class="panel-body">
+		                Your password has been reset<hr>
+		                To set a new password, do /password [password] in-game before logging in.
+	                </div>
+                </div>
+            <?php
+            if(!$settings["disablelogin"]){
+            	if (array_key_exists("error", $_GET)) { ?>
+                <div class="panel panel-danger">
+            <?php } else { ?>
+                <div class="panel panel-default">
+            <?php } ?>
+                <div class="panel-heading"><h3 class="panel-title">Login</h3></div>
+                <div class="panel-body">
+                    <form method="post" action="/login" role="form">
+                        <?php if (array_key_exists("error", $_GET)): ?>
+                            <div class="alert alert-danger">
+                                Invalid username or password!
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Password</label>
+                            <input type="password" class="form-control" id="pass" name="pass" />
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="remember" name="remember" value="1"> Remember me?
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </form>
+                </div>
+            </div>
+            <?php }else{?>
+            <div class="panel panel-danger">
+            <div class="panel-heading"><h3 class="panel-title">Logins Are Down</h3></div>
+                <div class="panel-body">
+                    A security issue has occured that required logins to be disabled. <a href="https://discord.gg/0uSbLbQIFDRpUYvW">Check our Discord</a> for more details.
+                </div>
+            </div>
+            <?php }?>
+        <?php }else{ ?>
+        	<?php if(true == false){?>
+        	<div class="panel panel-warning">
+                <div class="panel-heading"><h3 class="panel-title">Tregmine Forums Integration</h3></div>
+                <div class="panel-body">
+                Your account has not been integrated with the Tregmine Forums!<br>
+                <a href="https://rabil.org/xfauth">Click me to integrate your account!</a>
+                </div>
+                </div>
+            <?php }?>
+            <?php if(!$settings["mobile"]){?>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h3 class="panel-title">Player Information</h3></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                            <div <?php echo userCSSColor($_SESSION["id"]); ?> style="font-size: 14px; font-weight: bold;">
+                                <?php
+                                    echo $_SESSION["name"] . "<br />";
+                                    echo ucwords(str_replace("_", " ", $_SESSION["rank"]));
+                                ?>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-md-4">
+                            <img src="/player/skin?u=<?php echo $_SESSION["name"]; ?>" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php }?>
+
+            <div class="panel panel-warning">
+                <div class="panel-heading"><h3 class="panel-title">Player Quick search</h3></div>
+                <div class="panel-body">
+                    <form role="form" method="get" action="/player/search">
+                        <div class="form-group">
+                            <label for="player_search">Username</label>
+                            <input type="text" class="form-control" id="player_search" name="q" />
+                        </div>
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-warning">
+                <div class="panel-heading"><h3 class="panel-title">Zone Quick search</h3></div>
+                <div class="panel-body">
+                    <form role="form" method="get" action="/zone/search">
+                        <div class="form-group">
+                            <label for="zone_search">Zone</label>
+                            <input type="text" class="form-control" id="zone_search" name="q" />
+                        </div>
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </form>
+                </div>
+            </div>
+        <?php } ?>
+        <?php if(!$settings["mobile"]){ ?>
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Todays Stats</h3></div>
+            <div class="panel-body">
+                <div id="hour_chart" style="width: 100%; height: 100px;"></div>
+                <div id="row">
+                    <div class="col-xs-12 col-md-8 text-right">
+                        Logins <br />
+                        Unique Players <br />
+                        Max Online
+                    </div>
+
+                    <div class="col-xs-6 col-md-4">
+                        <span title="Trend: <?php echo $loginsTrend; ?>"><?php echo $loginsCount; ?></span> <br />
+                        <span title="Trend: <?php echo $uniqueTrend; ?>"><?php echo $uniqueCount; ?></span> <br />
+                        <?php echo $maxPlayers; ?>
+                    </div>
+                </div>
+                <div class="text-right"><a href="/stats">Last 30 days</a></div>
+            </div>
+        </div>
+        <?php if (count($players) > 0):?>
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Players Online</h3></div>
+            <table class="table table-striped table-responsive table-hover">
+                <?php
+                    $hiddenCount = 0;
+                    foreach($players as $player):
+                        if ($player["hidden"] && !hasRank("senior_admin", "junior_admin")) {
+                            $hiddenCount++;
+                            continue;
+                        }
+                ?>
+                <tr>
+                    <td><img src="https://forum.tregmine.com/player_head.php?u=<?php echo $player["name"]; ?>" class="img-rounded image-right table-margin-5" /></td>
+                    <td>
+                        <a <?php echo userCSSColor($player["id"]); ?> href="/player/search?q=<?php echo $player["name"]; ?>">
+                            <?php echo $player["name"]; ?>
+                        </a>
+                        <?php if (hasRank("guardian", "junior_admin", "senior_admin")): ?>
+                            [<a href="#" onclick="kickPlayer(<?php echo $player["id"]; ?>)">Kick</a>]
+                        <?php endif; ?>
+                        <br />
+                        <?php
+                        $time = $player["playtime"];
+                        $min = $time/60;
+                        $sec = $time % 60;
+                        printf("Time online: %d:%02d", $min, $sec);
+                        ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                <?php if ($hiddenCount > 0): ?>
+                    <td colspan="2" style="font-style: italic;"><?php printf("%d hidden players", $hiddenCount); ?></td>
+                <?php endif; ?>
+            </table>
+        </div>
+        <?php endif;
+                                }
+        ?>
+    </div>
+    </div>
+</div>
