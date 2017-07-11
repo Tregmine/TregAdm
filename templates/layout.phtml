@@ -13,20 +13,13 @@ include '../include/settings.php';
     <meta name="author" content="Tregmine!">
     <title><?php echo $title; ?></title>
 
-    <?php if(!$_SESSION["mobile"]){ ?>
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <?php }else{ ?>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <?php } ?>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/colors.css" />
     <link rel="stylesheet" href="/css/custom.css" />
-    <link rel="stylesheet" href="/css/jquery-ui.css" />
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="/css/gh-fork-ribbon.ie.css">
     <![endif]-->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/js/jquery-ui.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />
     <style>
     .github-fork-ribbon.right-bottom:before {
             background-color: #090;
@@ -43,10 +36,6 @@ include '../include/settings.php';
 
     <?php foreach ($styles as $style): ?>
     <link rel="stylesheet" href="<?php echo $style; ?>" />
-    <?php endforeach; ?>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <?php foreach ($scripts as $script): ?>
-    <script type="text/javascript" src="<?php echo $script; ?>"></script>
     <?php endforeach; ?>
 </head>
 
@@ -141,6 +130,12 @@ include '../include/settings.php';
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEOzF6AWfr5X_fk8lu7ozcLmENXQG5hzQ"
   type="text/javascript"></script>
-<script src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<?php foreach ($scripts as $script): ?>
+	<script type="text/javascript" src="<?php echo $script; ?>"></script>
+<?php endforeach; ?>
 </body>
 </html>
