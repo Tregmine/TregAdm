@@ -48,25 +48,29 @@ function render($page, $title, $context = array(), $styles = array(), $scripts =
     extract($context);
     require_once '../templates/layout.phtml';
 }
-$path = array_key_exists("PATH_INFO", $_SERVER) ? $_SERVER["PATH_INFO"] : "/index";
+$path = empty($_REQUEST) ? "/index" : array_keys($_REQUEST)[0];
 $path = preg_replace("/[^a-z0-9_\\/]+/i", "", $path);
 $components = array_slice(explode("/", $path), 1);
 if ($settings["maintenance"]) {
     require_once "../pages/maintenance.php";
 } else {
     $errCode = false;
-    if ($components[0] == "error" || (strpos($components[0], "error") !== false)) {
-        $errCode = $components[1];
-        require_once "../pages/index.php";
-        exit();
+    if (sizeof($components) >= 1) {
+        if ($components[0] == "error" || (strpos($components[0], "error") !== false)) {
+            $errCode = $components[1];
+            require_once "../pages/index.php";
+            exit();
+        }
+        if ($components[0] == "code" || (strpos($components[0], "code") !== false)) {
+            $errCode = $components[1];
+            require_once "../pages/index.php";
+            exit();
+        }
     }
-    if ($components[0] == "code" || (strpos($components[0], "code") !== false)) {
-        $errCode = $components[1];
-        require_once "../pages/index.php";
-        exit();
-    }
+    
     $page = "../pages/" . implode("_", $components) . ".php";
     if (! file_exists($page)) {
+
         header('Location: /error/404');
         exit();
     }

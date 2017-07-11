@@ -1,8 +1,8 @@
 <?php
-$tregmineApiKey = "replace-with-your-code";
+$tregmineApiKey = "kys-BITCH-u-420-uGLYY69696969";
 
-function tregmine_online_players($key) {
-	$key = "replace-with-your-code";
+function tregmine_online_players() {
+    global $tregmineApiKey;
     $host = ":9192";
     $path = "/playerlist";
     $query = "";
@@ -14,7 +14,7 @@ function tregmine_online_players($key) {
         $url .= "?" . $query;
     }
 
-    $signingKey = base64_encode(hash_hmac("sha1", $signingKey, $key, true));
+    $signingKey = base64_encode(hash_hmac("sha1", $signingKey, $tregmineApiKey, true));
 
     $headers = array("Authorization: " . $signingKey);
 
@@ -33,7 +33,7 @@ function tregmine_online_players($key) {
 }
 
 function tregmine_kick_player($key, $subjectId, $issuerId, $message) {
-	$key = "replace-with-your-code";
+	global $tregmineApiKey;
     $host = "localhost:9192";
     $path = "/playerkick";
     $query = sprintf("subjectId=%d&issuerId=%d&message=%s",
@@ -48,7 +48,7 @@ function tregmine_kick_player($key, $subjectId, $issuerId, $message) {
         $url .= "?" . $query;
     }
 
-    $signingKey = base64_encode(hash_hmac("sha1", $signingKey, $key, true));
+    $signingKey = base64_encode(hash_hmac("sha1", $signingKey, $tregmineApiKey, true));
     $headers = array("Authorization: " . $signingKey);
 
     $curl = curl_init();
@@ -60,7 +60,7 @@ function tregmine_kick_player($key, $subjectId, $issuerId, $message) {
     return json_decode($data, true);
 }
 function tregmine_push_notification($sendTo, $sentFrom, $type){
-	$key = "replace-with-your-code";
+	global $tregmineApiKey;
 	$host = "localhost:9192";
 	$path = "/push";
 	$query = sprintf("pushTo=%d&pushFrom=%d&type=%s", $sendTo, $sentFrom, $type);
@@ -71,7 +71,7 @@ function tregmine_push_notification($sendTo, $sentFrom, $type){
         $url .= "?" . $query;
     }
 
-    $signingKey = base64_encode(hash_hmac("sha1", $signingKey, $key, true));
+    $signingKey = base64_encode(hash_hmac("sha1", $signingKey, $tregmineApiKey, true));
     $headers = array("Authorization: " . $signingKey);
 
     $curl = curl_init();
@@ -83,7 +83,7 @@ function tregmine_push_notification($sendTo, $sentFrom, $type){
     return json_decode($data, true);
 }
 function tregmine_auth($key, $id) {
-	$key = "replace-with-your-code";
+	global $tregmineApiKey;
     $host = "localhost:9192";
     $path = "/auth";
     $query = sprintf("id=%d", $id);
@@ -95,7 +95,7 @@ function tregmine_auth($key, $id) {
         $url .= "?" . $query;
     }
 
-    $signingKey = base64_encode(hash_hmac("sha1", $signingKey, $key, true));
+    $signingKey = base64_encode(hash_hmac("sha1", $signingKey, $tregmineApiKey, true));
 
     $headers = array("Authorization: " . $signingKey);
 
