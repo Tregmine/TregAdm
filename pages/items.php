@@ -12,8 +12,7 @@ if (!in_array($order, $orders)) {
 
 $sql  = "SELECT item_id, item_data, item_name, item_value, mine_value, id ";
 $sql .= "FROM item ";
-$sql .= "WHERE sellable = 'YES' ";
-$sql .= sprintf("ORDER BY item_%s %s", $order, $dir[$order]);
+$sql .= sprintf("ORDER BY item_name DESC");
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
