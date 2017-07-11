@@ -1,12 +1,16 @@
 <?php
-
 error_reporting(0);
 ini_set("display_errors", "0");
 
 $size = isset($_GET['s']) ? max(8, min(250, $_GET['s'])) : 48;
 $user = isset($_GET['u']) ? $_GET['u'] : '';
 $view = isset($_GET['v']) ? substr($_GET['v'], 0, 1) : 'f';
-$view = in_array($view, array('f', 'l', 'r', 'b')) ? $view : 'f';
+$view = in_array($view, array(
+    'f',
+    'l',
+    'r',
+    'b'
+)) ? $view : 'f';
 
 $filename = sprintf("%s.%d.%s.png", $user, $factor, $view);
 $cachePath = "../public/img/playerheads/";
@@ -14,7 +18,7 @@ if (file_exists($cachePath . $filename)) {
     header('Content-type: image/png');
     $fh = fopen($cachePath . $filename, "r");
     fpassthru($fh);
-    exit;
+    exit();
 }
 
 function get_skin($user)
@@ -69,15 +73,19 @@ function get_skin($user)
 $skin = get_skin($user);
 $im = imagecreatefromstring($skin);
 $av = imagecreatetruecolor($size, $size);
-$x = array('f' => 8, 'l' => 16, 'r' => 0, 'b' => 24);
-imagecopyresized($av, $im, 0, 0, $x[$view], 8, $size, $size, 8, 8);         // Face
-imagecolortransparent($im, imagecolorat($im, 63, 0));                       // Black Hat Issue
-imagecopyresized($av, $im, 0, 0, $x[$view] + 32, 8, $size, $size, 8, 8);    // Accessories
+$x = array(
+    'f' => 8,
+    'l' => 16,
+    'r' => 0,
+    'b' => 24
+);
+imagecopyresized($av, $im, 0, 0, $x[$view], 8, $size, $size, 8, 8); // Face
+imagecolortransparent($im, imagecolorat($im, 63, 0)); // Black Hat Issue
+imagecopyresized($av, $im, 0, 0, $x[$view] + 32, 8, $size, $size, 8, 8); // Accessories
 
 header('Content-type: image/png');
 imagepng($av);
 imagepng($av, $cachePath . "/" . $filename);
-
 
 imagedestroy($im);
 imagedestroy($av);

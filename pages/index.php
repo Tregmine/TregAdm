@@ -12,8 +12,8 @@ $stmt->execute();
 
 $logins = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$sql  = "SELECT student_id, student.player_name student_name, "
-      . "mentor_id, mentor.player_name mentor_name, "
+$sql  = "SELECT student_id, student.player_name student_name, student.player_uuid student_uuid, "
+      . "mentor_id, mentor.player_name mentor_name, mentor.player_uuid mentor_uuid, "
       . "mentorlog_completedtime FROM mentorlog ";
 $sql .= "INNER JOIN player student ON student.player_id = student_id ";
 $sql .= "INNER JOIN player mentor ON mentor.player_id = mentor_id ";
@@ -65,6 +65,7 @@ $context["maxPlayers"] = $maxPlayers;
 $context["loginsTrend"] = $loginsTrend[count($loginsTrend)-1];
 $context["uniqueTrend"] = $uniqueTrend[count($uniqueTrend)-1];
 $context["settings"] = $settings;
+$context["templates"] = array("head" => 'https://crafatar.com/avatars/%s?size=48&default=MHF_Steve&overlay');
 
 // if(!empty($_GET["err"]) && !isset($errCode)){
 // 	$errCode = $_GET["err"];

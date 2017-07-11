@@ -1,23 +1,23 @@
 <?php
 require_once '../include/init.php';
-//database is $conn
+// database is $conn
 /*
+ *
+ * $sql = "this is a stmt";
+ *
+ * $stmt = $conn->prepare($sql);
+ * $stmt->execute(array($inventory["inventory_id"]));
+ *
+ */
 
-$sql = "this is a stmt";
-
-$stmt = $conn->prepare($sql);
-$stmt->execute(array($inventory["inventory_id"]));
-
-*/
-
-if(isset($_GET['method']) && !empty($_GET['method'])){
-  $method = str_replace("/", "_", $_GET['method']);
+if (isset($_GET['method']) && ! empty($_GET['method'])) {
+    $method = str_replace("/", "_", $_GET['method']);
   if(function_exists($method){
     $method();
-  }else{
+} else {
     echo "Invalid API method '$method'. Terminating";
-    exit;
-  }
+    exit();
+}
 }
 
 //Getters
