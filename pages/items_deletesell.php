@@ -1,9 +1,7 @@
 <?php
 
 checkIfOnline();
-if ($_SESSION["id"] != 41802) {
-    checkRank("senior_admin");
-}
+checkRank("guardian");
 
 if (!array_key_exists("id", $_GET)) {
     exit;

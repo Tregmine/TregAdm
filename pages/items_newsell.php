@@ -1,9 +1,7 @@
 <?php
 
 checkIfOnline();
-if ($_SESSION["id"] != 41802) {
-    checkRank("senior_admin");
-}
+checkRank("guardian");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $itemName = $_POST['itemName_search'];

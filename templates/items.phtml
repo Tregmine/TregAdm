@@ -5,7 +5,7 @@
                 <h3 class="panel-title">Federal Reserve of Tregmine Prices</h3>
             </div>
 
-            <?php if (hasRank("senior_admin")): ?>
+            <?php if (hasRank("guardian")): ?>
             <a href="#addItem" data-toggle="modal" class="btn btn-default form-control">
                 <span class="glyphicon glyphicon-plus-sign"></span> Add new item
             </a>
@@ -65,7 +65,7 @@
                     <th><a href="/items?order=value">Value</a></th>
 					<th><a href="/items?order=miningvalue">Mining Value</a></th>
 
-                    <?php if (hasRank("senior_admin") || $_SESSION["id"] == 41802): ?>
+                    <?php if (hasRank("guardian") || $_SESSION["id"] == 41802): ?>
                     <th>Actions</th>
                     <?php endif; ?>
                 </tr>
@@ -84,7 +84,7 @@
 							<?php echo $item['mine_value']; ?>
 						</td>
 
-                        <?php if (hasRank("senior_admin") || $_SESSION["id"] == 41802): ?>
+                        <?php if (hasRank("guardian") || $_SESSION["id"] == 41802): ?>
                         <td>
                             <a href=<?php echo '"#modifyItem'.$item['id'].'"';?> data-toggle="modal" class="glyphicon glyphicon-pencil black"></a>
                             <a href="/items/deletesell?id=<?php echo $item['item_id']; ?>&data=<?php echo $item['item_data']; ?>" class="glyphicon glyphicon-minus-sign black"></a>
