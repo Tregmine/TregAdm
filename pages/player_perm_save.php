@@ -74,4 +74,4 @@ $stmt->execute($params);
 
 //$conn->commit();
 
-header('Location: /index.php/player/perm?id='.$id);
+header('Location: /player/perm?id='.$id);

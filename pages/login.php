@@ -3,7 +3,7 @@
 require_once '../include/password.php';
 
 if (array_key_exists("id", $_SESSION)) {
-    header('Location: /index.php/start');
+    header('Location: /start');
     exit;
 }
 
@@ -77,6 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         setcookie("tregadm_login_nonce", $salt, time()+30*86400);
     }
 
-    header('Location: /index.php/start');
+    header('Location: /start');
     exit;
 }

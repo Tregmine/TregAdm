@@ -19,4 +19,4 @@ $sql .= "WHERE item_id = ? AND item_data = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute(array($item_id, $item_data));
 
-header('Location: /index.php/admin/items');
+header('Location: /admin/items');

@@ -3,7 +3,7 @@ $(document).ready(
         $("#owner")
             .autocomplete({
                 "source": function(req, res) {
-                    $.getJSON('/index.php/player/autocomplete?q=' +
+                    $.getJSON('/player/autocomplete?q=' +
                               encodeURIComponent(req.term), res);
                 }
             });

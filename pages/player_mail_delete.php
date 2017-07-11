@@ -1,7 +1,7 @@
 <?php
 checkIfOnline();
 if($_GET['id'] <= 0){
-	header("Location: /index.php/player/mail?type=received");
+	header("Location: /player/mail?type=received");
 }
 $sql = "SELECT * FROM player WHERE player_id = ?";
 
@@ -20,7 +20,7 @@ foreach($result as $row){
 	$count = 1;
 }
 if($count == 0){
-	header("Location: /index.php/player/mail?type=received&err=delfail");
+	header("Location: /player/mail?type=received&err=delfail");
 	exit;
 }
 $stmt->closeCursor();

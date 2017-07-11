@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($sql);
         $stmt->execute(array($itemPrice, $minePrice, $itemID, $itemData));
 
-        header('Location: /index.php/items');
+        header('Location: /items');
         exit;
     } else {
         $sql  = "UPDATE item ";
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($sql);
         $stmt->execute(array($itemPrice, $itemName));
 
-        header('Location: /index.php/items');
+        header('Location: /items');
         exit;
     }
 }

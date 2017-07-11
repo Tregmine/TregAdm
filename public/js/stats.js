@@ -1,7 +1,7 @@
 google.load("visualization", "1", {packages:["corechart", "geochart"]});
 google.setOnLoadCallback(
     function() {
-        $.getJSON("/index.php/player/loginstats",
+        $.getJSON("/player/loginstats",
             function(raw_data) {
                 var data1 = google.visualization.arrayToDataTable(raw_data.logins);
                 var data2 = google.visualization.arrayToDataTable(raw_data.unique);
@@ -24,7 +24,7 @@ google.setOnLoadCallback(
                     });
             });
 
-        $.getJSON("/index.php/player/hourstats",
+        $.getJSON("/player/hourstats",
             function(raw_data) {
                 var data = google.visualization.arrayToDataTable(raw_data);
 
@@ -34,7 +34,7 @@ google.setOnLoadCallback(
                     });
             });
 
-        $.getJSON("/index.php/player/geostats",
+        $.getJSON("/player/geostats",
             function(raw_data) {
                 var data = google.visualization.arrayToDataTable(raw_data);
 
@@ -49,7 +49,7 @@ google.setOnLoadCallback(
 
         var orelogChart = document.getElementById('orelog_chart');
         if (orelogChart) {
-            $.getJSON("/index.php/player/orelog/stats",
+            $.getJSON("/player/orelog/stats",
                 function(raw_data) {
                     var data = google.visualization.arrayToDataTable(raw_data);
 

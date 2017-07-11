@@ -265,7 +265,7 @@ switch($action){
             'client_id' => $config['api_key'],
             'client_secret' => $config['api_secret'],
             'code' => $_GET['code'],
-            'redirect_uri' => 'https://rabil.org/index.php/xfauth/auth',
+            'redirect_uri' => 'https://rabil.org/xfauth/auth',
         );
         if (isLocal($config['api_root']) && !isLocal(getBaseUrl())) {
             $message = renderMessageForPostRequest($tokenUrl, $postFields);

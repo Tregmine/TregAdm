@@ -33,15 +33,15 @@ $transaction->setAmount($amount)
 $payment->setIntent('sale')
 ->setPayer($payer)
 ->setTransactions([$transaction]);
-$redirectUrls->setReturnUrl('https://www.tregmine.com/index.php/donate/confirm')
-->setCancelUrl('https://rabil.org/index.php/donate');
+$redirectUrls->setReturnUrl('https://www.tregmine.com/donate/confirm')
+->setCancelUrl('https://rabil.org/donate');
 $payment->setRedirectUrls($redirectUrls);
 try{
   $payment->create($api);
 
 }catch(PPConnectionException $e){
   print_r($e);
-  //header('Location: https://rabil.org/index.php/donate');
+  //header('Location: https://rabil.org/donate');
 }
 foreach($payment->getLinks() as $link){
   if($link->getRel() == 'approval_url'){
@@ -55,7 +55,7 @@ $accessToken = null;
 if (!array_key_exists("paypal_access_token", $_SESSION)) {
     $accessToken = getAccessToken($paypalEndpoint, $paypalClientId, $paypalSecret);
     if (empty($accessToken)) {
-        header('Location: /index.php/donate');
+        header('Location: /donate');
         exit;
     }
 } else {
@@ -64,12 +64,12 @@ if (!array_key_exists("paypal_access_token", $_SESSION)) {
 
 $payment = createPayment($paypalEndpoint, $accessToken, $amount);
 if (!$payment) {
-    header('Location: /index.php/donate');
+    header('Location: /donate');
     exit;
 }
 
 if (!array_key_exists("links", $payment)) {
-    header('Location: /index.php/donate');
+    header('Location: /donate');
     exit;
 }
 
@@ -86,7 +86,7 @@ foreach ($links as $link) {
 }
 
 if (!$approval) {
-    header('Location: /index.php/donate');
+    header('Location: /donate');
     exit;
 }
 header('Location: ' . $approval);

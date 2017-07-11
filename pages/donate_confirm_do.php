@@ -58,13 +58,13 @@ if (($_SESSION["rank"] == "unverified" ||
     $_SESSION["rank"] = "donator";
 }
 
-header('Location: /index.php/donate/finish');
+header('Location: /donate/finish');
 exit;
 $accessToken = null;
 if (!array_key_exists("paypal_access_token", $_SESSION)) {
     $accessToken = getAccessToken($paypalEndpoint, $paypalClientId, $paypalSecret);
     if (!$accessToken) {
-        header('Location: /index.php/donate');
+        header('Location: /donate');
         exit;
     }
 } else {
@@ -120,4 +120,4 @@ if (($_SESSION["rank"] == "unverified" ||
     $_SESSION["rank"] = "donator";
 }
 
-header('Location: /index.php/donate/finish');
+header('Location: /donate/finish');

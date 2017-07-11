@@ -12,7 +12,7 @@ if(!empty($_GET['delete'])){
 	$stmt = $conn->prepare($sql);
 	$stmt->execute(array($_GET['delete']));
 	$stmt->closeCursor();
-	header('Location: /index.php/staff/news');
+	header('Location: /staff/news');
 }
 $sql = "SELECT * FROM staffnews";
 

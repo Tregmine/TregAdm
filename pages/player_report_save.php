@@ -80,4 +80,4 @@ else if ($do == "cancel") {
     $stmt->execute(array($report["subject_id"], $_SESSION["id"], "comment", $text, time(), null));
 }
 
-header('Location: /index.php/player/report?id='.$id);
+header('Location: /player/report?id='.$id);

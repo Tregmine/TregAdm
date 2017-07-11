@@ -16,7 +16,7 @@ $stmt->execute(array($_POST["toPlayer"]));
 $sendTo = $stmt->fetch();
 $stmt->closeCursor();
 if(!isset($_POST["toPlayer"])){
-	header("Location: /index.php/player/mail");
+	header("Location: /player/mail");
 }
 $sql = "INSERT INTO player_mail (sender_name, receiver_name, message, deleted) VALUES (?, ?, ?, 'false')";
 
@@ -36,5 +36,5 @@ $styles = array("/css/inventory.css");
 $scripts = array();
 print_r($_POST);
 $_SESSION["message"] = "sendsuccess";
-header("Location: /index.php/player/mail");
+header("Location: /player/mail");
 //render('player_mail_compose.phtml', $title, $context, $styles, $scripts);

@@ -1,5 +1,5 @@
 function show_coords(id, timestamp) {
-    var url = "/index.php/player/orelog/coords?id=" + id + 
+    var url = "/player/orelog/coords?id=" + id + 
               "&timestamp=" + timestamp;
     $.getJSON(url,
         function(data) {

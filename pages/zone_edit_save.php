@@ -47,4 +47,4 @@ $stmt->execute(array($name, $owner, $enterDefault, $placeDefault,
                      $destroyDefault, $pvp, $hostiles, $communist, 
                      $enterMsg, $exitMsg, $texture, $id));
 
-header('Location: /index.php/zone/edit?id='.$id);
+header('Location: /zone/edit?id='.$id);

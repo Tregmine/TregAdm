@@ -18,5 +18,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($value, $mineValue, $id, $data));
 
-    header('Location: /index.php/items');
+    header('Location: /items');
 }

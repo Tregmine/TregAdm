@@ -47,7 +47,7 @@ $previousLink = "";
 if ($minusOne <= 0) {
     $previousStatus =  "class=\"disabled\"";
 } else {
-    $previousLink = "href=\"/index.php/admin/items?pg=" . $minusOne . "\"";
+    $previousLink = "href=\"/admin/items?pg=" . $minusOne . "\"";
 }
 
 $last = round(($itemCount / $pageSize)) + 1;
@@ -58,7 +58,7 @@ $nextLink = "";
 if ($plusOne >= $last) {
     $nextStatus = "class=\"disabled\"";
 } else {
-    $nextLink = "href=\"/index.php/admin/items?pg=" . $plusOne . "\"";
+    $nextLink = "href=\"/admin/items?pg=" . $plusOne . "\"";
 }
 
 $context = array();

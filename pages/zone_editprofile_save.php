@@ -50,4 +50,4 @@ $sql .= "VALUES (?, ?, unix_timestamp(), ?)";
 $stmt = $conn->prepare($sql);
 $stmt->execute(array($id, $_SESSION["id"], $text));
 
-header('Location: /index.php/zone/profile?id='.$id);
+header('Location: /zone/profile?id='.$id);

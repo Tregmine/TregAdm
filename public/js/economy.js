@@ -1,5 +1,5 @@
 function show_fishyblock(id) {
-    var url = "/index.php/economy/fishyblock?id=" + id;
+    var url = "/economy/fishyblock?id=" + id;
     $.getJSON(url,
         function(data) {
             var container = $(document.createElement("DIV"));
@@ -79,7 +79,7 @@ function show_fishyblock(id) {
 }
 
 function show_account(id) {
-    var url = "/index.php/economy/account?id=" + id;
+    var url = "/economy/account?id=" + id;
     $.getJSON(url,
         function(data) {
         console.log("test");

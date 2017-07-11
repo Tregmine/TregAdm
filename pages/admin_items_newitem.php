@@ -30,5 +30,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($id, $data, $name, $sign, $ench, $link, $round));
 
-    header('Location: /index.php/admin/items?pg='.$page.'');
+    header('Location: /admin/items?pg='.$page.'');
 }
