@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', '1');
-error_reporting(E_ALL);
+error_reporting(E_WARNING || E_ERROR || E_RECOVERABLE_ERROR || E_COMPILE_ERROR || E_COMPILE_WARNING || E_CORE_ERROR || E_CORE_WARNING);
 require_once '../include/init.php';
 require_once '../include/perm.php';
 require_once '../include/check.php';
@@ -48,7 +48,9 @@ function render($page, $title, $context = array(), $styles = array(), $scripts =
     extract($context);
     require_once '../templates/layout.phtml';
 }
-$path = empty($_REQUEST) ? "/index" : array_keys($_REQUEST)[0];
+$requestPath = array_keys($_REQUEST)[0];
+$path = empty($_REQUEST) && empty($_SERVER['PATH_INFO']) ? "/index" : empty($requestPath) ? $_SERVER['PATH_INFO'] : $requestPath;
+$path = empty($path) ? "/index" : $path;
 $path = preg_replace("/[^a-z0-9_\\/]+/i", "", $path);
 $components = array_slice(explode("/", $path), 1);
 if ($settings["maintenance"]) {
