@@ -12,7 +12,7 @@ if (!in_array($order, $orders)) {
 
 $sql  = "SELECT item_id, item_data, item_name, item_value, mine_value, id ";
 $sql .= "FROM item ";
-$sql .= sprintf("ORDER BY item_id DESC");
+$sql .= sprintf("ORDER BY item_id ASC");
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
